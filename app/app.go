@@ -347,6 +347,9 @@ func New(
 		appCodec,
 		keys[moonloopmoduletypes.StoreKey],
 		keys[moonloopmoduletypes.MemStoreKey],
+
+		app.AccountKeeper,
+		app.BankKeeper,
 	)
 	moonloopModule := moonloopmodule.NewAppModule(appCodec, app.MoonloopKeeper)
 

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package cosmonaut.moonloop.moonloop;
+
+option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message Contribution {
+  string collectionIndex = 1; 
+  string classIndex = 2; 
+  string powerupTemplateIndex = 3; 
+  string instanceIndex = 4; 
+  repeated string contributors = 5; 
+  repeated cosmos.base.v1beta1.Coin amounts = 6 [(gogoproto.nullable) = false]; 
+  repeated int64 timestamps = 7;
+  string creator = 8;
+}
+

@@ -19,12 +19,180 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid:    true,
 		},
 		{
-			desc:     "valid genesis state",
+			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
+				CollectionList: []types.Collection{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
+				ClassList: []types.Class{
+					{
+						CollectionIndex: "0",
+						ClassIndex:      "0",
+					},
+					{
+						CollectionIndex: "1",
+						ClassIndex:      "1",
+					},
+				},
+				MintStrategyList: []types.MintStrategy{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
+				ContributionList: []types.Contribution{
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+						InstanceIndex:        "0",
+					},
+					{
+						CollectionIndex:      "1",
+						ClassIndex:           "1",
+						PowerupTemplateIndex: "1",
+						InstanceIndex:        "1",
+					},
+				},
+				PowerupTemplateList: []types.PowerupTemplate{
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+					},
+					{
+						CollectionIndex:      "1",
+						ClassIndex:           "1",
+						PowerupTemplateIndex: "1",
+					},
+				},
+				PowerupList: []types.Powerup{
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+						InstanceIndex:        "0",
+					},
+					{
+						CollectionIndex:      "1",
+						ClassIndex:           "1",
+						PowerupTemplateIndex: "1",
+						InstanceIndex:        "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated collection",
+			genState: &types.GenesisState{
+				CollectionList: []types.Collection{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated class",
+			genState: &types.GenesisState{
+				ClassList: []types.Class{
+					{
+						CollectionIndex: "0",
+						ClassIndex:      "0",
+					},
+					{
+						CollectionIndex: "0",
+						ClassIndex:      "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated mintStrategy",
+			genState: &types.GenesisState{
+				MintStrategyList: []types.MintStrategy{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated contribution",
+			genState: &types.GenesisState{
+				ContributionList: []types.Contribution{
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+						InstanceIndex:        "0",
+					},
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+						InstanceIndex:        "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated powerupTemplate",
+			genState: &types.GenesisState{
+				PowerupTemplateList: []types.PowerupTemplate{
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+					},
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated powerup",
+			genState: &types.GenesisState{
+				PowerupList: []types.Powerup{
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+						InstanceIndex:        "0",
+					},
+					{
+						CollectionIndex:      "0",
+						ClassIndex:           "0",
+						PowerupTemplateIndex: "0",
+						InstanceIndex:        "0",
+					},
+				},
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	} {

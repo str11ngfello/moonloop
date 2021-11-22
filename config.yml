@@ -1,16 +1,71 @@
+init:
+  config:
+    moniker: "moonloop"
+    max_subscriptions_per_client: 25
+    consensus:
+      create_empty_blocks: false
+    instrumentation:
+      prometheus: true
 accounts:
+  - name: lynn
+    coins: ["10000000umoon", "10000000upower"]
+    mnemonic: thunder nurse blush donor turkey relax plate tired ring turkey error escape citizen give dad monster great hotel holiday follow access flower pigeon rack
+  - name: heartbeat
+    coins: ["10000000umoon", "10000000upower"]
+    mnemonic: key main noodle obey click punch twelve oak gasp convince deposit rice party media turtle meadow coral describe avocado gallery imitate quality slice mistake
   - name: alice
-    coins: ["20000token", "200000000stake"]
-  - name: bob
-    coins: ["10000token", "100000000stake"]
+    coins: ["100000000umoon", "10000000upower"]
+    mnemonic: math mail amused motor trial rack bargain hollow base orange fitness busy shuffle library main build rich valve cool pair fatal amused another long
 validator:
   name: alice
-  staked: "100000000stake"
+  staked: "100000000umoon"
 client:
-  openapi:
-    path: "docs/static/openapi.yml"
   vuex:
     path: "vue/src/store"
+  openapi:
+    path: "docs/static/openapi.yml"
 faucet:
-  name: bob
-  coins: ["5token", "100000stake"]
+  name: alice
+  coins: ["10000000upower"]
+genesis:
+  app_state:
+    staking:
+      params:
+        bond_denom: "umoon"
+    bank:
+      denom_metadata:
+        - name: "power"
+          symbol: "POWER"
+          description: "Power token"
+          denom_units: 
+            - denom: "upower"
+              exponent: 0
+              aliases: ["micropower"]
+            - denom: "power"
+              exponent: 6
+              aliases: ["power"]
+          base: "upower"
+          display: "power"
+        - name: "moon"
+          symbol: "MOON"
+          description: "Moon token"
+          denom_units: 
+            - denom: "umoon"
+              exponent: 0
+              aliases: ["micromoon"]
+            - denom: "moon"
+              exponent: 6
+              aliases: ["moon"]
+          base: "umoon"
+          display: "moon"
+    mint: 
+      minter:
+        annual_provisions: "0.000000000000000000"
+        inflation: "0.130000000000000000"    
+      params: 
+        blocks_per_year: 31536000
+        goal_bonded: "0.670000000000000000"
+        inflation_max: "0.200000000000000000"
+        inflation_min: "0.070000000000000000"
+        inflation_rate_change: "0.130000000000000000"
+        mint_denom: "umoon"

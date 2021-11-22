@@ -1,11 +1,24 @@
 syntax = "proto3";
 package cosmonaut.moonloop.moonloop;
 
+import "moonloop/collection.proto";
+import "moonloop/class.proto";
+import "moonloop/mint_strategy.proto";
+import "moonloop/contribution.proto";
+import "moonloop/powerup_template.proto";
+import "moonloop/powerup.proto";
 // this line is used by starport scaffolding # genesis/proto/import
+import "gogoproto/gogo.proto";
 
 option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
 
 // GenesisState defines the moonloop module's genesis state.
 message GenesisState {
-    // this line is used by starport scaffolding # genesis/proto/state
+    repeated Collection collectionList = 1 [(gogoproto.nullable) = false];
+  repeated Class classList = 2 [(gogoproto.nullable) = false];
+  repeated MintStrategy mintStrategyList = 3 [(gogoproto.nullable) = false];
+  repeated Contribution contributionList = 4 [(gogoproto.nullable) = false];
+  repeated PowerupTemplate powerupTemplateList = 5 [(gogoproto.nullable) = false];
+  repeated Powerup powerupList = 6 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
 }

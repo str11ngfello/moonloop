@@ -1,13 +1,306 @@
 syntax = "proto3";
 package cosmonaut.moonloop.moonloop;
 
+import "moonloop/collection.proto";
+import "moonloop/class.proto";
+import "moonloop/mint_strategy.proto";
+import "moonloop/contribution.proto";
+import "moonloop/powerup_template.proto";
+import "moonloop/powerup.proto";
 // this line is used by starport scaffolding # proto/tx/import
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc CreateCollection(MsgCreateCollection) returns (MsgCreateCollectionResponse);
+  rpc UpdateCollection(MsgUpdateCollection) returns (MsgUpdateCollectionResponse);
+  rpc DeleteCollection(MsgDeleteCollection) returns (MsgDeleteCollectionResponse);
+  rpc CreateClass(MsgCreateClass) returns (MsgCreateClassResponse);
+  rpc UpdateClass(MsgUpdateClass) returns (MsgUpdateClassResponse);
+  rpc DeleteClass(MsgDeleteClass) returns (MsgDeleteClassResponse);
+  rpc CreateMintStrategy(MsgCreateMintStrategy) returns (MsgCreateMintStrategyResponse);
+  rpc UpdateMintStrategy(MsgUpdateMintStrategy) returns (MsgUpdateMintStrategyResponse);
+  rpc DeleteMintStrategy(MsgDeleteMintStrategy) returns (MsgDeleteMintStrategyResponse);
+  rpc CreateContribution(MsgCreateContribution) returns (MsgCreateContributionResponse);
+  rpc UpdateContribution(MsgUpdateContribution) returns (MsgUpdateContributionResponse);
+  rpc DeleteContribution(MsgDeleteContribution) returns (MsgDeleteContributionResponse);
+  rpc CreatePowerupTemplate(MsgCreatePowerupTemplate) returns (MsgCreatePowerupTemplateResponse);
+  rpc UpdatePowerupTemplate(MsgUpdatePowerupTemplate) returns (MsgUpdatePowerupTemplateResponse);
+  rpc DeletePowerupTemplate(MsgDeletePowerupTemplate) returns (MsgDeletePowerupTemplateResponse);
+  rpc CreatePowerup(MsgCreatePowerup) returns (MsgCreatePowerupResponse);
+  rpc UpdatePowerup(MsgUpdatePowerup) returns (MsgUpdatePowerupResponse);
+  rpc DeletePowerup(MsgDeletePowerup) returns (MsgDeletePowerupResponse);
+  rpc SetCollectionMintStrategy(MsgSetCollectionMintStrategy) returns (MsgSetCollectionMintStrategyResponse);
+  rpc SendPower(MsgSendPower) returns (MsgSendPowerResponse);
+  rpc FreePower(MsgFreePower) returns (MsgFreePowerResponse);
+  rpc Mint(MsgMint) returns (MsgMintResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateCollection {
+  string creator = 1;
+  string index = 2;
+
+  string name = 3;
+  string description = 4;
+  string mintStrategy = 5;
+  repeated string classes = 6;
+}
+message MsgCreateCollectionResponse {}
+
+message MsgUpdateCollection {
+  string creator = 1;
+  string index = 2;
+
+  string name = 3;
+  string description = 4;
+  string mintStrategy = 5;
+  repeated string classes = 6;
+}
+message MsgUpdateCollectionResponse {}
+
+message MsgDeleteCollection {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteCollectionResponse {}
+
+message MsgCreateClass {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+
+  string name = 4;
+  string description = 5;
+  string mintStrategy = 6;
+  string gltfHash = 7;
+  string metadata = 8;
+  int32 maxInstances = 9;
+}
+message MsgCreateClassResponse {}
+
+message MsgUpdateClass {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+
+  string name = 4;
+  string description = 5;
+  string mintStrategy = 6;
+  string gltfHash = 7;
+  string metadata = 8;
+  int32 maxInstances = 9;
+  int32 count = 10;
+  repeated string powerupTemplates = 11;
+}
+message MsgUpdateClassResponse {}
+
+message MsgDeleteClass {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+}
+message MsgDeleteClassResponse {}
+
+message MsgCreateMintStrategy {
+  string creator = 1;
+  string index = 2;
+
+  repeated string minters = 3;
+  repeated int32 instanceLevels = 4;
+  repeated int32 priceLevels = 5;
+  bool paused = 6;
+}
+message MsgCreateMintStrategyResponse {}
+
+message MsgUpdateMintStrategy {
+  string creator = 1;
+  string index = 2;
+
+  repeated string minters = 3;
+  repeated int32 instanceLevels = 4;
+  repeated int32 priceLevels = 5;
+  bool paused = 6;
+}
+message MsgUpdateMintStrategyResponse {}
+
+message MsgDeleteMintStrategy {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteMintStrategyResponse {}
+
+message MsgCreateContribution {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+
+  repeated string contributors = 6;
+  repeated cosmos.base.v1beta1.Coin amounts = 7 [(gogoproto.nullable) = false];
+}
+message MsgCreateContributionResponse {}
+
+message MsgUpdateContribution {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+
+  repeated string contributors = 6;
+  repeated cosmos.base.v1beta1.Coin amounts = 7 [(gogoproto.nullable) = false];
+}
+message MsgUpdateContributionResponse {}
+
+message MsgDeleteContribution {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+}
+message MsgDeleteContributionResponse {}
+
+message MsgCreatePowerupTemplate {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+
+  string name = 5;
+  string description = 6;
+  int32 count = 7;
+  cosmos.base.v1beta1.Coin activationBalance = 8 [(gogoproto.nullable) = false];
+  cosmos.base.v1beta1.Coin maxBalance = 9 [(gogoproto.nullable) = false];
+  int32 duration = 10;
+  int32 maxDuration = 11;
+  int32 refundDuration = 12;
+  int32 maxActivations = 13;
+  int32 coolDownDuration = 14;
+  cosmos.base.v1beta1.Coin rechargeRate = 15 [(gogoproto.nullable) = false];
+  cosmos.base.v1beta1.Coin feeRate = 16 [(gogoproto.nullable) = false];
+  int32 activationType = 17;
+  string eventData = 18;
+}
+message MsgCreatePowerupTemplateResponse {}
+
+message MsgUpdatePowerupTemplate {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+
+  string name = 5;
+  string description = 6;
+  int32 count = 7;
+  cosmos.base.v1beta1.Coin activationBalance = 8 [(gogoproto.nullable) = false];
+  cosmos.base.v1beta1.Coin maxBalance = 9 [(gogoproto.nullable) = false];
+  int32 duration = 10;
+  int32 maxDuration = 11;
+  int32 refundDuration = 12;
+  int32 maxActivations = 13;
+  int32 coolDownDuration = 14;
+  cosmos.base.v1beta1.Coin rechargeRate = 15 [(gogoproto.nullable) = false];
+  cosmos.base.v1beta1.Coin feeRate = 16 [(gogoproto.nullable) = false];
+  int32 activationType = 17;
+  string eventData = 18;
+}
+message MsgUpdatePowerupTemplateResponse {}
+
+message MsgDeletePowerupTemplate {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+}
+message MsgDeletePowerupTemplateResponse {}
+
+message MsgCreatePowerup {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+
+  cosmos.base.v1beta1.Coin balance = 6 [(gogoproto.nullable) = false];
+  int32 startTime = 7;
+  int32 endTime = 8;
+  int32 numActivations = 9;
+  cosmos.base.v1beta1.Coin fees = 10 [(gogoproto.nullable) = false];
+  bool acceptingPower = 11;
+}
+message MsgCreatePowerupResponse {}
+
+message MsgUpdatePowerup {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+
+  cosmos.base.v1beta1.Coin balance = 6 [(gogoproto.nullable) = false];
+  int32 startTime = 7;
+  int32 endTime = 8;
+  int32 numActivations = 9;
+  cosmos.base.v1beta1.Coin fees = 10 [(gogoproto.nullable) = false];
+  bool acceptingPower = 11;
+}
+message MsgUpdatePowerupResponse {}
+
+message MsgDeletePowerup {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+}
+message MsgDeletePowerupResponse {}
+
+message MsgSetCollectionMintStrategy {
+  string creator = 1;
+  string collectionIndex = 2;
+  string mintStrategyIndex = 3;
+}
+
+message MsgSetCollectionMintStrategyResponse {
+}
+
+message MsgSendPower {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+  cosmos.base.v1beta1.Coin power = 6 [(gogoproto.nullable) = false];
+}
+
+message MsgSendPowerResponse {
+}
+
+message MsgFreePower {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  string powerupTemplateIndex = 4;
+  string instanceIndex = 5;
+}
+
+message MsgFreePowerResponse {
+}
+
+message MsgMint {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classIndex = 3;
+  int32 numInstances = 4;
+}
+
+message MsgMintResponse {
 }
 
 // this line is used by starport scaffolding # proto/tx/message

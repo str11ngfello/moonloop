@@ -1,0 +1,226 @@
+
+
+ {"jsonrpc": "2.0","method": "subscribe", "id": 0,"params":{"query": "tm.event='Tx' AND powerup-activated.collectionIndex='bulldogs'"}}
+ {"jsonrpc": "2.0","method": "subscribe", "id": 0,"params":{"query": "tm.event='Tx' AND powerup-activated.endTime > 0"}}
+
+
+MoonShower
+MoonStrike
+MoonQuake
+MoonLoop
+
+
+*mint strategy can be set for the collection (should provide a default) or overriden at teh class level by creating a  mint strategy with an index of collectionid and classid
+[MintStrategy]
+index: sleepingbulldog.sleepingbulldog
+minters: [bech32] (if null, anyone can mint)
+mintInstance: [0,500,1000] 
+mintPrice: [25,50,100]
+paused: false
+
+
+
+[Collection]
+bulldogsseason1
+Classes [sleepingbulldog]
+//CreatorRoyaltyPercentage: .10
+
+
+[Class]
+index: bulldogsseason1.sleepingbulldog
+[MintStrategy can be found by looking it up with index collectionid.classid, if it doesn't exist then the collectionID index will give us the parent]
+MetaDAta: {name: Sleeping Bulldog, desc: "THIS IS A SLEEPING BULLDOG", furColor:"Brown",age: "sleven
+GLTFHash: abad32234uafje52jlimmsfnmseifsen32 (potentially many GLTFs?)
+Count: 2
+PowerupTemplates [sleepingbulldog.wakeup,,,]
+
+
+[Owner]
+index: bulldogsseason1.sleepingbulldog.0
+value: bech32
+index: bulldogsseason1.sleepingbulldog.1
+value: bech32
+index: bulldogsseason1.sleepingbulldog.2
+value: bech32
+
+[Owning]
+index: bech32
+value [bulldogsseason1.sleepingbulldog.0, bulldogsseason1.sleepingbulldog.1]  
+
+[SaleListing]
+index: bulldogsseason1.sleepingbulldog.0
+price: 32
+[offers]
+	16
+	8
+	2
+
+[TradeListing]
+indexA: bulldogsseason1.sleepingbulldog.0
+indexB: bulldogsseason1.sleepingbulldog.1
+
+[Staked]
+index bulldogseason1.sleepingbulldog.0
+starttime: timestamp
+endtime: timestamp
+
+[Contribution] 
+	index bulldogsseason1.sleepingbulldog.wakeup.0
+	contributors:bech32,bech32
+	amounts: 23upower,34power
+	
+	
+[PowerupTemplate]
+	index: bulldogsseason1.sleepingbulldog.wakeup
+	name:string
+	description:string
+	numInstances: 0
+	activationBalance = 4; 
+	maxBalance = 5; 
+	duration = 6; 
+	maxDuration = 7; 
+	refundDuration = 10; 
+	maxActivations = 12;
+	coolDownDuration = 13; 
+	rechargeRate = 14; 
+	feeRate = 15; 
+	ActivationType: (OneShot, OnOff, Timed, Range, Permanent) (MoonStrike, MoonQuake, MoonLoop, MoonBloom)
+	EventData: (Message,PlayAnim,StopAnim, etc)
+
+	
+
+[PowerupInstance]
+	index: bulldogsseason1.sleepingbulldog.wakeup.0  (built from collectionindex.powerupname.instanceid)
+	Collection: sleepingbulldog
+	powerupId: wakeup
+	InstanceId: 0
+	balance = 3; 
+	startTime = 8; 
+	endTime = 9; 
+	numActivations = 11; 
+	fees = 16; 
+	AcceptingPower: bool
+
+
+	index: bulldogsseason1.sleepingbulldog.wakeup.1  (built from collectionindex.powerupname.instanceid)
+	Collection: sleepingbulldog
+	powerupId: wakeup
+	InstanceId: 1
+	balance = 3; 
+	startTime = 8; 
+	endTime = 9; 
+	numActivations = 11; 
+	fees = 16; 
+	AcceptingPower: bool
+
+	index: bulldogsseason1.sleepingbulldog.wakeup.2  (built from collectionindex.powerupname.instanceid)
+	Collection: sleepingbulldog
+	powerupId: wakeup
+	InstanceId: 2
+	balance = 3; 
+	startTime = 8; 
+	endTime = 9; 
+	numActivations = 11; 
+	fees = 16; 
+	AcceptingPower: bool
+
+
+
+
+
+Create "Views" of the moonloop asset that return a formatted ERC721 or ERC1159 in order to integdrate with marketplaces. Even though moonloop assets are much more data-rich we can still represent it in other limited forms. If the underlying
+asset is changing rapidly, another server might need to be return snapshots of the ERC
+
+Fractionalization supported by power token contribution
+
+
+
+
+
+
+
+
+
+
+
+
+init:
+  config:
+    moniker: "moonloop"
+    max_subscriptions_per_client: 25
+    consensus:
+      create_empty_blocks: false
+accounts:
+  - name: lynn
+    coins: ["10000000umoon", "10000000upower"]
+    mnemonic: thunder nurse blush donor turkey relax plate tired ring turkey error escape citizen give dad monster great hotel holiday follow access flower pigeon rack
+  - name: heartbeat
+    coins: ["10000000umoon", "10000000upower"]
+    mnemonic: key main noodle obey click punch twelve oak gasp convince deposit rice party media turtle meadow coral describe avocado gallery imitate quality slice mistake
+  - name: alice
+    coins: ["100000000umoon", "10000000upower"]
+    mnemonic: math mail amused motor trial rack bargain hollow base orange fitness busy shuffle library main build rich valve cool pair fatal amused another long
+validator:
+  name: alice
+  staked: "100000000umoon"
+client:
+  vuex:
+    path: "vue/src/store"
+  openapi:
+    path: "docs/static/openapi.yml"
+faucet:
+  name: alice
+  coins: ["10000000upower"]
+genesis:
+  app_state:
+    staking:
+      params:
+        bond_denom: "umoon"
+    bank:
+      denom_metadata:
+        - name: "power"
+          symbol: "POWER"
+          description: "Power token"
+          denom_units: 
+            - denom: "upower"
+              exponent: 0
+              aliases: ["micropower"]
+            - denom: "power"
+              exponent: 6
+              aliases: ["power"]
+          base: "upower"
+          display: "power"
+        - name: "moon"
+          symbol: "MOON"
+          description: "Moon token"
+          denom_units: 
+            - denom: "umoon"
+              exponent: 0
+              aliases: ["micromoon"]
+            - denom: "moon"
+              exponent: 6
+              aliases: ["moon"]
+          base: "umoon"
+          display: "moon"
+    mint: 
+      minter:
+        annual_provisions: "0.000000000000000000"
+        inflation: "0.130000000000000000"    
+      params: 
+        blocks_per_year: 31536000
+        goal_bonded: "0.670000000000000000"
+        inflation_max: "0.200000000000000000"
+        inflation_min: "0.070000000000000000"
+        inflation_rate_change: "0.130000000000000000"
+        mint_denom: "umoon"
+      
+          
+
+
+
+
+
+moonmint.io  ??  (it's available)
+
+
+

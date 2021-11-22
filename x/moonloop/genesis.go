@@ -9,6 +9,30 @@ import (
 // InitGenesis initializes the capability module's state from a provided genesis
 // state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
+	// Set all the collection
+	for _, elem := range genState.CollectionList {
+		k.SetCollection(ctx, elem)
+	}
+	// Set all the class
+	for _, elem := range genState.ClassList {
+		k.SetClass(ctx, elem)
+	}
+	// Set all the mintStrategy
+	for _, elem := range genState.MintStrategyList {
+		k.SetMintStrategy(ctx, elem)
+	}
+	// Set all the contribution
+	for _, elem := range genState.ContributionList {
+		k.SetContribution(ctx, elem)
+	}
+	// Set all the powerupTemplate
+	for _, elem := range genState.PowerupTemplateList {
+		k.SetPowerupTemplate(ctx, elem)
+	}
+	// Set all the powerup
+	for _, elem := range genState.PowerupList {
+		k.SetPowerup(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 }
 
@@ -16,6 +40,12 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 
+	genesis.CollectionList = k.GetAllCollection(ctx)
+	genesis.ClassList = k.GetAllClass(ctx)
+	genesis.MintStrategyList = k.GetAllMintStrategy(ctx)
+	genesis.ContributionList = k.GetAllContribution(ctx)
+	genesis.PowerupTemplateList = k.GetAllPowerupTemplate(ctx)
+	genesis.PowerupList = k.GetAllPowerup(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

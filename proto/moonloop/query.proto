@@ -3,13 +3,198 @@ package cosmonaut.moonloop.moonloop;
 
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
+import "moonloop/collection.proto";
+import "moonloop/class.proto";
+import "moonloop/mint_strategy.proto";
+import "moonloop/contribution.proto";
+import "moonloop/powerup_template.proto";
+import "moonloop/powerup.proto";
 // this line is used by starport scaffolding # 1
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
 
 option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
 
 // Query defines the gRPC querier service.
 service Query {
-    // this line is used by starport scaffolding # 2
+    // Queries a collection by index.
+	rpc Collection(QueryGetCollectionRequest) returns (QueryGetCollectionResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/collection/{index}";
+	}
+
+	// Queries a list of collection items.
+	rpc CollectionAll(QueryAllCollectionRequest) returns (QueryAllCollectionResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/collection";
+	}
+
+// Queries a class by index.
+	rpc Class(QueryGetClassRequest) returns (QueryGetClassResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/class/{collectionIndex}/{classIndex}";
+	}
+
+	// Queries a list of class items.
+	rpc ClassAll(QueryAllClassRequest) returns (QueryAllClassResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/class";
+	}
+
+// Queries a mintStrategy by index.
+	rpc MintStrategy(QueryGetMintStrategyRequest) returns (QueryGetMintStrategyResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/mintStrategy/{index}";
+	}
+
+	// Queries a list of mintStrategy items.
+	rpc MintStrategyAll(QueryAllMintStrategyRequest) returns (QueryAllMintStrategyResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/mintStrategy";
+	}
+
+// Queries a contribution by index.
+	rpc Contribution(QueryGetContributionRequest) returns (QueryGetContributionResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/contribution/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
+	}
+
+	// Queries a list of contribution items.
+	rpc ContributionAll(QueryAllContributionRequest) returns (QueryAllContributionResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/contribution";
+	}
+
+// Queries a powerupTemplate by index.
+	rpc PowerupTemplate(QueryGetPowerupTemplateRequest) returns (QueryGetPowerupTemplateResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classIndex}/{powerupTemplateIndex}";
+	}
+
+	// Queries a list of powerupTemplate items.
+	rpc PowerupTemplateAll(QueryAllPowerupTemplateRequest) returns (QueryAllPowerupTemplateResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerupTemplate";
+	}
+
+// Queries a powerup by index.
+	rpc Powerup(QueryGetPowerupRequest) returns (QueryGetPowerupResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerup/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
+	}
+
+	// Queries a list of powerup items.
+	rpc PowerupAll(QueryAllPowerupRequest) returns (QueryAllPowerupResponse) {
+		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerup";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+message QueryGetCollectionRequest {
+	  string index = 1;
+
+}
+
+message QueryGetCollectionResponse {
+	Collection collection = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllCollectionRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllCollectionResponse {
+	repeated Collection collection = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetClassRequest {
+	  string collectionIndex = 1;
+  string classIndex = 2;
+
+}
+
+message QueryGetClassResponse {
+	Class class = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllClassRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllClassResponse {
+	repeated Class class = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMintStrategyRequest {
+	  string index = 1;
+
+}
+
+message QueryGetMintStrategyResponse {
+	MintStrategy mintStrategy = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMintStrategyRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMintStrategyResponse {
+	repeated MintStrategy mintStrategy = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetContributionRequest {
+	  string collectionIndex = 1;
+  string classIndex = 2;
+  string powerupTemplateIndex = 3;
+  string instanceIndex = 4;
+
+}
+
+message QueryGetContributionResponse {
+	Contribution contribution = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllContributionRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllContributionResponse {
+	repeated Contribution contribution = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetPowerupTemplateRequest {
+	  string collectionIndex = 1;
+  string classIndex = 2;
+  string powerupTemplateIndex = 3;
+
+}
+
+message QueryGetPowerupTemplateResponse {
+	PowerupTemplate powerupTemplate = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPowerupTemplateRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPowerupTemplateResponse {
+	repeated PowerupTemplate powerupTemplate = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetPowerupRequest {
+	  string collectionIndex = 1;
+  string classIndex = 2;
+  string powerupTemplateIndex = 3;
+  string instanceIndex = 4;
+
+}
+
+message QueryGetPowerupResponse {
+	Powerup powerup = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPowerupRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPowerupResponse {
+	repeated Powerup powerup = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // this line is used by starport scaffolding # 3

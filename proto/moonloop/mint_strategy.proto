@@ -1,0 +1,14 @@
+syntax = "proto3";
+package cosmonaut.moonloop.moonloop;
+
+option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
+
+message MintStrategy {
+  string index = 1; 
+  repeated string minters = 2; 
+  repeated int32 instanceLevels = 3; 
+  repeated int32 priceLevels = 4; 
+  bool paused = 5; 
+  string creator = 6;
+}
+

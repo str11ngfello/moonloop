@@ -1,0 +1,28 @@
+syntax = "proto3";
+package cosmonaut.moonloop.moonloop;
+
+option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message PowerupTemplate {
+  string collectionIndex = 1; 
+  string classIndex = 2; 
+  string powerupTemplateIndex = 3; 
+  string name = 4; 
+  string description = 5; 
+  int32 count = 6; 
+  cosmos.base.v1beta1.Coin activationBalance = 7 [(gogoproto.nullable) = false]; 
+  cosmos.base.v1beta1.Coin maxBalance = 8 [(gogoproto.nullable) = false]; 
+  int32 duration = 9; 
+  int32 maxDuration = 10; 
+  int32 refundDuration = 11; 
+  int32 maxActivations = 12; 
+  int32 coolDownDuration = 13; 
+  cosmos.base.v1beta1.Coin rechargeRate = 14 [(gogoproto.nullable) = false]; 
+  cosmos.base.v1beta1.Coin feeRate = 15 [(gogoproto.nullable) = false]; 
+  int32 activationType = 16; 
+  string eventData = 17; 
+  string creator = 18;
+}
+
