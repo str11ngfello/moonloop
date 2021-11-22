@@ -10,7 +10,7 @@ import (
 	// "github.com/cosmos/cosmos-sdk/client/flags"
 	// sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 // GetQueryCmd returns the cli query commands for this module

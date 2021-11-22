@@ -1,7 +1,7 @@
 syntax = "proto3";
-package cosmonaut.moonloop.moonloop;
+package str11ngfello.moonloop.moonloop;
 
-option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
+option go_package = "github.com/str11ngfello/moonloop/x/moonloop/types";
 
 message MintStrategy {
   string index = 1; 

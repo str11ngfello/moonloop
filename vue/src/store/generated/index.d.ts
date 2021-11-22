@@ -1,4 +1,4 @@
 declare const _default: {
-    CosmonautMoonloopCosmonautMoonloopMoonloop: (store: any) => void;
+    Str11NgfelloMoonloopStr11NgfelloMoonloopMoonloop: (store: any) => void;
 };
 export default _default;

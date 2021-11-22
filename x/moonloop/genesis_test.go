@@ -3,10 +3,10 @@ package moonloop_test
 import (
 	"testing"
 
-	keepertest "github.com/cosmonaut/moonloop/testutil/keeper"
-	"github.com/cosmonaut/moonloop/testutil/nullify"
-	"github.com/cosmonaut/moonloop/x/moonloop"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	keepertest "github.com/str11ngfello/moonloop/testutil/keeper"
+	"github.com/str11ngfello/moonloop/testutil/nullify"
+	"github.com/str11ngfello/moonloop/x/moonloop"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 	"github.com/stretchr/testify/require"
 )
 

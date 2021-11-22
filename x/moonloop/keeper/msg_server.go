@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 type msgServer struct {

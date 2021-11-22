@@ -1,9 +1,9 @@
 package moonloop
 
 import (
-	"github.com/cosmonaut/moonloop/x/moonloop/keeper"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/keeper"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

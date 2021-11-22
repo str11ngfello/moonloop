@@ -1,9 +1,9 @@
 package keeper
 
 import (
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 // SetPowerup set a specific powerup in the store from its index

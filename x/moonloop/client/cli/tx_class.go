@@ -1,12 +1,12 @@
 package cli
 
 import (
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 func CmdCreateClass() *cobra.Command {

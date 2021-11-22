@@ -3,10 +3,10 @@ package moonloop
 import (
 	"fmt"
 
-	"github.com/cosmonaut/moonloop/x/moonloop/keeper"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/str11ngfello/moonloop/x/moonloop/keeper"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 // NewHandler ...

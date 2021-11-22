@@ -11,14 +11,14 @@ import (
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/cosmonaut/moonloop/x/moonloop/client/cli"
-	"github.com/cosmonaut/moonloop/x/moonloop/keeper"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	"github.com/str11ngfello/moonloop/x/moonloop/client/cli"
+	"github.com/str11ngfello/moonloop/x/moonloop/keeper"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 var (

@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/cosmonaut/moonloop/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
+	"github.com/str11ngfello/moonloop/app"
 	"github.com/tendermint/spm/cosmoscmd"
 )
 

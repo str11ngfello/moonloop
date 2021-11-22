@@ -11,8 +11,8 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmonaut/moonloop/testutil/network"
-	"github.com/cosmonaut/moonloop/x/moonloop/client/cli"
+	"github.com/str11ngfello/moonloop/testutil/network"
+	"github.com/str11ngfello/moonloop/x/moonloop/client/cli"
 )
 
 // Prevent strconv unused error

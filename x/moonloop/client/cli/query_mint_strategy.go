@@ -3,10 +3,10 @@ package cli
 import (
 	"context"
 
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/spf13/cobra"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 func CmdListMintStrategy() *cobra.Command {

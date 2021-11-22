@@ -3,9 +3,9 @@ package keeper
 import (
 	"context"
 
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authTypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 	"github.com/tendermint/tendermint/types/time"
 )
 

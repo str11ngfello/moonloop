@@ -1,5 +1,5 @@
 syntax = "proto3";
-package cosmonaut.moonloop.moonloop;
+package str11ngfello.moonloop.moonloop;
 
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
@@ -13,68 +13,68 @@ import "moonloop/powerup.proto";
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
+option go_package = "github.com/str11ngfello/moonloop/x/moonloop/types";
 
 // Query defines the gRPC querier service.
 service Query {
     // Queries a collection by index.
 	rpc Collection(QueryGetCollectionRequest) returns (QueryGetCollectionResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/collection/{index}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/collection/{index}";
 	}
 
 	// Queries a list of collection items.
 	rpc CollectionAll(QueryAllCollectionRequest) returns (QueryAllCollectionResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/collection";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/collection";
 	}
 
 // Queries a class by index.
 	rpc Class(QueryGetClassRequest) returns (QueryGetClassResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/class/{collectionIndex}/{classIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classIndex}";
 	}
 
 	// Queries a list of class items.
 	rpc ClassAll(QueryAllClassRequest) returns (QueryAllClassResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/class";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/class";
 	}
 
 // Queries a mintStrategy by index.
 	rpc MintStrategy(QueryGetMintStrategyRequest) returns (QueryGetMintStrategyResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/mintStrategy/{index}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/mintStrategy/{index}";
 	}
 
 	// Queries a list of mintStrategy items.
 	rpc MintStrategyAll(QueryAllMintStrategyRequest) returns (QueryAllMintStrategyResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/mintStrategy";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/mintStrategy";
 	}
 
 // Queries a contribution by index.
 	rpc Contribution(QueryGetContributionRequest) returns (QueryGetContributionResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/contribution/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
 	}
 
 	// Queries a list of contribution items.
 	rpc ContributionAll(QueryAllContributionRequest) returns (QueryAllContributionResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/contribution";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/contribution";
 	}
 
 // Queries a powerupTemplate by index.
 	rpc PowerupTemplate(QueryGetPowerupTemplateRequest) returns (QueryGetPowerupTemplateResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classIndex}/{powerupTemplateIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classIndex}/{powerupTemplateIndex}";
 	}
 
 	// Queries a list of powerupTemplate items.
 	rpc PowerupTemplateAll(QueryAllPowerupTemplateRequest) returns (QueryAllPowerupTemplateResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerupTemplate";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerupTemplate";
 	}
 
 // Queries a powerup by index.
 	rpc Powerup(QueryGetPowerupRequest) returns (QueryGetPowerupResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerup/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
 	}
 
 	// Queries a list of powerup items.
 	rpc PowerupAll(QueryAllPowerupRequest) returns (QueryAllPowerupResponse) {
-		option (google.api.http).get = "/cosmonaut/moonloop/moonloop/powerup";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerup";
 	}
 
 // this line is used by starport scaffolding # 2

@@ -12,10 +12,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/cosmonaut/moonloop/testutil/network"
-	"github.com/cosmonaut/moonloop/testutil/nullify"
-	"github.com/cosmonaut/moonloop/x/moonloop/client/cli"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	"github.com/str11ngfello/moonloop/testutil/network"
+	"github.com/str11ngfello/moonloop/testutil/nullify"
+	"github.com/str11ngfello/moonloop/x/moonloop/client/cli"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 // Prevent strconv unused error

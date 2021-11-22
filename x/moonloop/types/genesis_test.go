@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 	"github.com/stretchr/testify/require"
 )
 

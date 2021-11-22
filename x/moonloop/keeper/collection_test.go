@@ -4,11 +4,11 @@ import (
 	"strconv"
 	"testing"
 
-	keepertest "github.com/cosmonaut/moonloop/testutil/keeper"
-	"github.com/cosmonaut/moonloop/testutil/nullify"
-	"github.com/cosmonaut/moonloop/x/moonloop/keeper"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	keepertest "github.com/str11ngfello/moonloop/testutil/keeper"
+	"github.com/str11ngfello/moonloop/testutil/nullify"
+	"github.com/str11ngfello/moonloop/x/moonloop/keeper"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 	"github.com/stretchr/testify/require"
 )
 

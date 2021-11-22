@@ -8,9 +8,9 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/cosmonaut/moonloop/testutil/keeper"
-	"github.com/cosmonaut/moonloop/x/moonloop/keeper"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	keepertest "github.com/str11ngfello/moonloop/testutil/keeper"
+	"github.com/str11ngfello/moonloop/x/moonloop/keeper"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 // Prevent strconv unused error

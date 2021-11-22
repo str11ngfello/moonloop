@@ -6,8 +6,8 @@
 
 MoonShower
 MoonStrike
-MoonQuake
-MoonLoop
+MoonQuake - coins
+MoonLoop - coins go back to contributors minus some fee
 
 
 *mint strategy can be set for the collection (should provide a default) or overriden at teh class level by creating a  mint strategy with an index of collectionid and classid

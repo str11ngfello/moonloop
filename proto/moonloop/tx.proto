@@ -1,5 +1,5 @@
 syntax = "proto3";
-package cosmonaut.moonloop.moonloop;
+package str11ngfello.moonloop.moonloop;
 
 import "moonloop/collection.proto";
 import "moonloop/class.proto";
@@ -11,7 +11,7 @@ import "moonloop/powerup.proto";
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/cosmonaut/moonloop/x/moonloop/types";
+option go_package = "github.com/str11ngfello/moonloop/x/moonloop/types";
 
 // Msg defines the Msg service.
 service Msg {

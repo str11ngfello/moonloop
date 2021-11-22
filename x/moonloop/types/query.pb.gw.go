@@ -1338,29 +1338,29 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_Collection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"cosmonaut", "moonloop", "collection", "index"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Collection_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"str11ngfello", "moonloop", "collection", "index"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_CollectionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"cosmonaut", "moonloop", "collection"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_CollectionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "collection"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_Class_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"cosmonaut", "moonloop", "class", "collectionIndex", "classIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Class_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"str11ngfello", "moonloop", "class", "collectionIndex", "classIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_ClassAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"cosmonaut", "moonloop", "class"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_ClassAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "class"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_MintStrategy_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"cosmonaut", "moonloop", "mintStrategy", "index"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_MintStrategy_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"str11ngfello", "moonloop", "mintStrategy", "index"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_MintStrategyAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"cosmonaut", "moonloop", "mintStrategy"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_MintStrategyAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "mintStrategy"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_Contribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"cosmonaut", "moonloop", "contribution", "collectionIndex", "classIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Contribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"str11ngfello", "moonloop", "contribution", "collectionIndex", "classIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_ContributionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"cosmonaut", "moonloop", "contribution"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_ContributionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "contribution"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_PowerupTemplate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"cosmonaut", "moonloop", "powerupTemplate", "collectionIndex", "classIndex", "powerupTemplateIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_PowerupTemplate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"str11ngfello", "moonloop", "powerupTemplate", "collectionIndex", "classIndex", "powerupTemplateIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_PowerupTemplateAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"cosmonaut", "moonloop", "powerupTemplate"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_PowerupTemplateAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "powerupTemplate"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_Powerup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"cosmonaut", "moonloop", "powerup", "collectionIndex", "classIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Powerup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"str11ngfello", "moonloop", "powerup", "collectionIndex", "classIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_PowerupAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"cosmonaut", "moonloop", "powerup"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_PowerupAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "powerup"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (

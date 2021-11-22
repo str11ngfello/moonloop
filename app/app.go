@@ -86,11 +86,11 @@ import (
 	"github.com/tendermint/spm/cosmoscmd"
 	"github.com/tendermint/spm/openapiconsole"
 
-	"github.com/cosmonaut/moonloop/docs"
+	"github.com/str11ngfello/moonloop/docs"
 
-	moonloopmodule "github.com/cosmonaut/moonloop/x/moonloop"
-	moonloopmodulekeeper "github.com/cosmonaut/moonloop/x/moonloop/keeper"
-	moonloopmoduletypes "github.com/cosmonaut/moonloop/x/moonloop/types"
+	moonloopmodule "github.com/str11ngfello/moonloop/x/moonloop"
+	moonloopmodulekeeper "github.com/str11ngfello/moonloop/x/moonloop/keeper"
+	moonloopmoduletypes "github.com/str11ngfello/moonloop/x/moonloop/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 

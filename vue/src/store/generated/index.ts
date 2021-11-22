@@ -1,10 +1,10 @@
 // THIS FILE IS GENERATED AUTOMATICALLY. DO NOT MODIFY.
 
-import CosmonautMoonloopCosmonautMoonloopMoonloop from './cosmonaut/moonloop/cosmonaut.moonloop.moonloop'
+import Str11NgfelloMoonloopStr11NgfelloMoonloopMoonloop from './str11ngfello/moonloop/str11ngfello.moonloop.moonloop'
 
 
 export default { 
-  CosmonautMoonloopCosmonautMoonloopMoonloop: load(CosmonautMoonloopCosmonautMoonloopMoonloop, 'cosmonaut.moonloop.moonloop'),
+  Str11NgfelloMoonloopStr11NgfelloMoonloopMoonloop: load(Str11NgfelloMoonloopStr11NgfelloMoonloopMoonloop, 'str11ngfello.moonloop.moonloop'),
   
 }
 

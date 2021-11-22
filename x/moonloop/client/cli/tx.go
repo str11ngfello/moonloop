@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	// "github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmonaut/moonloop/x/moonloop/types"
+	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 var (
