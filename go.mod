@@ -1,4 +1,4 @@
-module github.com/cosmonaut/moonloop
+module github.com/str11ngfello/moonloop
 
 go 1.16
 
