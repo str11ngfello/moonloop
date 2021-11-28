@@ -24,8 +24,10 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 		return nil, types.ErrPowerupInvalidPowerup
 	}
 
+	now := time.Now().Unix()
+
 	// Powerup still activated?
-	if time.Now().Unix() < int64(powerup.EndTime) {
+	if now < int64(powerup.EndTime) {
 		return nil, types.ErrPowerupIsActivated
 	}
 
@@ -36,14 +38,15 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 	}
 
 	// Is refund available?
-	if time.Now().Unix()-contribution.Timestamps[0] < int64(powerupTemplate.RefundDuration) {
+	if contribution.Timestamps[0] > int64(powerup.EndTime) && now-contribution.Timestamps[0] < int64(powerupTemplate.RefundDuration) {
 		return nil, types.ErrPowerupRefundDuration
 	}
 
 	//Return contributor balances
 	moduleAddress := authTypes.NewModuleAddress(types.ModuleName)
 	for i, contributorAddress := range contribution.Contributors {
-		coinsToReturn := contribution.Amounts[i]
+
+		coinsToReturn := sdk.NewCoin(contribution.Amounts[i].Denom, sdk.NewInt(int64(contribution.Amounts[i].Amount.ToDec().MustFloat64()*.9)))
 		contributorSdkAddress, err := sdk.AccAddressFromBech32(contributorAddress)
 		if err != nil {
 			return &types.MsgFreePowerResponse{}, err
@@ -72,6 +75,8 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 
 	k.SetContribution(ctx, contribution)
 	k.SetPowerup(ctx, powerup)
+
+	types.EmitPowerupDeactivatedEvents(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 
 	return &types.MsgFreePowerResponse{}, nil
 }

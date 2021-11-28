@@ -1,7 +1,7 @@
 
 
- {"jsonrpc": "2.0","method": "subscribe", "id": 0,"params":{"query": "tm.event='Tx' AND powerup-activated.collectionIndex='bulldogs'"}}
- {"jsonrpc": "2.0","method": "subscribe", "id": 0,"params":{"query": "tm.event='Tx' AND powerup-activated.endTime > 0"}}
+ {"jsonrpc": "2.0","method": "subscribe", "id": 0,"params":{"query": "tm.event='Tx' AND powerup_activated.collectionIndex='bulldogs'"}}
+ {"jsonrpc": "2.0","method": "subscribe", "id": 0,"params":{"query": "tm.event='Tx' AND powerup_activated.endTime > 0"}}
 
 
 MoonShower

@@ -1553,6 +1553,215 @@ export const QueryAllPowerupResponse = {
         return message;
     }
 };
+const baseQueryGetInstanceRequest = { collectionIndex: '', classIndex: '', instanceIndex: '' };
+export const QueryGetInstanceRequest = {
+    encode(message, writer = Writer.create()) {
+        if (message.collectionIndex !== '') {
+            writer.uint32(10).string(message.collectionIndex);
+        }
+        if (message.classIndex !== '') {
+            writer.uint32(18).string(message.classIndex);
+        }
+        if (message.instanceIndex !== '') {
+            writer.uint32(26).string(message.instanceIndex);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryGetInstanceRequest };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.collectionIndex = reader.string();
+                    break;
+                case 2:
+                    message.classIndex = reader.string();
+                    break;
+                case 3:
+                    message.instanceIndex = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryGetInstanceRequest };
+        if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+            message.collectionIndex = String(object.collectionIndex);
+        }
+        else {
+            message.collectionIndex = '';
+        }
+        if (object.classIndex !== undefined && object.classIndex !== null) {
+            message.classIndex = String(object.classIndex);
+        }
+        else {
+            message.classIndex = '';
+        }
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = String(object.instanceIndex);
+        }
+        else {
+            message.instanceIndex = '';
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
+        message.classIndex !== undefined && (obj.classIndex = message.classIndex);
+        message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryGetInstanceRequest };
+        if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+            message.collectionIndex = object.collectionIndex;
+        }
+        else {
+            message.collectionIndex = '';
+        }
+        if (object.classIndex !== undefined && object.classIndex !== null) {
+            message.classIndex = object.classIndex;
+        }
+        else {
+            message.classIndex = '';
+        }
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = object.instanceIndex;
+        }
+        else {
+            message.instanceIndex = '';
+        }
+        return message;
+    }
+};
+const baseQueryGetInstanceResponse = {};
+export const QueryGetInstanceResponse = {
+    encode(message, writer = Writer.create()) {
+        if (message.collection !== undefined) {
+            Collection.encode(message.collection, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.class !== undefined) {
+            Class.encode(message.class, writer.uint32(18).fork()).ldelim();
+        }
+        for (const v of message.powerupTemplates) {
+            PowerupTemplate.encode(v, writer.uint32(26).fork()).ldelim();
+        }
+        for (const v of message.powerups) {
+            Powerup.encode(v, writer.uint32(34).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryGetInstanceResponse };
+        message.powerupTemplates = [];
+        message.powerups = [];
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.collection = Collection.decode(reader, reader.uint32());
+                    break;
+                case 2:
+                    message.class = Class.decode(reader, reader.uint32());
+                    break;
+                case 3:
+                    message.powerupTemplates.push(PowerupTemplate.decode(reader, reader.uint32()));
+                    break;
+                case 4:
+                    message.powerups.push(Powerup.decode(reader, reader.uint32()));
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryGetInstanceResponse };
+        message.powerupTemplates = [];
+        message.powerups = [];
+        if (object.collection !== undefined && object.collection !== null) {
+            message.collection = Collection.fromJSON(object.collection);
+        }
+        else {
+            message.collection = undefined;
+        }
+        if (object.class !== undefined && object.class !== null) {
+            message.class = Class.fromJSON(object.class);
+        }
+        else {
+            message.class = undefined;
+        }
+        if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+            for (const e of object.powerupTemplates) {
+                message.powerupTemplates.push(PowerupTemplate.fromJSON(e));
+            }
+        }
+        if (object.powerups !== undefined && object.powerups !== null) {
+            for (const e of object.powerups) {
+                message.powerups.push(Powerup.fromJSON(e));
+            }
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.collection !== undefined && (obj.collection = message.collection ? Collection.toJSON(message.collection) : undefined);
+        message.class !== undefined && (obj.class = message.class ? Class.toJSON(message.class) : undefined);
+        if (message.powerupTemplates) {
+            obj.powerupTemplates = message.powerupTemplates.map((e) => (e ? PowerupTemplate.toJSON(e) : undefined));
+        }
+        else {
+            obj.powerupTemplates = [];
+        }
+        if (message.powerups) {
+            obj.powerups = message.powerups.map((e) => (e ? Powerup.toJSON(e) : undefined));
+        }
+        else {
+            obj.powerups = [];
+        }
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryGetInstanceResponse };
+        message.powerupTemplates = [];
+        message.powerups = [];
+        if (object.collection !== undefined && object.collection !== null) {
+            message.collection = Collection.fromPartial(object.collection);
+        }
+        else {
+            message.collection = undefined;
+        }
+        if (object.class !== undefined && object.class !== null) {
+            message.class = Class.fromPartial(object.class);
+        }
+        else {
+            message.class = undefined;
+        }
+        if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+            for (const e of object.powerupTemplates) {
+                message.powerupTemplates.push(PowerupTemplate.fromPartial(e));
+            }
+        }
+        if (object.powerups !== undefined && object.powerups !== null) {
+            for (const e of object.powerups) {
+                message.powerups.push(Powerup.fromPartial(e));
+            }
+        }
+        return message;
+    }
+};
 export class QueryClientImpl {
     constructor(rpc) {
         this.rpc = rpc;
@@ -1616,5 +1825,10 @@ export class QueryClientImpl {
         const data = QueryAllPowerupRequest.encode(request).finish();
         const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'PowerupAll', data);
         return promise.then((data) => QueryAllPowerupResponse.decode(new Reader(data)));
+    }
+    GetInstance(request) {
+        const data = QueryGetInstanceRequest.encode(request).finish();
+        const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'GetInstance', data);
+        return promise.then((data) => QueryGetInstanceResponse.decode(new Reader(data)));
     }
 }

@@ -94,6 +94,17 @@ export interface QueryAllPowerupResponse {
     powerup: Powerup[];
     pagination: PageResponse | undefined;
 }
+export interface QueryGetInstanceRequest {
+    collectionIndex: string;
+    classIndex: string;
+    instanceIndex: string;
+}
+export interface QueryGetInstanceResponse {
+    collection: Collection | undefined;
+    class: Class | undefined;
+    powerupTemplates: PowerupTemplate[];
+    powerups: Powerup[];
+}
 export declare const QueryGetCollectionRequest: {
     encode(message: QueryGetCollectionRequest, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): QueryGetCollectionRequest;
@@ -262,6 +273,20 @@ export declare const QueryAllPowerupResponse: {
     toJSON(message: QueryAllPowerupResponse): unknown;
     fromPartial(object: DeepPartial<QueryAllPowerupResponse>): QueryAllPowerupResponse;
 };
+export declare const QueryGetInstanceRequest: {
+    encode(message: QueryGetInstanceRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceRequest;
+    fromJSON(object: any): QueryGetInstanceRequest;
+    toJSON(message: QueryGetInstanceRequest): unknown;
+    fromPartial(object: DeepPartial<QueryGetInstanceRequest>): QueryGetInstanceRequest;
+};
+export declare const QueryGetInstanceResponse: {
+    encode(message: QueryGetInstanceResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceResponse;
+    fromJSON(object: any): QueryGetInstanceResponse;
+    toJSON(message: QueryGetInstanceResponse): unknown;
+    fromPartial(object: DeepPartial<QueryGetInstanceResponse>): QueryGetInstanceResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Queries a collection by index. */
@@ -288,6 +313,8 @@ export interface Query {
     Powerup(request: QueryGetPowerupRequest): Promise<QueryGetPowerupResponse>;
     /** Queries a list of powerup items. */
     PowerupAll(request: QueryAllPowerupRequest): Promise<QueryAllPowerupResponse>;
+    /** Queries a list of getInstance items. */
+    GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -304,6 +331,7 @@ export declare class QueryClientImpl implements Query {
     PowerupTemplateAll(request: QueryAllPowerupTemplateRequest): Promise<QueryAllPowerupTemplateResponse>;
     Powerup(request: QueryGetPowerupRequest): Promise<QueryGetPowerupResponse>;
     PowerupAll(request: QueryAllPowerupRequest): Promise<QueryAllPowerupResponse>;
+    GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

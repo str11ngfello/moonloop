@@ -49,7 +49,9 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 				return nil, types.ErrPowerupMaxDuration
 			}
 		}
-		// sendRechargeEvent(powerUp->id, player->id, powerUp->balance, powerUp->end_time + timeToAdd);
+		ctx.EventManager().EmitEvent(
+			types.NewPowerupRechargeEvent(msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, timeToAdd, powerup.EndTime+timeToAdd),
+		)
 	} else {
 		// Not activated currently, make sure its not cooling down
 		if time.Now().Unix() < int64(powerup.EndTime+powerupTemplate.CoolDownDuration) {
@@ -79,9 +81,7 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 		powerup.StartTime = int32(time.Now().Unix())
 		powerup.EndTime = powerup.StartTime + powerupTemplate.Duration
 		powerup.NumActivations++
-		ctx.EventManager().EmitEvent(
-			types.NewPowerupActivatedEvent(msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, powerup.StartTime, powerup.EndTime),
-		)
+		types.EmitPowerupActivatedEvents(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, powerup.StartTime, powerup.EndTime)
 	}
 
 	// Record contribution

@@ -77,6 +77,11 @@ service Query {
 		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerup";
 	}
 
+// Queries a list of getInstance items.
+	rpc GetInstance(QueryGetInstanceRequest) returns (QueryGetInstanceResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/getInstance";
+	}
+
 // this line is used by starport scaffolding # 2
 }
 
@@ -195,6 +200,19 @@ message QueryAllPowerupRequest {
 message QueryAllPowerupResponse {
 	repeated Powerup powerup = 1 [(gogoproto.nullable) = false];
 	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetInstanceRequest {
+  string collectionIndex = 1;
+  string classIndex = 2;
+  string instanceIndex = 3;
+}
+
+message QueryGetInstanceResponse {
+	Collection collection = 1 [(gogoproto.nullable) = false];
+	Class class = 2 [(gogoproto.nullable) = false];
+	repeated PowerupTemplate powerupTemplates = 3 [(gogoproto.nullable) = false];
+	repeated Powerup powerups = 4 [(gogoproto.nullable) = false];
 }
 
 // this line is used by starport scaffolding # 3

@@ -13136,6 +13136,253 @@ paths:
           type: string
       tags:
         - Query
+  /str11ngfello/moonloop/moonloop/getInstance:
+    get:
+      summary: Queries a list of getInstance items.
+      operationId: Str11NgfelloMoonloopMoonloopGetInstance
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              collection:
+                type: object
+                properties:
+                  index:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  mintStrategy:
+                    type: string
+                  classes:
+                    type: array
+                    items:
+                      type: string
+                  creator:
+                    type: string
+              class:
+                type: object
+                properties:
+                  collectionIndex:
+                    type: string
+                  classIndex:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  mintStrategy:
+                    type: string
+                  gltfHash:
+                    type: string
+                  metadata:
+                    type: string
+                  maxInstances:
+                    type: integer
+                    format: int32
+                  count:
+                    type: integer
+                    format: int32
+                  powerupTemplates:
+                    type: array
+                    items:
+                      type: string
+                  creator:
+                    type: string
+                  owner:
+                    type: string
+              powerupTemplates:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    collectionIndex:
+                      type: string
+                    classIndex:
+                      type: string
+                    powerupTemplateIndex:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    count:
+                      type: integer
+                      format: int32
+                    activationBalance:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    maxBalance:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    duration:
+                      type: integer
+                      format: int32
+                    maxDuration:
+                      type: integer
+                      format: int32
+                    refundDuration:
+                      type: integer
+                      format: int32
+                    maxActivations:
+                      type: integer
+                      format: int32
+                    coolDownDuration:
+                      type: integer
+                      format: int32
+                    rechargeRate:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    feeRate:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    activationType:
+                      type: integer
+                      format: int32
+                    eventData:
+                      type: string
+                    creator:
+                      type: string
+              powerups:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    collectionIndex:
+                      type: string
+                    classIndex:
+                      type: string
+                    powerupTemplateIndex:
+                      type: string
+                    instanceIndex:
+                      type: string
+                    balance:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    startTime:
+                      type: integer
+                      format: int32
+                    endTime:
+                      type: integer
+                      format: int32
+                    numActivations:
+                      type: integer
+                      format: int32
+                    fees:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                    acceptingPower:
+                      type: boolean
+                    creator:
+                      type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: collectionIndex
+          in: query
+          required: false
+          type: string
+        - name: classIndex
+          in: query
+          required: false
+          type: string
+        - name: instanceIndex
+          in: query
+          required: false
+          type: string
+      tags:
+        - Query
   /str11ngfello/moonloop/moonloop/mintStrategy:
     get:
       summary: Queries a list of mintStrategy items.
@@ -22087,6 +22334,213 @@ definitions:
               format: int64
           creator:
             type: string
+  str11ngfello.moonloop.moonloop.QueryGetInstanceResponse:
+    type: object
+    properties:
+      collection:
+        type: object
+        properties:
+          index:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+          mintStrategy:
+            type: string
+          classes:
+            type: array
+            items:
+              type: string
+          creator:
+            type: string
+      class:
+        type: object
+        properties:
+          collectionIndex:
+            type: string
+          classIndex:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+          mintStrategy:
+            type: string
+          gltfHash:
+            type: string
+          metadata:
+            type: string
+          maxInstances:
+            type: integer
+            format: int32
+          count:
+            type: integer
+            format: int32
+          powerupTemplates:
+            type: array
+            items:
+              type: string
+          creator:
+            type: string
+          owner:
+            type: string
+      powerupTemplates:
+        type: array
+        items:
+          type: object
+          properties:
+            collectionIndex:
+              type: string
+            classIndex:
+              type: string
+            powerupTemplateIndex:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            count:
+              type: integer
+              format: int32
+            activationBalance:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+            maxBalance:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+            duration:
+              type: integer
+              format: int32
+            maxDuration:
+              type: integer
+              format: int32
+            refundDuration:
+              type: integer
+              format: int32
+            maxActivations:
+              type: integer
+              format: int32
+            coolDownDuration:
+              type: integer
+              format: int32
+            rechargeRate:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+            feeRate:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+            activationType:
+              type: integer
+              format: int32
+            eventData:
+              type: string
+            creator:
+              type: string
+      powerups:
+        type: array
+        items:
+          type: object
+          properties:
+            collectionIndex:
+              type: string
+            classIndex:
+              type: string
+            powerupTemplateIndex:
+              type: string
+            instanceIndex:
+              type: string
+            balance:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+            startTime:
+              type: integer
+              format: int32
+            endTime:
+              type: integer
+              format: int32
+            numActivations:
+              type: integer
+              format: int32
+            fees:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+            acceptingPower:
+              type: boolean
+            creator:
+              type: string
   str11ngfello.moonloop.moonloop.QueryGetMintStrategyResponse:
     type: object
     properties:

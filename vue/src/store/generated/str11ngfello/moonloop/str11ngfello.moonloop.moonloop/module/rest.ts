@@ -300,6 +300,13 @@ export interface MoonloopQueryGetContributionResponse {
   contribution?: MoonloopContribution;
 }
 
+export interface MoonloopQueryGetInstanceResponse {
+  collection?: MoonloopCollection;
+  class?: MoonloopClass;
+  powerupTemplates?: MoonloopPowerupTemplate[];
+  powerups?: MoonloopPowerup[];
+}
+
 export interface MoonloopQueryGetMintStrategyResponse {
   mintStrategy?: MoonloopMintStrategy;
 }
@@ -717,6 +724,26 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     this.request<MoonloopQueryGetContributionResponse, RpcStatus>({
       path: `/str11ngfello/moonloop/moonloop/contribution/${collectionIndex}/${classIndex}/${powerupTemplateIndex}/${instanceIndex}`,
       method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetInstance
+   * @summary Queries a list of getInstance items.
+   * @request GET:/str11ngfello/moonloop/moonloop/getInstance
+   */
+  queryGetInstance = (
+    query?: { collectionIndex?: string; classIndex?: string; instanceIndex?: string },
+    params: RequestParams = {},
+  ) =>
+    this.request<MoonloopQueryGetInstanceResponse, RpcStatus>({
+      path: `/str11ngfello/moonloop/moonloop/getInstance`,
+      method: "GET",
+      query: query,
       format: "json",
       ...params,
     });

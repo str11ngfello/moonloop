@@ -6,6 +6,7 @@ init:
       create_empty_blocks: false
     instrumentation:
       prometheus: true
+
 accounts:
   - name: lynn
     coins: ["10000000umoon", "10000000upower"]

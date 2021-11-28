@@ -10,3 +10,4 @@ starport-develop scaffold message setCollectionMintStrategy collectionIndex:stri
 starport-develop scaffold message sendPower collectionIndex:string classIndex:string powerupTemplateIndex:string instanceIndex:string power:coin
 starport-develop scaffold message freePower collectionIndex:string classIndex:string powerupTemplateIndex:string instanceIndex:string
 starport-develop scaffold message mint collectionIndex:string classIndex:string numInstances:int
+starport-develop scaffold query get-instance collectionIndex classIndex instanceIndex --response class

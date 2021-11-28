@@ -121,6 +121,19 @@ export interface QueryAllPowerupResponse {
   pagination: PageResponse | undefined
 }
 
+export interface QueryGetInstanceRequest {
+  collectionIndex: string
+  classIndex: string
+  instanceIndex: string
+}
+
+export interface QueryGetInstanceResponse {
+  collection: Collection | undefined
+  class: Class | undefined
+  powerupTemplates: PowerupTemplate[]
+  powerups: Powerup[]
+}
+
 const baseQueryGetCollectionRequest: object = { index: '' }
 
 export const QueryGetCollectionRequest = {
@@ -1738,6 +1751,215 @@ export const QueryAllPowerupResponse = {
   }
 }
 
+const baseQueryGetInstanceRequest: object = { collectionIndex: '', classIndex: '', instanceIndex: '' }
+
+export const QueryGetInstanceRequest = {
+  encode(message: QueryGetInstanceRequest, writer: Writer = Writer.create()): Writer {
+    if (message.collectionIndex !== '') {
+      writer.uint32(10).string(message.collectionIndex)
+    }
+    if (message.classIndex !== '') {
+      writer.uint32(18).string(message.classIndex)
+    }
+    if (message.instanceIndex !== '') {
+      writer.uint32(26).string(message.instanceIndex)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetInstanceRequest } as QueryGetInstanceRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.collectionIndex = reader.string()
+          break
+        case 2:
+          message.classIndex = reader.string()
+          break
+        case 3:
+          message.instanceIndex = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetInstanceRequest {
+    const message = { ...baseQueryGetInstanceRequest } as QueryGetInstanceRequest
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = String(object.collectionIndex)
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classIndex !== undefined && object.classIndex !== null) {
+      message.classIndex = String(object.classIndex)
+    } else {
+      message.classIndex = ''
+    }
+    if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+      message.instanceIndex = String(object.instanceIndex)
+    } else {
+      message.instanceIndex = ''
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetInstanceRequest): unknown {
+    const obj: any = {}
+    message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
+    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetInstanceRequest>): QueryGetInstanceRequest {
+    const message = { ...baseQueryGetInstanceRequest } as QueryGetInstanceRequest
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = object.collectionIndex
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classIndex !== undefined && object.classIndex !== null) {
+      message.classIndex = object.classIndex
+    } else {
+      message.classIndex = ''
+    }
+    if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+      message.instanceIndex = object.instanceIndex
+    } else {
+      message.instanceIndex = ''
+    }
+    return message
+  }
+}
+
+const baseQueryGetInstanceResponse: object = {}
+
+export const QueryGetInstanceResponse = {
+  encode(message: QueryGetInstanceResponse, writer: Writer = Writer.create()): Writer {
+    if (message.collection !== undefined) {
+      Collection.encode(message.collection, writer.uint32(10).fork()).ldelim()
+    }
+    if (message.class !== undefined) {
+      Class.encode(message.class, writer.uint32(18).fork()).ldelim()
+    }
+    for (const v of message.powerupTemplates) {
+      PowerupTemplate.encode(v!, writer.uint32(26).fork()).ldelim()
+    }
+    for (const v of message.powerups) {
+      Powerup.encode(v!, writer.uint32(34).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetInstanceResponse } as QueryGetInstanceResponse
+    message.powerupTemplates = []
+    message.powerups = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.collection = Collection.decode(reader, reader.uint32())
+          break
+        case 2:
+          message.class = Class.decode(reader, reader.uint32())
+          break
+        case 3:
+          message.powerupTemplates.push(PowerupTemplate.decode(reader, reader.uint32()))
+          break
+        case 4:
+          message.powerups.push(Powerup.decode(reader, reader.uint32()))
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetInstanceResponse {
+    const message = { ...baseQueryGetInstanceResponse } as QueryGetInstanceResponse
+    message.powerupTemplates = []
+    message.powerups = []
+    if (object.collection !== undefined && object.collection !== null) {
+      message.collection = Collection.fromJSON(object.collection)
+    } else {
+      message.collection = undefined
+    }
+    if (object.class !== undefined && object.class !== null) {
+      message.class = Class.fromJSON(object.class)
+    } else {
+      message.class = undefined
+    }
+    if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+      for (const e of object.powerupTemplates) {
+        message.powerupTemplates.push(PowerupTemplate.fromJSON(e))
+      }
+    }
+    if (object.powerups !== undefined && object.powerups !== null) {
+      for (const e of object.powerups) {
+        message.powerups.push(Powerup.fromJSON(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetInstanceResponse): unknown {
+    const obj: any = {}
+    message.collection !== undefined && (obj.collection = message.collection ? Collection.toJSON(message.collection) : undefined)
+    message.class !== undefined && (obj.class = message.class ? Class.toJSON(message.class) : undefined)
+    if (message.powerupTemplates) {
+      obj.powerupTemplates = message.powerupTemplates.map((e) => (e ? PowerupTemplate.toJSON(e) : undefined))
+    } else {
+      obj.powerupTemplates = []
+    }
+    if (message.powerups) {
+      obj.powerups = message.powerups.map((e) => (e ? Powerup.toJSON(e) : undefined))
+    } else {
+      obj.powerups = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetInstanceResponse>): QueryGetInstanceResponse {
+    const message = { ...baseQueryGetInstanceResponse } as QueryGetInstanceResponse
+    message.powerupTemplates = []
+    message.powerups = []
+    if (object.collection !== undefined && object.collection !== null) {
+      message.collection = Collection.fromPartial(object.collection)
+    } else {
+      message.collection = undefined
+    }
+    if (object.class !== undefined && object.class !== null) {
+      message.class = Class.fromPartial(object.class)
+    } else {
+      message.class = undefined
+    }
+    if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+      for (const e of object.powerupTemplates) {
+        message.powerupTemplates.push(PowerupTemplate.fromPartial(e))
+      }
+    }
+    if (object.powerups !== undefined && object.powerups !== null) {
+      for (const e of object.powerups) {
+        message.powerups.push(Powerup.fromPartial(e))
+      }
+    }
+    return message
+  }
+}
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Queries a collection by index. */
@@ -1764,6 +1986,8 @@ export interface Query {
   Powerup(request: QueryGetPowerupRequest): Promise<QueryGetPowerupResponse>
   /** Queries a list of powerup items. */
   PowerupAll(request: QueryAllPowerupRequest): Promise<QueryAllPowerupResponse>
+  /** Queries a list of getInstance items. */
+  GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>
 }
 
 export class QueryClientImpl implements Query {
@@ -1841,6 +2065,12 @@ export class QueryClientImpl implements Query {
     const data = QueryAllPowerupRequest.encode(request).finish()
     const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'PowerupAll', data)
     return promise.then((data) => QueryAllPowerupResponse.decode(new Reader(data)))
+  }
+
+  GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse> {
+    const data = QueryGetInstanceRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'GetInstance', data)
+    return promise.then((data) => QueryGetInstanceResponse.decode(new Reader(data)))
   }
 }
 

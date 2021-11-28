@@ -227,6 +227,21 @@ export class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryGetInstance
+         * @summary Queries a list of getInstance items.
+         * @request GET:/str11ngfello/moonloop/moonloop/getInstance
+         */
+        this.queryGetInstance = (query, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/getInstance`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryMintStrategyAll
          * @summary Queries a list of mintStrategy items.
          * @request GET:/str11ngfello/moonloop/moonloop/mintStrategy

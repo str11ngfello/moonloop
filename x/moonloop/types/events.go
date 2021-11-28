@@ -8,29 +8,70 @@ import (
 
 // moonloop module event types
 const (
-	EventPowerupRefundAtTime = "refund-at-time"
-	EventPowerupActivated    = "powerup-activated"
+	EventPowerupIndex        = "powerup_index"
+	EventPowerupRefundAtTime = "powerup_refund_at_time"
+	EventPowerupActivate     = "powerup_activated"
+	EventPowerupDeactivate   = "powerup_deactivated"
+	EventPowerupRecharge     = "powerup_recharge"
 )
 
 func NewPowerupRefundAtTimeEvent(collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, refundAtTime int32) sdk.Event {
 	return sdk.NewEvent(
 		EventPowerupRefundAtTime,
-		sdk.NewAttribute("collectionIndex", collectionIndex),
-		sdk.NewAttribute("classIndex", classIndex),
-		sdk.NewAttribute("powerupTemplateIndex", powerupTemplateIndex),
-		sdk.NewAttribute("instanceIndex", instanceIndex),
-		sdk.NewAttribute("refundAt", strconv.Itoa(int(refundAtTime))),
+		sdk.NewAttribute("collection_index", collectionIndex),
+		sdk.NewAttribute("class_index", classIndex),
+		sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
+		sdk.NewAttribute("instance_index", instanceIndex),
+		sdk.NewAttribute("refund_at", strconv.Itoa(int(refundAtTime))),
 	)
 }
 
-func NewPowerupActivatedEvent(collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, startTime int32, endTime int32) sdk.Event {
+func EmitPowerupActivatedEvents(ctx sdk.Context, collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, startTime int32, endTime int32) {
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			EventPowerupIndex,
+			sdk.NewAttribute("collection_index", collectionIndex),
+			sdk.NewAttribute("class_index", classIndex),
+			sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
+			sdk.NewAttribute("instance_index", instanceIndex),
+		),
+	)
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			EventPowerupActivate,
+			sdk.NewAttribute("start_time", strconv.Itoa(int(startTime))),
+			sdk.NewAttribute("end_time", strconv.Itoa(int(endTime))),
+		),
+	)
+}
+
+func NewPowerupRechargeEvent(collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, timeToAdd int32, newEndTime int32) sdk.Event {
 	return sdk.NewEvent(
-		EventPowerupActivated,
-		sdk.NewAttribute("collectionIndex", collectionIndex),
-		sdk.NewAttribute("classIndex", classIndex),
-		sdk.NewAttribute("powerupTemplateIndex", powerupTemplateIndex),
-		sdk.NewAttribute("instanceIndex", instanceIndex),
-		sdk.NewAttribute("startTime", strconv.Itoa(int(startTime))),
-		sdk.NewAttribute("endTime", strconv.Itoa(int(endTime))),
+		EventPowerupRecharge,
+		sdk.NewAttribute("collection_index", collectionIndex),
+		sdk.NewAttribute("class_index", classIndex),
+		sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
+		sdk.NewAttribute("instance_index", instanceIndex),
+		sdk.NewAttribute("time_to_add", strconv.Itoa(int(timeToAdd))),
+		sdk.NewAttribute("new_end_time", strconv.Itoa(int(newEndTime))),
+	)
+}
+
+func EmitPowerupDeactivatedEvents(ctx sdk.Context, collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string) {
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			EventPowerupIndex,
+			sdk.NewAttribute("collection_index", collectionIndex),
+			sdk.NewAttribute("class_index", classIndex),
+			sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
+			sdk.NewAttribute("instance_index", instanceIndex),
+		),
+	)
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			EventPowerupDeactivate,
+			sdk.NewAttribute("test", "test"),
+		),
 	)
 }
