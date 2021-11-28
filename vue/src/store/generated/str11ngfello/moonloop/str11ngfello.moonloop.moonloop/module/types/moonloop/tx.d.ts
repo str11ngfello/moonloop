@@ -31,12 +31,8 @@ export interface MsgCreateClass {
     creator: string;
     collectionIndex: string;
     classTemplateIndex: string;
-    name: string;
-    description: string;
-    mintStrategy: string;
-    gltfHash: string;
-    metadata: string;
-    maxInstances: number;
+    instanceIndex: string;
+    owner: string;
 }
 export interface MsgCreateClassResponse {
 }
@@ -44,14 +40,8 @@ export interface MsgUpdateClass {
     creator: string;
     collectionIndex: string;
     classTemplateIndex: string;
-    name: string;
-    description: string;
-    mintStrategy: string;
-    gltfHash: string;
-    metadata: string;
-    maxInstances: number;
-    count: number;
-    powerupTemplates: string[];
+    instanceIndex: string;
+    owner: string;
 }
 export interface MsgUpdateClassResponse {
 }
@@ -59,6 +49,7 @@ export interface MsgDeleteClass {
     creator: string;
     collectionIndex: string;
     classTemplateIndex: string;
+    instanceIndex: string;
 }
 export interface MsgDeleteClassResponse {
 }

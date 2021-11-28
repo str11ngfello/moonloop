@@ -12627,7 +12627,7 @@ paths:
           type: boolean
       tags:
         - Query
-  '/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}':
+  '/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}/{instanceIndex}':
     get:
       summary: Queries a class by index.
       operationId: Str11NgfelloMoonloopMoonloopClass
@@ -12674,6 +12674,10 @@ paths:
           required: true
           type: string
         - name: classTemplateIndex
+          in: path
+          required: true
+          type: string
+        - name: instanceIndex
           in: path
           required: true
           type: string

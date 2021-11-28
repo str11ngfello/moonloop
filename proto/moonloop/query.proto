@@ -30,7 +30,7 @@ service Query {
 
 // Queries a class by index.
 	rpc Class(QueryGetClassRequest) returns (QueryGetClassResponse) {
-		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}/{instanceIndex}";
 	}
 
 	// Queries a list of class items.
@@ -117,6 +117,7 @@ message QueryAllCollectionResponse {
 message QueryGetClassRequest {
 	  string collectionIndex = 1;
   string classTemplateIndex = 2;
+  string instanceIndex = 3;
 
 }
 

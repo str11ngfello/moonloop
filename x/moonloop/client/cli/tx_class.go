@@ -4,31 +4,23 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
-	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/str11ngfello/moonloop/x/moonloop/types"
 )
 
 func CmdCreateClass() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-class [collection-index] [class-index] [name] [description] [mint-strategy] [gltf-hash] [metadata] [max-instances]",
+		Use:   "create-class [collection-index] [class-template-index] [instance-index] [owner]",
 		Short: "Create a new class",
-		Args:  cobra.ExactArgs(8),
+		Args:  cobra.ExactArgs(4),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
 			indexCollectionIndex := args[0]
-			indexClassIndex := args[1]
+			indexClassTemplateIndex := args[1]
+			indexInstanceIndex := args[2]
 
 			// Get value arguments
-			argName := args[2]
-			argDescription := args[3]
-			argMintStrategy := args[4]
-			argGltfHash := args[5]
-			argMetadata := args[6]
-			argMaxInstances, err := cast.ToInt32E(args[7])
-			if err != nil {
-				return err
-			}
+			argOwner := args[3]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -38,13 +30,9 @@ func CmdCreateClass() *cobra.Command {
 			msg := types.NewMsgCreateClass(
 				clientCtx.GetFromAddress().String(),
 				indexCollectionIndex,
-				indexClassIndex,
-				argName,
-				argDescription,
-				argMintStrategy,
-				argGltfHash,
-				argMetadata,
-				argMaxInstances,
+				indexClassTemplateIndex,
+				indexInstanceIndex,
+				argOwner,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
@@ -60,25 +48,16 @@ func CmdCreateClass() *cobra.Command {
 
 func CmdUpdateClass() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "update-class [collection-index] [class-index] [name] [description] [mint-strategy] [gltf-hash] [metadata] [max-instances] [count] [powerup-templates]",
+		Use:   "update-class [collection-index] [class-template-index] [instance-index] [owner]",
 		Short: "Update a class",
-		Args:  cobra.ExactArgs(10),
+		Args:  cobra.ExactArgs(4),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			// Get indexes
 			indexCollectionIndex := args[0]
-			indexClassIndex := args[1]
+			indexClassTemplateIndex := args[1]
+			indexInstanceIndex := args[2]
 
-			// Get value arguments
-			argName := args[2]
-			argDescription := args[3]
-			argMintStrategy := args[4]
-			argGltfHash := args[5]
-			argMetadata := args[6]
-			argMaxInstances, err := cast.ToInt32E(args[7])
-			if err != nil {
-				return err
-			}
-
+			owner := args[3]
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
 				return err
@@ -87,13 +66,9 @@ func CmdUpdateClass() *cobra.Command {
 			msg := types.NewMsgUpdateClass(
 				clientCtx.GetFromAddress().String(),
 				indexCollectionIndex,
-				indexClassIndex,
-				argName,
-				argDescription,
-				argMintStrategy,
-				argGltfHash,
-				argMetadata,
-				argMaxInstances,
+				indexClassTemplateIndex,
+				indexInstanceIndex,
+				owner,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
@@ -109,12 +84,13 @@ func CmdUpdateClass() *cobra.Command {
 
 func CmdDeleteClass() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "delete-class [collection-index] [class-index]",
+		Use:   "delete-class [collection-index] [class-template-index] [instance-index]",
 		Short: "Delete a class",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			indexCollectionIndex := args[0]
-			indexClassIndex := args[1]
+			indexClassTemplateIndex := args[1]
+			indexInstanceIndex := args[2]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -124,7 +100,8 @@ func CmdDeleteClass() *cobra.Command {
 			msg := types.NewMsgDeleteClass(
 				clientCtx.GetFromAddress().String(),
 				indexCollectionIndex,
-				indexClassIndex,
+				indexClassTemplateIndex,
+				indexInstanceIndex,
 			)
 			if err := msg.ValidateBasic(); err != nil {
 				return err

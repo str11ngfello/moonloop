@@ -13,6 +13,7 @@ func (k Keeper) SetClass(ctx sdk.Context, class types.Class) {
 	store.Set(types.ClassKey(
 		class.CollectionIndex,
 		class.ClassTemplateIndex,
+		class.InstanceIndex,
 	), b)
 }
 
@@ -21,6 +22,7 @@ func (k Keeper) GetClass(
 	ctx sdk.Context,
 	collectionIndex string,
 	classTemplateIndex string,
+	instanceIndex string,
 
 ) (val types.Class, found bool) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.ClassKeyPrefix))
@@ -28,6 +30,7 @@ func (k Keeper) GetClass(
 	b := store.Get(types.ClassKey(
 		collectionIndex,
 		classTemplateIndex,
+		instanceIndex,
 	))
 	if b == nil {
 		return val, false
@@ -42,12 +45,13 @@ func (k Keeper) RemoveClass(
 	ctx sdk.Context,
 	collectionIndex string,
 	classTemplateIndex string,
-
+	instanceIndex string,
 ) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.ClassKeyPrefix))
 	store.Delete(types.ClassKey(
 		collectionIndex,
 		classTemplateIndex,
+		instanceIndex,
 	))
 }
 

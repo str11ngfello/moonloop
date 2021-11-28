@@ -238,7 +238,7 @@ export const QueryAllCollectionResponse = {
         return message;
     }
 };
-const baseQueryGetClassRequest = { collectionIndex: '', classTemplateIndex: '' };
+const baseQueryGetClassRequest = { collectionIndex: '', classTemplateIndex: '', instanceIndex: '' };
 export const QueryGetClassRequest = {
     encode(message, writer = Writer.create()) {
         if (message.collectionIndex !== '') {
@@ -246,6 +246,9 @@ export const QueryGetClassRequest = {
         }
         if (message.classTemplateIndex !== '') {
             writer.uint32(18).string(message.classTemplateIndex);
+        }
+        if (message.instanceIndex !== '') {
+            writer.uint32(26).string(message.instanceIndex);
         }
         return writer;
     },
@@ -261,6 +264,9 @@ export const QueryGetClassRequest = {
                     break;
                 case 2:
                     message.classTemplateIndex = reader.string();
+                    break;
+                case 3:
+                    message.instanceIndex = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -283,12 +289,19 @@ export const QueryGetClassRequest = {
         else {
             message.classTemplateIndex = '';
         }
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = String(object.instanceIndex);
+        }
+        else {
+            message.instanceIndex = '';
+        }
         return message;
     },
     toJSON(message) {
         const obj = {};
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
         message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
+        message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
         return obj;
     },
     fromPartial(object) {
@@ -304,6 +317,12 @@ export const QueryGetClassRequest = {
         }
         else {
             message.classTemplateIndex = '';
+        }
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = object.instanceIndex;
+        }
+        else {
+            message.instanceIndex = '';
         }
         return message;
     }

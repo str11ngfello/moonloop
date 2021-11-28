@@ -38,6 +38,20 @@ func (k msgServer) Mint(goCtx context.Context, msg *types.MsgMint) (*types.MsgMi
 	var startInstanceIndex int32 = int32(classTemplate.Count)
 	var endCount int32 = startInstanceIndex + msg.NumInstances
 	for startInstanceIndex < endCount {
+		strInstanceIndex := strconv.Itoa(int(startInstanceIndex))
+		var class = types.Class{
+			Creator:            msg.Creator,
+			CollectionIndex:    msg.CollectionIndex,
+			ClassTemplateIndex: msg.ClassTemplateIndex,
+			InstanceIndex:      strInstanceIndex,
+			Owner:              msg.Creator,
+		}
+
+		k.SetClass(
+			ctx,
+			class,
+		)
+
 		for _, powerupTemplateIndex := range classTemplate.PowerupTemplates {
 
 			var powerup = types.Powerup{
@@ -45,7 +59,7 @@ func (k msgServer) Mint(goCtx context.Context, msg *types.MsgMint) (*types.MsgMi
 				CollectionIndex:      msg.CollectionIndex,
 				ClassTemplateIndex:   msg.ClassTemplateIndex,
 				PowerupTemplateIndex: powerupTemplateIndex,
-				InstanceIndex:        strconv.Itoa(int(startInstanceIndex)),
+				InstanceIndex:        strInstanceIndex,
 				Balance:              sdk.NewCoin("upower", sdk.NewInt(0)),
 				StartTime:            0,
 				EndTime:              0,
@@ -61,18 +75,6 @@ func (k msgServer) Mint(goCtx context.Context, msg *types.MsgMint) (*types.MsgMi
 		}
 		startInstanceIndex++
 	}
-
-	var class = types.Class{
-		Creator:            msg.Creator,
-		CollectionIndex:    msg.CollectionIndex,
-		ClassTemplateIndex: msg.ClassTemplateIndex,
-		Owner:              msg.Creator,
-	}
-
-	k.SetClass(
-		ctx,
-		class,
-	)
 
 	classTemplate.Count = endCount
 	k.SetClassTemplate(ctx, classTemplate)

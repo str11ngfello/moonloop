@@ -13,6 +13,7 @@ const (
 func ClassKey(
 	collectionIndex string,
 	classTemplateIndex string,
+	instanceIndex string,
 ) []byte {
 	var key []byte
 
@@ -20,8 +21,12 @@ func ClassKey(
 	key = append(key, collectionIndexBytes...)
 	key = append(key, []byte("/")...)
 
-	classIndexBytes := []byte(classTemplateIndex)
-	key = append(key, classIndexBytes...)
+	classTemplateIndexBytes := []byte(classTemplateIndex)
+	key = append(key, classTemplateIndexBytes...)
+	key = append(key, []byte("/")...)
+
+	instanceIndexBytes := []byte(instanceIndex)
+	key = append(key, instanceIndexBytes...)
 	key = append(key, []byte("/")...)
 
 	return key

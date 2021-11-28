@@ -660,11 +660,16 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * @tags Query
    * @name QueryClass
    * @summary Queries a class by index.
-   * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}
+   * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}/{instanceIndex}
    */
-  queryClass = (collectionIndex: string, classTemplateIndex: string, params: RequestParams = {}) =>
+  queryClass = (
+    collectionIndex: string,
+    classTemplateIndex: string,
+    instanceIndex: string,
+    params: RequestParams = {},
+  ) =>
     this.request<MoonloopQueryGetClassResponse, RpcStatus>({
-      path: `/str11ngfello/moonloop/moonloop/class/${collectionIndex}/${classTemplateIndex}`,
+      path: `/str11ngfello/moonloop/moonloop/class/${collectionIndex}/${classTemplateIndex}/${instanceIndex}`,
       method: "GET",
       format: "json",
       ...params,

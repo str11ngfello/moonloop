@@ -21,6 +21,7 @@ func (k msgServer) CreateClass(goCtx context.Context, msg *types.MsgCreateClass)
 		ctx,
 		msg.CollectionIndex,
 		msg.ClassTemplateIndex,
+		msg.InstanceIndex,
 	)
 	if isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "class already exists")
@@ -52,6 +53,7 @@ func (k msgServer) UpdateClass(goCtx context.Context, msg *types.MsgUpdateClass)
 		ctx,
 		msg.CollectionIndex,
 		msg.ClassTemplateIndex,
+		msg.InstanceIndex,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -81,6 +83,7 @@ func (k msgServer) DeleteClass(goCtx context.Context, msg *types.MsgDeleteClass)
 		ctx,
 		msg.CollectionIndex,
 		msg.ClassTemplateIndex,
+		msg.InstanceIndex,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -95,6 +98,7 @@ func (k msgServer) DeleteClass(goCtx context.Context, msg *types.MsgDeleteClass)
 		ctx,
 		msg.CollectionIndex,
 		msg.ClassTemplateIndex,
+		msg.InstanceIndex,
 	)
 
 	return &types.MsgDeleteClassResponse{}, nil

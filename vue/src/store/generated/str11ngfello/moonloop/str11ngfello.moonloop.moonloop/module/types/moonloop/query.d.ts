@@ -24,6 +24,7 @@ export interface QueryAllCollectionResponse {
 export interface QueryGetClassRequest {
     collectionIndex: string;
     classTemplateIndex: string;
+    instanceIndex: string;
 }
 export interface QueryGetClassResponse {
     class: Class | undefined;

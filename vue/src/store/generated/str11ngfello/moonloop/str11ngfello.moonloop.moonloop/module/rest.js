@@ -157,10 +157,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryClass
          * @summary Queries a class by index.
-         * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}
+         * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}/{instanceIndex}
          */
-        this.queryClass = (collectionIndex, classTemplateIndex, params = {}) => this.request({
-            path: `/str11ngfello/moonloop/moonloop/class/${collectionIndex}/${classTemplateIndex}`,
+        this.queryClass = (collectionIndex, classTemplateIndex, instanceIndex, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/class/${collectionIndex}/${classTemplateIndex}/${instanceIndex}`,
             method: "GET",
             format: "json",
             ...params,

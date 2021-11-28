@@ -418,9 +418,9 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @tags Query
      * @name QueryClass
      * @summary Queries a class by index.
-     * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}
+     * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}/{instanceIndex}
      */
-    queryClass: (collectionIndex: string, classTemplateIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetClassResponse, RpcStatus>>;
+    queryClass: (collectionIndex: string, classTemplateIndex: string, instanceIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetClassResponse, RpcStatus>>;
     /**
      * No description
      *

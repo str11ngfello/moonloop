@@ -76,13 +76,8 @@ message MsgCreateClass {
   string creator = 1;
   string collectionIndex = 2;
   string classTemplateIndex = 3;
-
-  string name = 4;
-  string description = 5;
-  string mintStrategy = 6;
-  string gltfHash = 7;
-  string metadata = 8;
-  int32 maxInstances = 9;
+  string instanceIndex = 4;
+  string owner = 5;
 }
 message MsgCreateClassResponse {}
 
@@ -90,15 +85,8 @@ message MsgUpdateClass {
   string creator = 1;
   string collectionIndex = 2;
   string classTemplateIndex = 3;
-
-  string name = 4;
-  string description = 5;
-  string mintStrategy = 6;
-  string gltfHash = 7;
-  string metadata = 8;
-  int32 maxInstances = 9;
-  int32 count = 10;
-  repeated string powerupTemplates = 11;
+  string instanceIndex = 4;
+  string owner = 5;
 }
 message MsgUpdateClassResponse {}
 
@@ -106,6 +94,7 @@ message MsgDeleteClass {
   string creator = 1;
   string collectionIndex = 2;
   string classTemplateIndex = 3;
+  string instanceIndex = 4;
 }
 message MsgDeleteClassResponse {}
 

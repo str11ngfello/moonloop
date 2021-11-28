@@ -472,17 +472,7 @@ export const MsgDeleteCollectionResponse = {
         return message;
     }
 };
-const baseMsgCreateClass = {
-    creator: '',
-    collectionIndex: '',
-    classTemplateIndex: '',
-    name: '',
-    description: '',
-    mintStrategy: '',
-    gltfHash: '',
-    metadata: '',
-    maxInstances: 0
-};
+const baseMsgCreateClass = { creator: '', collectionIndex: '', classTemplateIndex: '', instanceIndex: '', owner: '' };
 export const MsgCreateClass = {
     encode(message, writer = Writer.create()) {
         if (message.creator !== '') {
@@ -494,23 +484,11 @@ export const MsgCreateClass = {
         if (message.classTemplateIndex !== '') {
             writer.uint32(26).string(message.classTemplateIndex);
         }
-        if (message.name !== '') {
-            writer.uint32(34).string(message.name);
+        if (message.instanceIndex !== '') {
+            writer.uint32(34).string(message.instanceIndex);
         }
-        if (message.description !== '') {
-            writer.uint32(42).string(message.description);
-        }
-        if (message.mintStrategy !== '') {
-            writer.uint32(50).string(message.mintStrategy);
-        }
-        if (message.gltfHash !== '') {
-            writer.uint32(58).string(message.gltfHash);
-        }
-        if (message.metadata !== '') {
-            writer.uint32(66).string(message.metadata);
-        }
-        if (message.maxInstances !== 0) {
-            writer.uint32(72).int32(message.maxInstances);
+        if (message.owner !== '') {
+            writer.uint32(42).string(message.owner);
         }
         return writer;
     },
@@ -531,22 +509,10 @@ export const MsgCreateClass = {
                     message.classTemplateIndex = reader.string();
                     break;
                 case 4:
-                    message.name = reader.string();
+                    message.instanceIndex = reader.string();
                     break;
                 case 5:
-                    message.description = reader.string();
-                    break;
-                case 6:
-                    message.mintStrategy = reader.string();
-                    break;
-                case 7:
-                    message.gltfHash = reader.string();
-                    break;
-                case 8:
-                    message.metadata = reader.string();
-                    break;
-                case 9:
-                    message.maxInstances = reader.int32();
+                    message.owner = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -575,41 +541,17 @@ export const MsgCreateClass = {
         else {
             message.classTemplateIndex = '';
         }
-        if (object.name !== undefined && object.name !== null) {
-            message.name = String(object.name);
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = String(object.instanceIndex);
         }
         else {
-            message.name = '';
+            message.instanceIndex = '';
         }
-        if (object.description !== undefined && object.description !== null) {
-            message.description = String(object.description);
-        }
-        else {
-            message.description = '';
-        }
-        if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
-            message.mintStrategy = String(object.mintStrategy);
+        if (object.owner !== undefined && object.owner !== null) {
+            message.owner = String(object.owner);
         }
         else {
-            message.mintStrategy = '';
-        }
-        if (object.gltfHash !== undefined && object.gltfHash !== null) {
-            message.gltfHash = String(object.gltfHash);
-        }
-        else {
-            message.gltfHash = '';
-        }
-        if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = String(object.metadata);
-        }
-        else {
-            message.metadata = '';
-        }
-        if (object.maxInstances !== undefined && object.maxInstances !== null) {
-            message.maxInstances = Number(object.maxInstances);
-        }
-        else {
-            message.maxInstances = 0;
+            message.owner = '';
         }
         return message;
     },
@@ -618,12 +560,8 @@ export const MsgCreateClass = {
         message.creator !== undefined && (obj.creator = message.creator);
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
         message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
-        message.name !== undefined && (obj.name = message.name);
-        message.description !== undefined && (obj.description = message.description);
-        message.mintStrategy !== undefined && (obj.mintStrategy = message.mintStrategy);
-        message.gltfHash !== undefined && (obj.gltfHash = message.gltfHash);
-        message.metadata !== undefined && (obj.metadata = message.metadata);
-        message.maxInstances !== undefined && (obj.maxInstances = message.maxInstances);
+        message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
+        message.owner !== undefined && (obj.owner = message.owner);
         return obj;
     },
     fromPartial(object) {
@@ -646,41 +584,17 @@ export const MsgCreateClass = {
         else {
             message.classTemplateIndex = '';
         }
-        if (object.name !== undefined && object.name !== null) {
-            message.name = object.name;
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = object.instanceIndex;
         }
         else {
-            message.name = '';
+            message.instanceIndex = '';
         }
-        if (object.description !== undefined && object.description !== null) {
-            message.description = object.description;
-        }
-        else {
-            message.description = '';
-        }
-        if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
-            message.mintStrategy = object.mintStrategy;
+        if (object.owner !== undefined && object.owner !== null) {
+            message.owner = object.owner;
         }
         else {
-            message.mintStrategy = '';
-        }
-        if (object.gltfHash !== undefined && object.gltfHash !== null) {
-            message.gltfHash = object.gltfHash;
-        }
-        else {
-            message.gltfHash = '';
-        }
-        if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = object.metadata;
-        }
-        else {
-            message.metadata = '';
-        }
-        if (object.maxInstances !== undefined && object.maxInstances !== null) {
-            message.maxInstances = object.maxInstances;
-        }
-        else {
-            message.maxInstances = 0;
+            message.owner = '';
         }
         return message;
     }
@@ -717,19 +631,7 @@ export const MsgCreateClassResponse = {
         return message;
     }
 };
-const baseMsgUpdateClass = {
-    creator: '',
-    collectionIndex: '',
-    classTemplateIndex: '',
-    name: '',
-    description: '',
-    mintStrategy: '',
-    gltfHash: '',
-    metadata: '',
-    maxInstances: 0,
-    count: 0,
-    powerupTemplates: ''
-};
+const baseMsgUpdateClass = { creator: '', collectionIndex: '', classTemplateIndex: '', instanceIndex: '', owner: '' };
 export const MsgUpdateClass = {
     encode(message, writer = Writer.create()) {
         if (message.creator !== '') {
@@ -741,29 +643,11 @@ export const MsgUpdateClass = {
         if (message.classTemplateIndex !== '') {
             writer.uint32(26).string(message.classTemplateIndex);
         }
-        if (message.name !== '') {
-            writer.uint32(34).string(message.name);
+        if (message.instanceIndex !== '') {
+            writer.uint32(34).string(message.instanceIndex);
         }
-        if (message.description !== '') {
-            writer.uint32(42).string(message.description);
-        }
-        if (message.mintStrategy !== '') {
-            writer.uint32(50).string(message.mintStrategy);
-        }
-        if (message.gltfHash !== '') {
-            writer.uint32(58).string(message.gltfHash);
-        }
-        if (message.metadata !== '') {
-            writer.uint32(66).string(message.metadata);
-        }
-        if (message.maxInstances !== 0) {
-            writer.uint32(72).int32(message.maxInstances);
-        }
-        if (message.count !== 0) {
-            writer.uint32(80).int32(message.count);
-        }
-        for (const v of message.powerupTemplates) {
-            writer.uint32(90).string(v);
+        if (message.owner !== '') {
+            writer.uint32(42).string(message.owner);
         }
         return writer;
     },
@@ -771,7 +655,6 @@ export const MsgUpdateClass = {
         const reader = input instanceof Uint8Array ? new Reader(input) : input;
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = { ...baseMsgUpdateClass };
-        message.powerupTemplates = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -785,28 +668,10 @@ export const MsgUpdateClass = {
                     message.classTemplateIndex = reader.string();
                     break;
                 case 4:
-                    message.name = reader.string();
+                    message.instanceIndex = reader.string();
                     break;
                 case 5:
-                    message.description = reader.string();
-                    break;
-                case 6:
-                    message.mintStrategy = reader.string();
-                    break;
-                case 7:
-                    message.gltfHash = reader.string();
-                    break;
-                case 8:
-                    message.metadata = reader.string();
-                    break;
-                case 9:
-                    message.maxInstances = reader.int32();
-                    break;
-                case 10:
-                    message.count = reader.int32();
-                    break;
-                case 11:
-                    message.powerupTemplates.push(reader.string());
+                    message.owner = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -817,7 +682,6 @@ export const MsgUpdateClass = {
     },
     fromJSON(object) {
         const message = { ...baseMsgUpdateClass };
-        message.powerupTemplates = [];
         if (object.creator !== undefined && object.creator !== null) {
             message.creator = String(object.creator);
         }
@@ -836,52 +700,17 @@ export const MsgUpdateClass = {
         else {
             message.classTemplateIndex = '';
         }
-        if (object.name !== undefined && object.name !== null) {
-            message.name = String(object.name);
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = String(object.instanceIndex);
         }
         else {
-            message.name = '';
+            message.instanceIndex = '';
         }
-        if (object.description !== undefined && object.description !== null) {
-            message.description = String(object.description);
-        }
-        else {
-            message.description = '';
-        }
-        if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
-            message.mintStrategy = String(object.mintStrategy);
+        if (object.owner !== undefined && object.owner !== null) {
+            message.owner = String(object.owner);
         }
         else {
-            message.mintStrategy = '';
-        }
-        if (object.gltfHash !== undefined && object.gltfHash !== null) {
-            message.gltfHash = String(object.gltfHash);
-        }
-        else {
-            message.gltfHash = '';
-        }
-        if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = String(object.metadata);
-        }
-        else {
-            message.metadata = '';
-        }
-        if (object.maxInstances !== undefined && object.maxInstances !== null) {
-            message.maxInstances = Number(object.maxInstances);
-        }
-        else {
-            message.maxInstances = 0;
-        }
-        if (object.count !== undefined && object.count !== null) {
-            message.count = Number(object.count);
-        }
-        else {
-            message.count = 0;
-        }
-        if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
-            for (const e of object.powerupTemplates) {
-                message.powerupTemplates.push(String(e));
-            }
+            message.owner = '';
         }
         return message;
     },
@@ -890,24 +719,12 @@ export const MsgUpdateClass = {
         message.creator !== undefined && (obj.creator = message.creator);
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
         message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
-        message.name !== undefined && (obj.name = message.name);
-        message.description !== undefined && (obj.description = message.description);
-        message.mintStrategy !== undefined && (obj.mintStrategy = message.mintStrategy);
-        message.gltfHash !== undefined && (obj.gltfHash = message.gltfHash);
-        message.metadata !== undefined && (obj.metadata = message.metadata);
-        message.maxInstances !== undefined && (obj.maxInstances = message.maxInstances);
-        message.count !== undefined && (obj.count = message.count);
-        if (message.powerupTemplates) {
-            obj.powerupTemplates = message.powerupTemplates.map((e) => e);
-        }
-        else {
-            obj.powerupTemplates = [];
-        }
+        message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
+        message.owner !== undefined && (obj.owner = message.owner);
         return obj;
     },
     fromPartial(object) {
         const message = { ...baseMsgUpdateClass };
-        message.powerupTemplates = [];
         if (object.creator !== undefined && object.creator !== null) {
             message.creator = object.creator;
         }
@@ -926,52 +743,17 @@ export const MsgUpdateClass = {
         else {
             message.classTemplateIndex = '';
         }
-        if (object.name !== undefined && object.name !== null) {
-            message.name = object.name;
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = object.instanceIndex;
         }
         else {
-            message.name = '';
+            message.instanceIndex = '';
         }
-        if (object.description !== undefined && object.description !== null) {
-            message.description = object.description;
-        }
-        else {
-            message.description = '';
-        }
-        if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
-            message.mintStrategy = object.mintStrategy;
+        if (object.owner !== undefined && object.owner !== null) {
+            message.owner = object.owner;
         }
         else {
-            message.mintStrategy = '';
-        }
-        if (object.gltfHash !== undefined && object.gltfHash !== null) {
-            message.gltfHash = object.gltfHash;
-        }
-        else {
-            message.gltfHash = '';
-        }
-        if (object.metadata !== undefined && object.metadata !== null) {
-            message.metadata = object.metadata;
-        }
-        else {
-            message.metadata = '';
-        }
-        if (object.maxInstances !== undefined && object.maxInstances !== null) {
-            message.maxInstances = object.maxInstances;
-        }
-        else {
-            message.maxInstances = 0;
-        }
-        if (object.count !== undefined && object.count !== null) {
-            message.count = object.count;
-        }
-        else {
-            message.count = 0;
-        }
-        if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
-            for (const e of object.powerupTemplates) {
-                message.powerupTemplates.push(e);
-            }
+            message.owner = '';
         }
         return message;
     }
@@ -1008,7 +790,7 @@ export const MsgUpdateClassResponse = {
         return message;
     }
 };
-const baseMsgDeleteClass = { creator: '', collectionIndex: '', classTemplateIndex: '' };
+const baseMsgDeleteClass = { creator: '', collectionIndex: '', classTemplateIndex: '', instanceIndex: '' };
 export const MsgDeleteClass = {
     encode(message, writer = Writer.create()) {
         if (message.creator !== '') {
@@ -1019,6 +801,9 @@ export const MsgDeleteClass = {
         }
         if (message.classTemplateIndex !== '') {
             writer.uint32(26).string(message.classTemplateIndex);
+        }
+        if (message.instanceIndex !== '') {
+            writer.uint32(34).string(message.instanceIndex);
         }
         return writer;
     },
@@ -1037,6 +822,9 @@ export const MsgDeleteClass = {
                     break;
                 case 3:
                     message.classTemplateIndex = reader.string();
+                    break;
+                case 4:
+                    message.instanceIndex = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -1065,6 +853,12 @@ export const MsgDeleteClass = {
         else {
             message.classTemplateIndex = '';
         }
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = String(object.instanceIndex);
+        }
+        else {
+            message.instanceIndex = '';
+        }
         return message;
     },
     toJSON(message) {
@@ -1072,6 +866,7 @@ export const MsgDeleteClass = {
         message.creator !== undefined && (obj.creator = message.creator);
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
         message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
+        message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
         return obj;
     },
     fromPartial(object) {
@@ -1093,6 +888,12 @@ export const MsgDeleteClass = {
         }
         else {
             message.classTemplateIndex = '';
+        }
+        if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+            message.instanceIndex = object.instanceIndex;
+        }
+        else {
+            message.instanceIndex = '';
         }
         return message;
     }

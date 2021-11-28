@@ -11,24 +11,16 @@ func NewMsgCreateClass(
 	creator string,
 	collectionIndex string,
 	classTemplateIndex string,
-	name string,
-	description string,
-	mintStrategy string,
-	gltfHash string,
-	metadata string,
-	maxInstances int32,
+	instanceIndex string,
+	owner string,
 
 ) *MsgCreateClass {
 	return &MsgCreateClass{
 		Creator:            creator,
 		CollectionIndex:    collectionIndex,
 		ClassTemplateIndex: classTemplateIndex,
-		Name:               name,
-		Description:        description,
-		MintStrategy:       mintStrategy,
-		GltfHash:           gltfHash,
-		Metadata:           metadata,
-		MaxInstances:       maxInstances,
+		InstanceIndex:      instanceIndex,
+		Owner:              owner,
 	}
 }
 
@@ -67,24 +59,16 @@ func NewMsgUpdateClass(
 	creator string,
 	collectionIndex string,
 	classTemplateIndex string,
-	name string,
-	description string,
-	mintStrategy string,
-	gltfHash string,
-	metadata string,
-	maxInstances int32,
+	instanceIndex string,
+	owner string,
 
 ) *MsgUpdateClass {
 	return &MsgUpdateClass{
 		Creator:            creator,
 		CollectionIndex:    collectionIndex,
 		ClassTemplateIndex: classTemplateIndex,
-		Name:               name,
-		Description:        description,
-		MintStrategy:       mintStrategy,
-		GltfHash:           gltfHash,
-		Metadata:           metadata,
-		MaxInstances:       maxInstances,
+		InstanceIndex:      instanceIndex,
+		Owner:              owner,
 	}
 }
 
@@ -123,12 +107,14 @@ func NewMsgDeleteClass(
 	creator string,
 	collectionIndex string,
 	classTemplateIndex string,
+	instanceIndex string,
 
 ) *MsgDeleteClass {
 	return &MsgDeleteClass{
 		Creator:            creator,
 		CollectionIndex:    collectionIndex,
 		ClassTemplateIndex: classTemplateIndex,
+		InstanceIndex:      instanceIndex,
 	}
 }
 func (msg *MsgDeleteClass) Route() string {

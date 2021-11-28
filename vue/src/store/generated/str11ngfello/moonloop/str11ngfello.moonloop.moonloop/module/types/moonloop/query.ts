@@ -31,6 +31,7 @@ export interface QueryAllCollectionResponse {
 export interface QueryGetClassRequest {
   collectionIndex: string
   classTemplateIndex: string
+  instanceIndex: string
 }
 
 export interface QueryGetClassResponse {
@@ -397,7 +398,7 @@ export const QueryAllCollectionResponse = {
   }
 }
 
-const baseQueryGetClassRequest: object = { collectionIndex: '', classTemplateIndex: '' }
+const baseQueryGetClassRequest: object = { collectionIndex: '', classTemplateIndex: '', instanceIndex: '' }
 
 export const QueryGetClassRequest = {
   encode(message: QueryGetClassRequest, writer: Writer = Writer.create()): Writer {
@@ -406,6 +407,9 @@ export const QueryGetClassRequest = {
     }
     if (message.classTemplateIndex !== '') {
       writer.uint32(18).string(message.classTemplateIndex)
+    }
+    if (message.instanceIndex !== '') {
+      writer.uint32(26).string(message.instanceIndex)
     }
     return writer
   },
@@ -422,6 +426,9 @@ export const QueryGetClassRequest = {
           break
         case 2:
           message.classTemplateIndex = reader.string()
+          break
+        case 3:
+          message.instanceIndex = reader.string()
           break
         default:
           reader.skipType(tag & 7)
@@ -443,6 +450,11 @@ export const QueryGetClassRequest = {
     } else {
       message.classTemplateIndex = ''
     }
+    if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+      message.instanceIndex = String(object.instanceIndex)
+    } else {
+      message.instanceIndex = ''
+    }
     return message
   },
 
@@ -450,6 +462,7 @@ export const QueryGetClassRequest = {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
     message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
+    message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
   },
 
@@ -464,6 +477,11 @@ export const QueryGetClassRequest = {
       message.classTemplateIndex = object.classTemplateIndex
     } else {
       message.classTemplateIndex = ''
+    }
+    if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
+      message.instanceIndex = object.instanceIndex
+    } else {
+      message.instanceIndex = ''
     }
     return message
   }

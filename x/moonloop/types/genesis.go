@@ -38,7 +38,7 @@ func (gs GenesisState) Validate() error {
 	classIndexMap := make(map[string]struct{})
 
 	for _, elem := range gs.ClassList {
-		index := string(ClassKey(elem.CollectionIndex, elem.ClassTemplateIndex))
+		index := string(ClassKey(elem.CollectionIndex, elem.ClassTemplateIndex, elem.InstanceIndex))
 		if _, ok := classIndexMap[index]; ok {
 			return fmt.Errorf("duplicated index for class")
 		}
