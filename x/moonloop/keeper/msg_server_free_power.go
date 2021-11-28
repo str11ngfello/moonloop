@@ -13,13 +13,13 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Find the powerup
-	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
+	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found {
 		return nil, types.ErrPowerupInvalidPowerup
 	}
 
 	// Find the powerup template
-	powerupTemplate, found := k.GetPowerupTemplate(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex)
+	powerupTemplate, found := k.GetPowerupTemplate(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex)
 	if !found {
 		return nil, types.ErrPowerupInvalidPowerup
 	}
@@ -32,7 +32,7 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 	}
 
 	// Find contributions
-	contribution, found := k.GetContribution(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
+	contribution, found := k.GetContribution(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found || len(contribution.Contributors) == 0 {
 		return &types.MsgFreePowerResponse{}, nil
 	}
@@ -76,7 +76,7 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 	k.SetContribution(ctx, contribution)
 	k.SetPowerup(ctx, powerup)
 
-	types.EmitPowerupDeactivatedEvents(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
+	types.EmitPowerupDeactivatedEvents(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 
 	return &types.MsgFreePowerResponse{}, nil
 }

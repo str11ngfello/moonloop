@@ -12,7 +12,7 @@ func (k Keeper) SetPowerup(ctx sdk.Context, powerup types.Powerup) {
 	b := k.cdc.MustMarshal(&powerup)
 	store.Set(types.PowerupKey(
 		powerup.CollectionIndex,
-		powerup.ClassIndex,
+		powerup.ClassTemplateIndex,
 		powerup.PowerupTemplateIndex,
 		powerup.InstanceIndex,
 	), b)
@@ -22,7 +22,7 @@ func (k Keeper) SetPowerup(ctx sdk.Context, powerup types.Powerup) {
 func (k Keeper) GetPowerup(
 	ctx sdk.Context,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 
@@ -31,7 +31,7 @@ func (k Keeper) GetPowerup(
 
 	b := store.Get(types.PowerupKey(
 		collectionIndex,
-		classIndex,
+		classTemplateIndex,
 		powerupTemplateIndex,
 		instanceIndex,
 	))
@@ -47,7 +47,7 @@ func (k Keeper) GetPowerup(
 func (k Keeper) RemovePowerup(
 	ctx sdk.Context,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 
@@ -55,7 +55,7 @@ func (k Keeper) RemovePowerup(
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.PowerupKeyPrefix))
 	store.Delete(types.PowerupKey(
 		collectionIndex,
-		classIndex,
+		classTemplateIndex,
 		powerupTemplateIndex,
 		instanceIndex,
 	))

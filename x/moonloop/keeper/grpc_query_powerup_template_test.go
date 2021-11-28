@@ -32,7 +32,7 @@ func TestPowerupTemplateQuerySingle(t *testing.T) {
 			desc: "First",
 			request: &types.QueryGetPowerupTemplateRequest{
 				CollectionIndex:      msgs[0].CollectionIndex,
-				ClassIndex:           msgs[0].ClassIndex,
+				ClassTemplateIndex:   msgs[0].ClassTemplateIndex,
 				PowerupTemplateIndex: msgs[0].PowerupTemplateIndex,
 			},
 			response: &types.QueryGetPowerupTemplateResponse{PowerupTemplate: msgs[0]},
@@ -41,7 +41,7 @@ func TestPowerupTemplateQuerySingle(t *testing.T) {
 			desc: "Second",
 			request: &types.QueryGetPowerupTemplateRequest{
 				CollectionIndex:      msgs[1].CollectionIndex,
-				ClassIndex:           msgs[1].ClassIndex,
+				ClassTemplateIndex:   msgs[1].ClassTemplateIndex,
 				PowerupTemplateIndex: msgs[1].PowerupTemplateIndex,
 			},
 			response: &types.QueryGetPowerupTemplateResponse{PowerupTemplate: msgs[1]},
@@ -50,7 +50,7 @@ func TestPowerupTemplateQuerySingle(t *testing.T) {
 			desc: "KeyNotFound",
 			request: &types.QueryGetPowerupTemplateRequest{
 				CollectionIndex:      strconv.Itoa(100000),
-				ClassIndex:           strconv.Itoa(100000),
+				ClassTemplateIndex:   strconv.Itoa(100000),
 				PowerupTemplateIndex: strconv.Itoa(100000),
 			},
 			err: status.Error(codes.InvalidArgument, "not found"),

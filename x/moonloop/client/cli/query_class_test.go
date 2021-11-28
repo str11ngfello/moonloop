@@ -29,8 +29,8 @@ func networkWithClassObjects(t *testing.T, n int) (*network.Network, []types.Cla
 
 	for i := 0; i < n; i++ {
 		class := types.Class{
-			CollectionIndex: strconv.Itoa(i),
-			ClassIndex:      strconv.Itoa(i),
+			CollectionIndex:    strconv.Itoa(i),
+			ClassTemplateIndex: strconv.Itoa(i),
 		}
 		nullify.Fill(&class)
 		state.ClassList = append(state.ClassList, class)
@@ -60,7 +60,7 @@ func TestShowClass(t *testing.T) {
 		{
 			desc:              "found",
 			idCollectionIndex: objs[0].CollectionIndex,
-			idClassIndex:      objs[0].ClassIndex,
+			idClassIndex:      objs[0].ClassTemplateIndex,
 
 			args: common,
 			obj:  objs[0],

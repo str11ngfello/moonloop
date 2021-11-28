@@ -157,10 +157,39 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryClass
          * @summary Queries a class by index.
-         * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classIndex}
+         * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}
          */
-        this.queryClass = (collectionIndex, classIndex, params = {}) => this.request({
-            path: `/str11ngfello/moonloop/moonloop/class/${collectionIndex}/${classIndex}`,
+        this.queryClass = (collectionIndex, classTemplateIndex, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/class/${collectionIndex}/${classTemplateIndex}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryClassTemplateAll
+         * @summary Queries a list of classTemplate items.
+         * @request GET:/str11ngfello/moonloop/moonloop/classTemplate
+         */
+        this.queryClassTemplateAll = (query, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/classTemplate`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryClassTemplate
+         * @summary Queries a classTemplate by index.
+         * @request GET:/str11ngfello/moonloop/moonloop/classTemplate/{collectionIndex}/{classTemplateIndex}
+         */
+        this.queryClassTemplate = (collectionIndex, classTemplateIndex, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/classTemplate/${collectionIndex}/${classTemplateIndex}`,
             method: "GET",
             format: "json",
             ...params,
@@ -215,10 +244,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryContribution
          * @summary Queries a contribution by index.
-         * @request GET:/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}
+         * @request GET:/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}/{instanceIndex}
          */
-        this.queryContribution = (collectionIndex, classIndex, powerupTemplateIndex, instanceIndex, params = {}) => this.request({
-            path: `/str11ngfello/moonloop/moonloop/contribution/${collectionIndex}/${classIndex}/${powerupTemplateIndex}/${instanceIndex}`,
+        this.queryContribution = (collectionIndex, classTemplateIndex, powerupTemplateIndex, instanceIndex, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/contribution/${collectionIndex}/${classTemplateIndex}/${powerupTemplateIndex}/${instanceIndex}`,
             method: "GET",
             format: "json",
             ...params,
@@ -288,10 +317,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryPowerup
          * @summary Queries a powerup by index.
-         * @request GET:/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}
+         * @request GET:/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}/{instanceIndex}
          */
-        this.queryPowerup = (collectionIndex, classIndex, powerupTemplateIndex, instanceIndex, params = {}) => this.request({
-            path: `/str11ngfello/moonloop/moonloop/powerup/${collectionIndex}/${classIndex}/${powerupTemplateIndex}/${instanceIndex}`,
+        this.queryPowerup = (collectionIndex, classTemplateIndex, powerupTemplateIndex, instanceIndex, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/powerup/${collectionIndex}/${classTemplateIndex}/${powerupTemplateIndex}/${instanceIndex}`,
             method: "GET",
             format: "json",
             ...params,
@@ -317,10 +346,10 @@ export class Api extends HttpClient {
          * @tags Query
          * @name QueryPowerupTemplate
          * @summary Queries a powerupTemplate by index.
-         * @request GET:/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classIndex}/{powerupTemplateIndex}
+         * @request GET:/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}
          */
-        this.queryPowerupTemplate = (collectionIndex, classIndex, powerupTemplateIndex, params = {}) => this.request({
-            path: `/str11ngfello/moonloop/moonloop/powerupTemplate/${collectionIndex}/${classIndex}/${powerupTemplateIndex}`,
+        this.queryPowerupTemplate = (collectionIndex, classTemplateIndex, powerupTemplateIndex, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/powerupTemplate/${collectionIndex}/${classTemplateIndex}/${powerupTemplateIndex}`,
             method: "GET",
             format: "json",
             ...params,

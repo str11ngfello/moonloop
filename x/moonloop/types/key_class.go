@@ -12,7 +12,7 @@ const (
 // ClassKey returns the store key to retrieve a Class from the index fields
 func ClassKey(
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 ) []byte {
 	var key []byte
 
@@ -20,7 +20,7 @@ func ClassKey(
 	key = append(key, collectionIndexBytes...)
 	key = append(key, []byte("/")...)
 
-	classIndexBytes := []byte(classIndex)
+	classIndexBytes := []byte(classTemplateIndex)
 	key = append(key, classIndexBytes...)
 	key = append(key, []byte("/")...)
 

@@ -16,6 +16,7 @@ func DefaultGenesis() *GenesisState {
 		ContributionList:    []Contribution{},
 		PowerupTemplateList: []PowerupTemplate{},
 		PowerupList:         []Powerup{},
+		ClassTemplateList:   []ClassTemplate{},
 		// this line is used by starport scaffolding # genesis/types/default
 	}
 }
@@ -37,7 +38,7 @@ func (gs GenesisState) Validate() error {
 	classIndexMap := make(map[string]struct{})
 
 	for _, elem := range gs.ClassList {
-		index := string(ClassKey(elem.CollectionIndex, elem.ClassIndex))
+		index := string(ClassKey(elem.CollectionIndex, elem.ClassTemplateIndex))
 		if _, ok := classIndexMap[index]; ok {
 			return fmt.Errorf("duplicated index for class")
 		}
@@ -57,7 +58,7 @@ func (gs GenesisState) Validate() error {
 	contributionIndexMap := make(map[string]struct{})
 
 	for _, elem := range gs.ContributionList {
-		index := string(ContributionKey(elem.CollectionIndex, elem.ClassIndex, elem.PowerupTemplateIndex, elem.InstanceIndex))
+		index := string(ContributionKey(elem.CollectionIndex, elem.ClassTemplateIndex, elem.PowerupTemplateIndex, elem.InstanceIndex))
 		if _, ok := contributionIndexMap[index]; ok {
 			return fmt.Errorf("duplicated index for contribution")
 		}
@@ -67,7 +68,7 @@ func (gs GenesisState) Validate() error {
 	powerupTemplateIndexMap := make(map[string]struct{})
 
 	for _, elem := range gs.PowerupTemplateList {
-		index := string(PowerupTemplateKey(elem.CollectionIndex, elem.ClassIndex, elem.PowerupTemplateIndex))
+		index := string(PowerupTemplateKey(elem.CollectionIndex, elem.ClassTemplateIndex, elem.PowerupTemplateIndex))
 		if _, ok := powerupTemplateIndexMap[index]; ok {
 			return fmt.Errorf("duplicated index for powerupTemplate")
 		}
@@ -77,11 +78,21 @@ func (gs GenesisState) Validate() error {
 	powerupIndexMap := make(map[string]struct{})
 
 	for _, elem := range gs.PowerupList {
-		index := string(PowerupKey(elem.CollectionIndex, elem.ClassIndex, elem.PowerupTemplateIndex, elem.InstanceIndex))
+		index := string(PowerupKey(elem.CollectionIndex, elem.ClassTemplateIndex, elem.PowerupTemplateIndex, elem.InstanceIndex))
 		if _, ok := powerupIndexMap[index]; ok {
 			return fmt.Errorf("duplicated index for powerup")
 		}
 		powerupIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated index in classTemplate
+	classTemplateIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.ClassTemplateList {
+		index := string(ClassTemplateKey(elem.CollectionIndex, elem.ClassTemplateIndex))
+		if _, ok := classTemplateIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for classTemplate")
+		}
+		classTemplateIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

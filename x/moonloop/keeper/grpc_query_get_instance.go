@@ -22,8 +22,8 @@ func (k Keeper) GetInstance(goCtx context.Context, req *types.QueryGetInstanceRe
 		return nil, types.ErrPowerupInvalidPowerup
 	}
 
-	// Find the class
-	class, found := k.GetClass(ctx, req.CollectionIndex, req.ClassIndex)
+	// Find the class template
+	classTemplate, found := k.GetClassTemplate(ctx, req.CollectionIndex, req.ClassTemplateIndex)
 	if !found {
 		return nil, types.ErrPowerupInvalidPowerup
 	}
@@ -31,12 +31,12 @@ func (k Keeper) GetInstance(goCtx context.Context, req *types.QueryGetInstanceRe
 	var powerupTemplates []types.PowerupTemplate
 	var powerups []types.Powerup
 
-	for _, powerupTemplateIndex := range class.PowerupTemplates {
-		powerupTemplate, found := k.GetPowerupTemplate(ctx, req.CollectionIndex, req.ClassIndex, powerupTemplateIndex)
+	for _, powerupTemplateIndex := range classTemplate.PowerupTemplates {
+		powerupTemplate, found := k.GetPowerupTemplate(ctx, req.CollectionIndex, req.ClassTemplateIndex, powerupTemplateIndex)
 		if !found {
 			return nil, types.ErrPowerupInvalidPowerup
 		}
-		powerup, found := k.GetPowerup(ctx, req.CollectionIndex, req.ClassIndex, powerupTemplateIndex, req.InstanceIndex)
+		powerup, found := k.GetPowerup(ctx, req.CollectionIndex, req.ClassTemplateIndex, powerupTemplateIndex, req.InstanceIndex)
 		if !found {
 			return nil, types.ErrPowerupInvalidPowerup
 		}
@@ -45,5 +45,5 @@ func (k Keeper) GetInstance(goCtx context.Context, req *types.QueryGetInstanceRe
 
 	}
 
-	return &types.QueryGetInstanceResponse{Collection: collection, Class: class, PowerupTemplates: powerupTemplates, Powerups: powerups}, nil
+	return &types.QueryGetInstanceResponse{Collection: collection, ClassTemplate: classTemplate, PowerupTemplates: powerupTemplates, Powerups: powerups}, nil
 }

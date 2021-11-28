@@ -12,7 +12,7 @@ const (
 // ContributionKey returns the store key to retrieve a Contribution from the index fields
 func ContributionKey(
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 ) []byte {
@@ -22,7 +22,7 @@ func ContributionKey(
 	key = append(key, collectionIndexBytes...)
 	key = append(key, []byte("/")...)
 
-	classIndexBytes := []byte(classIndex)
+	classIndexBytes := []byte(classTemplateIndex)
 	key = append(key, classIndexBytes...)
 	key = append(key, []byte("/")...)
 

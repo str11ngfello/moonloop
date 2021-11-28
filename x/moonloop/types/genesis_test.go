@@ -32,12 +32,12 @@ func TestGenesisState_Validate(t *testing.T) {
 				},
 				ClassList: []types.Class{
 					{
-						CollectionIndex: "0",
-						ClassIndex:      "0",
+						CollectionIndex:    "0",
+						ClassTemplateIndex: "0",
 					},
 					{
-						CollectionIndex: "1",
-						ClassIndex:      "1",
+						CollectionIndex:    "1",
+						ClassTemplateIndex: "1",
 					},
 				},
 				MintStrategyList: []types.MintStrategy{
@@ -51,13 +51,13 @@ func TestGenesisState_Validate(t *testing.T) {
 				ContributionList: []types.Contribution{
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 						InstanceIndex:        "0",
 					},
 					{
 						CollectionIndex:      "1",
-						ClassIndex:           "1",
+						ClassTemplateIndex:   "1",
 						PowerupTemplateIndex: "1",
 						InstanceIndex:        "1",
 					},
@@ -65,27 +65,37 @@ func TestGenesisState_Validate(t *testing.T) {
 				PowerupTemplateList: []types.PowerupTemplate{
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 					},
 					{
 						CollectionIndex:      "1",
-						ClassIndex:           "1",
+						ClassTemplateIndex:   "1",
 						PowerupTemplateIndex: "1",
 					},
 				},
 				PowerupList: []types.Powerup{
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 						InstanceIndex:        "0",
 					},
 					{
 						CollectionIndex:      "1",
-						ClassIndex:           "1",
+						ClassTemplateIndex:   "1",
 						PowerupTemplateIndex: "1",
 						InstanceIndex:        "1",
+					},
+				},
+				ClassTemplateList: []types.ClassTemplate{
+					{
+						CollectionIndex:    "0",
+						ClassTemplateIndex: "0",
+					},
+					{
+						CollectionIndex:    "1",
+						ClassTemplateIndex: "1",
 					},
 				},
 				// this line is used by starport scaffolding # types/genesis/validField
@@ -111,12 +121,12 @@ func TestGenesisState_Validate(t *testing.T) {
 			genState: &types.GenesisState{
 				ClassList: []types.Class{
 					{
-						CollectionIndex: "0",
-						ClassIndex:      "0",
+						CollectionIndex:    "0",
+						ClassTemplateIndex: "0",
 					},
 					{
-						CollectionIndex: "0",
-						ClassIndex:      "0",
+						CollectionIndex:    "0",
+						ClassTemplateIndex: "0",
 					},
 				},
 			},
@@ -142,13 +152,13 @@ func TestGenesisState_Validate(t *testing.T) {
 				ContributionList: []types.Contribution{
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 						InstanceIndex:        "0",
 					},
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 						InstanceIndex:        "0",
 					},
@@ -162,12 +172,12 @@ func TestGenesisState_Validate(t *testing.T) {
 				PowerupTemplateList: []types.PowerupTemplate{
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 					},
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 					},
 				},
@@ -180,15 +190,31 @@ func TestGenesisState_Validate(t *testing.T) {
 				PowerupList: []types.Powerup{
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 						InstanceIndex:        "0",
 					},
 					{
 						CollectionIndex:      "0",
-						ClassIndex:           "0",
+						ClassTemplateIndex:   "0",
 						PowerupTemplateIndex: "0",
 						InstanceIndex:        "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated classTemplate",
+			genState: &types.GenesisState{
+				ClassTemplateList: []types.ClassTemplate{
+					{
+						CollectionIndex:    "0",
+						ClassTemplateIndex: "0",
+					},
+					{
+						CollectionIndex:    "0",
+						ClassTemplateIndex: "0",
 					},
 				},
 			},

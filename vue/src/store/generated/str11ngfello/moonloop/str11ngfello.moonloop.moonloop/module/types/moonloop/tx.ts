@@ -36,7 +36,7 @@ export interface MsgDeleteCollectionResponse {}
 export interface MsgCreateClass {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   name: string
   description: string
   mintStrategy: string
@@ -50,7 +50,7 @@ export interface MsgCreateClassResponse {}
 export interface MsgUpdateClass {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   name: string
   description: string
   mintStrategy: string
@@ -66,7 +66,7 @@ export interface MsgUpdateClassResponse {}
 export interface MsgDeleteClass {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
 }
 
 export interface MsgDeleteClassResponse {}
@@ -103,7 +103,7 @@ export interface MsgDeleteMintStrategyResponse {}
 export interface MsgCreateContribution {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
   contributors: string[]
@@ -115,7 +115,7 @@ export interface MsgCreateContributionResponse {}
 export interface MsgUpdateContribution {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
   contributors: string[]
@@ -127,7 +127,7 @@ export interface MsgUpdateContributionResponse {}
 export interface MsgDeleteContribution {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
 }
@@ -137,7 +137,7 @@ export interface MsgDeleteContributionResponse {}
 export interface MsgCreatePowerupTemplate {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   name: string
   description: string
@@ -160,7 +160,7 @@ export interface MsgCreatePowerupTemplateResponse {}
 export interface MsgUpdatePowerupTemplate {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   name: string
   description: string
@@ -183,7 +183,7 @@ export interface MsgUpdatePowerupTemplateResponse {}
 export interface MsgDeletePowerupTemplate {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
 }
 
@@ -192,7 +192,7 @@ export interface MsgDeletePowerupTemplateResponse {}
 export interface MsgCreatePowerup {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
   balance: Coin | undefined
@@ -208,7 +208,7 @@ export interface MsgCreatePowerupResponse {}
 export interface MsgUpdatePowerup {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
   balance: Coin | undefined
@@ -224,7 +224,7 @@ export interface MsgUpdatePowerupResponse {}
 export interface MsgDeletePowerup {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
 }
@@ -242,7 +242,7 @@ export interface MsgSetCollectionMintStrategyResponse {}
 export interface MsgSendPower {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
   power: Coin | undefined
@@ -253,7 +253,7 @@ export interface MsgSendPowerResponse {}
 export interface MsgFreePower {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
 }
@@ -263,11 +263,51 @@ export interface MsgFreePowerResponse {}
 export interface MsgMint {
   creator: string
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   numInstances: number
 }
 
 export interface MsgMintResponse {}
+
+export interface MsgCreateClassTemplate {
+  creator: string
+  collectionIndex: string
+  classTemplateIndex: string
+  name: string
+  description: string
+  mintStrategy: string
+  gltfHash: string
+  metadata: string
+  maxInstances: number
+  count: number
+  powerupTemplates: string[]
+}
+
+export interface MsgCreateClassTemplateResponse {}
+
+export interface MsgUpdateClassTemplate {
+  creator: string
+  collectionIndex: string
+  classTemplateIndex: string
+  name: string
+  description: string
+  mintStrategy: string
+  gltfHash: string
+  metadata: string
+  maxInstances: number
+  count: number
+  powerupTemplates: string[]
+}
+
+export interface MsgUpdateClassTemplateResponse {}
+
+export interface MsgDeleteClassTemplate {
+  creator: string
+  collectionIndex: string
+  classTemplateIndex: string
+}
+
+export interface MsgDeleteClassTemplateResponse {}
 
 const baseMsgCreateCollection: object = { creator: '', index: '', name: '', description: '', mintStrategy: '', classes: '' }
 
@@ -752,7 +792,7 @@ export const MsgDeleteCollectionResponse = {
 const baseMsgCreateClass: object = {
   creator: '',
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   name: '',
   description: '',
   mintStrategy: '',
@@ -769,8 +809,8 @@ export const MsgCreateClass = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.name !== '') {
       writer.uint32(34).string(message.name)
@@ -807,7 +847,7 @@ export const MsgCreateClass = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.name = reader.string()
@@ -847,10 +887,10 @@ export const MsgCreateClass = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = String(object.name)
@@ -889,7 +929,7 @@ export const MsgCreateClass = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.name !== undefined && (obj.name = message.name)
     message.description !== undefined && (obj.description = message.description)
     message.mintStrategy !== undefined && (obj.mintStrategy = message.mintStrategy)
@@ -911,10 +951,10 @@ export const MsgCreateClass = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name
@@ -991,7 +1031,7 @@ export const MsgCreateClassResponse = {
 const baseMsgUpdateClass: object = {
   creator: '',
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   name: '',
   description: '',
   mintStrategy: '',
@@ -1010,8 +1050,8 @@ export const MsgUpdateClass = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.name !== '') {
       writer.uint32(34).string(message.name)
@@ -1055,7 +1095,7 @@ export const MsgUpdateClass = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.name = reader.string()
@@ -1102,10 +1142,10 @@ export const MsgUpdateClass = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = String(object.name)
@@ -1154,7 +1194,7 @@ export const MsgUpdateClass = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.name !== undefined && (obj.name = message.name)
     message.description !== undefined && (obj.description = message.description)
     message.mintStrategy !== undefined && (obj.mintStrategy = message.mintStrategy)
@@ -1183,10 +1223,10 @@ export const MsgUpdateClass = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.name !== undefined && object.name !== null) {
       message.name = object.name
@@ -1270,7 +1310,7 @@ export const MsgUpdateClassResponse = {
   }
 }
 
-const baseMsgDeleteClass: object = { creator: '', collectionIndex: '', classIndex: '' }
+const baseMsgDeleteClass: object = { creator: '', collectionIndex: '', classTemplateIndex: '' }
 
 export const MsgDeleteClass = {
   encode(message: MsgDeleteClass, writer: Writer = Writer.create()): Writer {
@@ -1280,8 +1320,8 @@ export const MsgDeleteClass = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     return writer
   },
@@ -1300,7 +1340,7 @@ export const MsgDeleteClass = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         default:
           reader.skipType(tag & 7)
@@ -1322,10 +1362,10 @@ export const MsgDeleteClass = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     return message
   },
@@ -1334,7 +1374,7 @@ export const MsgDeleteClass = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     return obj
   },
 
@@ -1350,10 +1390,10 @@ export const MsgDeleteClass = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     return message
   }
@@ -1941,7 +1981,14 @@ export const MsgDeleteMintStrategyResponse = {
   }
 }
 
-const baseMsgCreateContribution: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '', contributors: '' }
+const baseMsgCreateContribution: object = {
+  creator: '',
+  collectionIndex: '',
+  classTemplateIndex: '',
+  powerupTemplateIndex: '',
+  instanceIndex: '',
+  contributors: ''
+}
 
 export const MsgCreateContribution = {
   encode(message: MsgCreateContribution, writer: Writer = Writer.create()): Writer {
@@ -1951,8 +1998,8 @@ export const MsgCreateContribution = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -1985,7 +2032,7 @@ export const MsgCreateContribution = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -2021,10 +2068,10 @@ export const MsgCreateContribution = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -2053,7 +2100,7 @@ export const MsgCreateContribution = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     if (message.contributors) {
@@ -2083,10 +2130,10 @@ export const MsgCreateContribution = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -2150,7 +2197,14 @@ export const MsgCreateContributionResponse = {
   }
 }
 
-const baseMsgUpdateContribution: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '', contributors: '' }
+const baseMsgUpdateContribution: object = {
+  creator: '',
+  collectionIndex: '',
+  classTemplateIndex: '',
+  powerupTemplateIndex: '',
+  instanceIndex: '',
+  contributors: ''
+}
 
 export const MsgUpdateContribution = {
   encode(message: MsgUpdateContribution, writer: Writer = Writer.create()): Writer {
@@ -2160,8 +2214,8 @@ export const MsgUpdateContribution = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -2194,7 +2248,7 @@ export const MsgUpdateContribution = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -2230,10 +2284,10 @@ export const MsgUpdateContribution = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -2262,7 +2316,7 @@ export const MsgUpdateContribution = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     if (message.contributors) {
@@ -2292,10 +2346,10 @@ export const MsgUpdateContribution = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -2359,7 +2413,7 @@ export const MsgUpdateContributionResponse = {
   }
 }
 
-const baseMsgDeleteContribution: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
+const baseMsgDeleteContribution: object = { creator: '', collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
 
 export const MsgDeleteContribution = {
   encode(message: MsgDeleteContribution, writer: Writer = Writer.create()): Writer {
@@ -2369,8 +2423,8 @@ export const MsgDeleteContribution = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -2395,7 +2449,7 @@ export const MsgDeleteContribution = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -2423,10 +2477,10 @@ export const MsgDeleteContribution = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -2445,7 +2499,7 @@ export const MsgDeleteContribution = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
@@ -2463,10 +2517,10 @@ export const MsgDeleteContribution = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -2523,7 +2577,7 @@ export const MsgDeleteContributionResponse = {
 const baseMsgCreatePowerupTemplate: object = {
   creator: '',
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   powerupTemplateIndex: '',
   name: '',
   description: '',
@@ -2545,8 +2599,8 @@ export const MsgCreatePowerupTemplate = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -2610,7 +2664,7 @@ export const MsgCreatePowerupTemplate = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -2677,10 +2731,10 @@ export const MsgCreatePowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -2764,7 +2818,7 @@ export const MsgCreatePowerupTemplate = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.name !== undefined && (obj.name = message.name)
     message.description !== undefined && (obj.description = message.description)
@@ -2795,10 +2849,10 @@ export const MsgCreatePowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -2920,7 +2974,7 @@ export const MsgCreatePowerupTemplateResponse = {
 const baseMsgUpdatePowerupTemplate: object = {
   creator: '',
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   powerupTemplateIndex: '',
   name: '',
   description: '',
@@ -2942,8 +2996,8 @@ export const MsgUpdatePowerupTemplate = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -3007,7 +3061,7 @@ export const MsgUpdatePowerupTemplate = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -3074,10 +3128,10 @@ export const MsgUpdatePowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -3161,7 +3215,7 @@ export const MsgUpdatePowerupTemplate = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.name !== undefined && (obj.name = message.name)
     message.description !== undefined && (obj.description = message.description)
@@ -3192,10 +3246,10 @@ export const MsgUpdatePowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -3314,7 +3368,7 @@ export const MsgUpdatePowerupTemplateResponse = {
   }
 }
 
-const baseMsgDeletePowerupTemplate: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '' }
+const baseMsgDeletePowerupTemplate: object = { creator: '', collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '' }
 
 export const MsgDeletePowerupTemplate = {
   encode(message: MsgDeletePowerupTemplate, writer: Writer = Writer.create()): Writer {
@@ -3324,8 +3378,8 @@ export const MsgDeletePowerupTemplate = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -3347,7 +3401,7 @@ export const MsgDeletePowerupTemplate = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -3372,10 +3426,10 @@ export const MsgDeletePowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -3389,7 +3443,7 @@ export const MsgDeletePowerupTemplate = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     return obj
   },
@@ -3406,10 +3460,10 @@ export const MsgDeletePowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -3461,7 +3515,7 @@ export const MsgDeletePowerupTemplateResponse = {
 const baseMsgCreatePowerup: object = {
   creator: '',
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   powerupTemplateIndex: '',
   instanceIndex: '',
   startTime: 0,
@@ -3478,8 +3532,8 @@ export const MsgCreatePowerup = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -3522,7 +3576,7 @@ export const MsgCreatePowerup = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -3568,10 +3622,10 @@ export const MsgCreatePowerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -3620,7 +3674,7 @@ export const MsgCreatePowerup = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     message.balance !== undefined && (obj.balance = message.balance ? Coin.toJSON(message.balance) : undefined)
@@ -3644,10 +3698,10 @@ export const MsgCreatePowerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -3734,7 +3788,7 @@ export const MsgCreatePowerupResponse = {
 const baseMsgUpdatePowerup: object = {
   creator: '',
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   powerupTemplateIndex: '',
   instanceIndex: '',
   startTime: 0,
@@ -3751,8 +3805,8 @@ export const MsgUpdatePowerup = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -3795,7 +3849,7 @@ export const MsgUpdatePowerup = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -3841,10 +3895,10 @@ export const MsgUpdatePowerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -3893,7 +3947,7 @@ export const MsgUpdatePowerup = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     message.balance !== undefined && (obj.balance = message.balance ? Coin.toJSON(message.balance) : undefined)
@@ -3917,10 +3971,10 @@ export const MsgUpdatePowerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -4004,7 +4058,7 @@ export const MsgUpdatePowerupResponse = {
   }
 }
 
-const baseMsgDeletePowerup: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
+const baseMsgDeletePowerup: object = { creator: '', collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
 
 export const MsgDeletePowerup = {
   encode(message: MsgDeletePowerup, writer: Writer = Writer.create()): Writer {
@@ -4014,8 +4068,8 @@ export const MsgDeletePowerup = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -4040,7 +4094,7 @@ export const MsgDeletePowerup = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -4068,10 +4122,10 @@ export const MsgDeletePowerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -4090,7 +4144,7 @@ export const MsgDeletePowerup = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
@@ -4108,10 +4162,10 @@ export const MsgDeletePowerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -4292,7 +4346,7 @@ export const MsgSetCollectionMintStrategyResponse = {
   }
 }
 
-const baseMsgSendPower: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
+const baseMsgSendPower: object = { creator: '', collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
 
 export const MsgSendPower = {
   encode(message: MsgSendPower, writer: Writer = Writer.create()): Writer {
@@ -4302,8 +4356,8 @@ export const MsgSendPower = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -4331,7 +4385,7 @@ export const MsgSendPower = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -4362,10 +4416,10 @@ export const MsgSendPower = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -4389,7 +4443,7 @@ export const MsgSendPower = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     message.power !== undefined && (obj.power = message.power ? Coin.toJSON(message.power) : undefined)
@@ -4408,10 +4462,10 @@ export const MsgSendPower = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -4470,7 +4524,7 @@ export const MsgSendPowerResponse = {
   }
 }
 
-const baseMsgFreePower: object = { creator: '', collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
+const baseMsgFreePower: object = { creator: '', collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
 
 export const MsgFreePower = {
   encode(message: MsgFreePower, writer: Writer = Writer.create()): Writer {
@@ -4480,8 +4534,8 @@ export const MsgFreePower = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(34).string(message.powerupTemplateIndex)
@@ -4506,7 +4560,7 @@ export const MsgFreePower = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.powerupTemplateIndex = reader.string()
@@ -4534,10 +4588,10 @@ export const MsgFreePower = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -4556,7 +4610,7 @@ export const MsgFreePower = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
@@ -4574,10 +4628,10 @@ export const MsgFreePower = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -4631,7 +4685,7 @@ export const MsgFreePowerResponse = {
   }
 }
 
-const baseMsgMint: object = { creator: '', collectionIndex: '', classIndex: '', numInstances: 0 }
+const baseMsgMint: object = { creator: '', collectionIndex: '', classTemplateIndex: '', numInstances: 0 }
 
 export const MsgMint = {
   encode(message: MsgMint, writer: Writer = Writer.create()): Writer {
@@ -4641,8 +4695,8 @@ export const MsgMint = {
     if (message.collectionIndex !== '') {
       writer.uint32(18).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(26).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
     }
     if (message.numInstances !== 0) {
       writer.uint32(32).int32(message.numInstances)
@@ -4664,7 +4718,7 @@ export const MsgMint = {
           message.collectionIndex = reader.string()
           break
         case 3:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 4:
           message.numInstances = reader.int32()
@@ -4689,10 +4743,10 @@ export const MsgMint = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.numInstances !== undefined && object.numInstances !== null) {
       message.numInstances = Number(object.numInstances)
@@ -4706,7 +4760,7 @@ export const MsgMint = {
     const obj: any = {}
     message.creator !== undefined && (obj.creator = message.creator)
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.numInstances !== undefined && (obj.numInstances = message.numInstances)
     return obj
   },
@@ -4723,10 +4777,10 @@ export const MsgMint = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.numInstances !== undefined && object.numInstances !== null) {
       message.numInstances = object.numInstances
@@ -4775,6 +4829,697 @@ export const MsgMintResponse = {
   }
 }
 
+const baseMsgCreateClassTemplate: object = {
+  creator: '',
+  collectionIndex: '',
+  classTemplateIndex: '',
+  name: '',
+  description: '',
+  mintStrategy: '',
+  gltfHash: '',
+  metadata: '',
+  maxInstances: 0,
+  count: 0,
+  powerupTemplates: ''
+}
+
+export const MsgCreateClassTemplate = {
+  encode(message: MsgCreateClassTemplate, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.collectionIndex !== '') {
+      writer.uint32(18).string(message.collectionIndex)
+    }
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
+    }
+    if (message.name !== '') {
+      writer.uint32(34).string(message.name)
+    }
+    if (message.description !== '') {
+      writer.uint32(42).string(message.description)
+    }
+    if (message.mintStrategy !== '') {
+      writer.uint32(50).string(message.mintStrategy)
+    }
+    if (message.gltfHash !== '') {
+      writer.uint32(58).string(message.gltfHash)
+    }
+    if (message.metadata !== '') {
+      writer.uint32(66).string(message.metadata)
+    }
+    if (message.maxInstances !== 0) {
+      writer.uint32(72).int32(message.maxInstances)
+    }
+    if (message.count !== 0) {
+      writer.uint32(80).int32(message.count)
+    }
+    for (const v of message.powerupTemplates) {
+      writer.uint32(90).string(v!)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateClassTemplate {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgCreateClassTemplate } as MsgCreateClassTemplate
+    message.powerupTemplates = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.collectionIndex = reader.string()
+          break
+        case 3:
+          message.classTemplateIndex = reader.string()
+          break
+        case 4:
+          message.name = reader.string()
+          break
+        case 5:
+          message.description = reader.string()
+          break
+        case 6:
+          message.mintStrategy = reader.string()
+          break
+        case 7:
+          message.gltfHash = reader.string()
+          break
+        case 8:
+          message.metadata = reader.string()
+          break
+        case 9:
+          message.maxInstances = reader.int32()
+          break
+        case 10:
+          message.count = reader.int32()
+          break
+        case 11:
+          message.powerupTemplates.push(reader.string())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgCreateClassTemplate {
+    const message = { ...baseMsgCreateClassTemplate } as MsgCreateClassTemplate
+    message.powerupTemplates = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = String(object.collectionIndex)
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
+    } else {
+      message.classTemplateIndex = ''
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name)
+    } else {
+      message.name = ''
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = String(object.description)
+    } else {
+      message.description = ''
+    }
+    if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
+      message.mintStrategy = String(object.mintStrategy)
+    } else {
+      message.mintStrategy = ''
+    }
+    if (object.gltfHash !== undefined && object.gltfHash !== null) {
+      message.gltfHash = String(object.gltfHash)
+    } else {
+      message.gltfHash = ''
+    }
+    if (object.metadata !== undefined && object.metadata !== null) {
+      message.metadata = String(object.metadata)
+    } else {
+      message.metadata = ''
+    }
+    if (object.maxInstances !== undefined && object.maxInstances !== null) {
+      message.maxInstances = Number(object.maxInstances)
+    } else {
+      message.maxInstances = 0
+    }
+    if (object.count !== undefined && object.count !== null) {
+      message.count = Number(object.count)
+    } else {
+      message.count = 0
+    }
+    if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+      for (const e of object.powerupTemplates) {
+        message.powerupTemplates.push(String(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: MsgCreateClassTemplate): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
+    message.name !== undefined && (obj.name = message.name)
+    message.description !== undefined && (obj.description = message.description)
+    message.mintStrategy !== undefined && (obj.mintStrategy = message.mintStrategy)
+    message.gltfHash !== undefined && (obj.gltfHash = message.gltfHash)
+    message.metadata !== undefined && (obj.metadata = message.metadata)
+    message.maxInstances !== undefined && (obj.maxInstances = message.maxInstances)
+    message.count !== undefined && (obj.count = message.count)
+    if (message.powerupTemplates) {
+      obj.powerupTemplates = message.powerupTemplates.map((e) => e)
+    } else {
+      obj.powerupTemplates = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgCreateClassTemplate>): MsgCreateClassTemplate {
+    const message = { ...baseMsgCreateClassTemplate } as MsgCreateClassTemplate
+    message.powerupTemplates = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = object.collectionIndex
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
+    } else {
+      message.classTemplateIndex = ''
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name
+    } else {
+      message.name = ''
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description
+    } else {
+      message.description = ''
+    }
+    if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
+      message.mintStrategy = object.mintStrategy
+    } else {
+      message.mintStrategy = ''
+    }
+    if (object.gltfHash !== undefined && object.gltfHash !== null) {
+      message.gltfHash = object.gltfHash
+    } else {
+      message.gltfHash = ''
+    }
+    if (object.metadata !== undefined && object.metadata !== null) {
+      message.metadata = object.metadata
+    } else {
+      message.metadata = ''
+    }
+    if (object.maxInstances !== undefined && object.maxInstances !== null) {
+      message.maxInstances = object.maxInstances
+    } else {
+      message.maxInstances = 0
+    }
+    if (object.count !== undefined && object.count !== null) {
+      message.count = object.count
+    } else {
+      message.count = 0
+    }
+    if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+      for (const e of object.powerupTemplates) {
+        message.powerupTemplates.push(e)
+      }
+    }
+    return message
+  }
+}
+
+const baseMsgCreateClassTemplateResponse: object = {}
+
+export const MsgCreateClassTemplateResponse = {
+  encode(_: MsgCreateClassTemplateResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateClassTemplateResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgCreateClassTemplateResponse } as MsgCreateClassTemplateResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgCreateClassTemplateResponse {
+    const message = { ...baseMsgCreateClassTemplateResponse } as MsgCreateClassTemplateResponse
+    return message
+  },
+
+  toJSON(_: MsgCreateClassTemplateResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgCreateClassTemplateResponse>): MsgCreateClassTemplateResponse {
+    const message = { ...baseMsgCreateClassTemplateResponse } as MsgCreateClassTemplateResponse
+    return message
+  }
+}
+
+const baseMsgUpdateClassTemplate: object = {
+  creator: '',
+  collectionIndex: '',
+  classTemplateIndex: '',
+  name: '',
+  description: '',
+  mintStrategy: '',
+  gltfHash: '',
+  metadata: '',
+  maxInstances: 0,
+  count: 0,
+  powerupTemplates: ''
+}
+
+export const MsgUpdateClassTemplate = {
+  encode(message: MsgUpdateClassTemplate, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.collectionIndex !== '') {
+      writer.uint32(18).string(message.collectionIndex)
+    }
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
+    }
+    if (message.name !== '') {
+      writer.uint32(34).string(message.name)
+    }
+    if (message.description !== '') {
+      writer.uint32(42).string(message.description)
+    }
+    if (message.mintStrategy !== '') {
+      writer.uint32(50).string(message.mintStrategy)
+    }
+    if (message.gltfHash !== '') {
+      writer.uint32(58).string(message.gltfHash)
+    }
+    if (message.metadata !== '') {
+      writer.uint32(66).string(message.metadata)
+    }
+    if (message.maxInstances !== 0) {
+      writer.uint32(72).int32(message.maxInstances)
+    }
+    if (message.count !== 0) {
+      writer.uint32(80).int32(message.count)
+    }
+    for (const v of message.powerupTemplates) {
+      writer.uint32(90).string(v!)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateClassTemplate {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgUpdateClassTemplate } as MsgUpdateClassTemplate
+    message.powerupTemplates = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.collectionIndex = reader.string()
+          break
+        case 3:
+          message.classTemplateIndex = reader.string()
+          break
+        case 4:
+          message.name = reader.string()
+          break
+        case 5:
+          message.description = reader.string()
+          break
+        case 6:
+          message.mintStrategy = reader.string()
+          break
+        case 7:
+          message.gltfHash = reader.string()
+          break
+        case 8:
+          message.metadata = reader.string()
+          break
+        case 9:
+          message.maxInstances = reader.int32()
+          break
+        case 10:
+          message.count = reader.int32()
+          break
+        case 11:
+          message.powerupTemplates.push(reader.string())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgUpdateClassTemplate {
+    const message = { ...baseMsgUpdateClassTemplate } as MsgUpdateClassTemplate
+    message.powerupTemplates = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = String(object.collectionIndex)
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
+    } else {
+      message.classTemplateIndex = ''
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name)
+    } else {
+      message.name = ''
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = String(object.description)
+    } else {
+      message.description = ''
+    }
+    if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
+      message.mintStrategy = String(object.mintStrategy)
+    } else {
+      message.mintStrategy = ''
+    }
+    if (object.gltfHash !== undefined && object.gltfHash !== null) {
+      message.gltfHash = String(object.gltfHash)
+    } else {
+      message.gltfHash = ''
+    }
+    if (object.metadata !== undefined && object.metadata !== null) {
+      message.metadata = String(object.metadata)
+    } else {
+      message.metadata = ''
+    }
+    if (object.maxInstances !== undefined && object.maxInstances !== null) {
+      message.maxInstances = Number(object.maxInstances)
+    } else {
+      message.maxInstances = 0
+    }
+    if (object.count !== undefined && object.count !== null) {
+      message.count = Number(object.count)
+    } else {
+      message.count = 0
+    }
+    if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+      for (const e of object.powerupTemplates) {
+        message.powerupTemplates.push(String(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: MsgUpdateClassTemplate): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
+    message.name !== undefined && (obj.name = message.name)
+    message.description !== undefined && (obj.description = message.description)
+    message.mintStrategy !== undefined && (obj.mintStrategy = message.mintStrategy)
+    message.gltfHash !== undefined && (obj.gltfHash = message.gltfHash)
+    message.metadata !== undefined && (obj.metadata = message.metadata)
+    message.maxInstances !== undefined && (obj.maxInstances = message.maxInstances)
+    message.count !== undefined && (obj.count = message.count)
+    if (message.powerupTemplates) {
+      obj.powerupTemplates = message.powerupTemplates.map((e) => e)
+    } else {
+      obj.powerupTemplates = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgUpdateClassTemplate>): MsgUpdateClassTemplate {
+    const message = { ...baseMsgUpdateClassTemplate } as MsgUpdateClassTemplate
+    message.powerupTemplates = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = object.collectionIndex
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
+    } else {
+      message.classTemplateIndex = ''
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name
+    } else {
+      message.name = ''
+    }
+    if (object.description !== undefined && object.description !== null) {
+      message.description = object.description
+    } else {
+      message.description = ''
+    }
+    if (object.mintStrategy !== undefined && object.mintStrategy !== null) {
+      message.mintStrategy = object.mintStrategy
+    } else {
+      message.mintStrategy = ''
+    }
+    if (object.gltfHash !== undefined && object.gltfHash !== null) {
+      message.gltfHash = object.gltfHash
+    } else {
+      message.gltfHash = ''
+    }
+    if (object.metadata !== undefined && object.metadata !== null) {
+      message.metadata = object.metadata
+    } else {
+      message.metadata = ''
+    }
+    if (object.maxInstances !== undefined && object.maxInstances !== null) {
+      message.maxInstances = object.maxInstances
+    } else {
+      message.maxInstances = 0
+    }
+    if (object.count !== undefined && object.count !== null) {
+      message.count = object.count
+    } else {
+      message.count = 0
+    }
+    if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
+      for (const e of object.powerupTemplates) {
+        message.powerupTemplates.push(e)
+      }
+    }
+    return message
+  }
+}
+
+const baseMsgUpdateClassTemplateResponse: object = {}
+
+export const MsgUpdateClassTemplateResponse = {
+  encode(_: MsgUpdateClassTemplateResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateClassTemplateResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgUpdateClassTemplateResponse } as MsgUpdateClassTemplateResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgUpdateClassTemplateResponse {
+    const message = { ...baseMsgUpdateClassTemplateResponse } as MsgUpdateClassTemplateResponse
+    return message
+  },
+
+  toJSON(_: MsgUpdateClassTemplateResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgUpdateClassTemplateResponse>): MsgUpdateClassTemplateResponse {
+    const message = { ...baseMsgUpdateClassTemplateResponse } as MsgUpdateClassTemplateResponse
+    return message
+  }
+}
+
+const baseMsgDeleteClassTemplate: object = { creator: '', collectionIndex: '', classTemplateIndex: '' }
+
+export const MsgDeleteClassTemplate = {
+  encode(message: MsgDeleteClassTemplate, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.collectionIndex !== '') {
+      writer.uint32(18).string(message.collectionIndex)
+    }
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(26).string(message.classTemplateIndex)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgDeleteClassTemplate {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgDeleteClassTemplate } as MsgDeleteClassTemplate
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.collectionIndex = reader.string()
+          break
+        case 3:
+          message.classTemplateIndex = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgDeleteClassTemplate {
+    const message = { ...baseMsgDeleteClassTemplate } as MsgDeleteClassTemplate
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = String(object.collectionIndex)
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
+    } else {
+      message.classTemplateIndex = ''
+    }
+    return message
+  },
+
+  toJSON(message: MsgDeleteClassTemplate): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgDeleteClassTemplate>): MsgDeleteClassTemplate {
+    const message = { ...baseMsgDeleteClassTemplate } as MsgDeleteClassTemplate
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = object.collectionIndex
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
+    } else {
+      message.classTemplateIndex = ''
+    }
+    return message
+  }
+}
+
+const baseMsgDeleteClassTemplateResponse: object = {}
+
+export const MsgDeleteClassTemplateResponse = {
+  encode(_: MsgDeleteClassTemplateResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgDeleteClassTemplateResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgDeleteClassTemplateResponse } as MsgDeleteClassTemplateResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgDeleteClassTemplateResponse {
+    const message = { ...baseMsgDeleteClassTemplateResponse } as MsgDeleteClassTemplateResponse
+    return message
+  },
+
+  toJSON(_: MsgDeleteClassTemplateResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgDeleteClassTemplateResponse>): MsgDeleteClassTemplateResponse {
+    const message = { ...baseMsgDeleteClassTemplateResponse } as MsgDeleteClassTemplateResponse
+    return message
+  }
+}
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateCollection(request: MsgCreateCollection): Promise<MsgCreateCollectionResponse>
@@ -4798,8 +5543,11 @@ export interface Msg {
   SetCollectionMintStrategy(request: MsgSetCollectionMintStrategy): Promise<MsgSetCollectionMintStrategyResponse>
   SendPower(request: MsgSendPower): Promise<MsgSendPowerResponse>
   FreePower(request: MsgFreePower): Promise<MsgFreePowerResponse>
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   Mint(request: MsgMint): Promise<MsgMintResponse>
+  CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse>
+  UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse>
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse>
 }
 
 export class MsgClientImpl implements Msg {
@@ -4937,6 +5685,24 @@ export class MsgClientImpl implements Msg {
     const data = MsgMint.encode(request).finish()
     const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'Mint', data)
     return promise.then((data) => MsgMintResponse.decode(new Reader(data)))
+  }
+
+  CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse> {
+    const data = MsgCreateClassTemplate.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'CreateClassTemplate', data)
+    return promise.then((data) => MsgCreateClassTemplateResponse.decode(new Reader(data)))
+  }
+
+  UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse> {
+    const data = MsgUpdateClassTemplate.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'UpdateClassTemplate', data)
+    return promise.then((data) => MsgUpdateClassTemplateResponse.decode(new Reader(data)))
+  }
+
+  DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse> {
+    const data = MsgDeleteClassTemplate.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'DeleteClassTemplate', data)
+    return promise.then((data) => MsgDeleteClassTemplateResponse.decode(new Reader(data)))
   }
 }
 

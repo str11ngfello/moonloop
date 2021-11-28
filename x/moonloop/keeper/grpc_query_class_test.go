@@ -31,24 +31,24 @@ func TestClassQuerySingle(t *testing.T) {
 		{
 			desc: "First",
 			request: &types.QueryGetClassRequest{
-				CollectionIndex: msgs[0].CollectionIndex,
-				ClassIndex:      msgs[0].ClassIndex,
+				CollectionIndex:    msgs[0].CollectionIndex,
+				ClassTemplateIndex: msgs[0].ClassTemplateIndex,
 			},
 			response: &types.QueryGetClassResponse{Class: msgs[0]},
 		},
 		{
 			desc: "Second",
 			request: &types.QueryGetClassRequest{
-				CollectionIndex: msgs[1].CollectionIndex,
-				ClassIndex:      msgs[1].ClassIndex,
+				CollectionIndex:    msgs[1].CollectionIndex,
+				ClassTemplateIndex: msgs[1].ClassTemplateIndex,
 			},
 			response: &types.QueryGetClassResponse{Class: msgs[1]},
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.QueryGetClassRequest{
-				CollectionIndex: strconv.Itoa(100000),
-				ClassIndex:      strconv.Itoa(100000),
+				CollectionIndex:    strconv.Itoa(100000),
+				ClassTemplateIndex: strconv.Itoa(100000),
 			},
 			err: status.Error(codes.InvalidArgument, "not found"),
 		},

@@ -10,7 +10,7 @@ var _ sdk.Msg = &MsgCreateClass{}
 func NewMsgCreateClass(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	name string,
 	description string,
 	mintStrategy string,
@@ -20,15 +20,15 @@ func NewMsgCreateClass(
 
 ) *MsgCreateClass {
 	return &MsgCreateClass{
-		Creator:         creator,
-		CollectionIndex: collectionIndex,
-		ClassIndex:      classIndex,
-		Name:            name,
-		Description:     description,
-		MintStrategy:    mintStrategy,
-		GltfHash:        gltfHash,
-		Metadata:        metadata,
-		MaxInstances:    maxInstances,
+		Creator:            creator,
+		CollectionIndex:    collectionIndex,
+		ClassTemplateIndex: classTemplateIndex,
+		Name:               name,
+		Description:        description,
+		MintStrategy:       mintStrategy,
+		GltfHash:           gltfHash,
+		Metadata:           metadata,
+		MaxInstances:       maxInstances,
 	}
 }
 
@@ -66,7 +66,7 @@ var _ sdk.Msg = &MsgUpdateClass{}
 func NewMsgUpdateClass(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	name string,
 	description string,
 	mintStrategy string,
@@ -76,15 +76,15 @@ func NewMsgUpdateClass(
 
 ) *MsgUpdateClass {
 	return &MsgUpdateClass{
-		Creator:         creator,
-		CollectionIndex: collectionIndex,
-		ClassIndex:      classIndex,
-		Name:            name,
-		Description:     description,
-		MintStrategy:    mintStrategy,
-		GltfHash:        gltfHash,
-		Metadata:        metadata,
-		MaxInstances:    maxInstances,
+		Creator:            creator,
+		CollectionIndex:    collectionIndex,
+		ClassTemplateIndex: classTemplateIndex,
+		Name:               name,
+		Description:        description,
+		MintStrategy:       mintStrategy,
+		GltfHash:           gltfHash,
+		Metadata:           metadata,
+		MaxInstances:       maxInstances,
 	}
 }
 
@@ -122,13 +122,13 @@ var _ sdk.Msg = &MsgDeleteClass{}
 func NewMsgDeleteClass(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 
 ) *MsgDeleteClass {
 	return &MsgDeleteClass{
-		Creator:         creator,
-		CollectionIndex: collectionIndex,
-		ClassIndex:      classIndex,
+		Creator:            creator,
+		CollectionIndex:    collectionIndex,
+		ClassTemplateIndex: classTemplateIndex,
 	}
 }
 func (msg *MsgDeleteClass) Route() string {

@@ -30,7 +30,7 @@ func networkWithPowerupObjects(t *testing.T, n int) (*network.Network, []types.P
 	for i := 0; i < n; i++ {
 		powerup := types.Powerup{
 			CollectionIndex:      strconv.Itoa(i),
-			ClassIndex:           strconv.Itoa(i),
+			ClassTemplateIndex:   strconv.Itoa(i),
 			PowerupTemplateIndex: strconv.Itoa(i),
 			InstanceIndex:        strconv.Itoa(i),
 		}
@@ -64,7 +64,7 @@ func TestShowPowerup(t *testing.T) {
 		{
 			desc:                   "found",
 			idCollectionIndex:      objs[0].CollectionIndex,
-			idClassIndex:           objs[0].ClassIndex,
+			idClassIndex:           objs[0].ClassTemplateIndex,
 			idPowerupTemplateIndex: objs[0].PowerupTemplateIndex,
 			idInstanceIndex:        objs[0].InstanceIndex,
 

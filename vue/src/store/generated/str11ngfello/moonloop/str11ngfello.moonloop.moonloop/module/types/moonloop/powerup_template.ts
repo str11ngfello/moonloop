@@ -6,7 +6,7 @@ export const protobufPackage = 'str11ngfello.moonloop.moonloop'
 
 export interface PowerupTemplate {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   name: string
   description: string
@@ -27,7 +27,7 @@ export interface PowerupTemplate {
 
 const basePowerupTemplate: object = {
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   powerupTemplateIndex: '',
   name: '',
   description: '',
@@ -47,8 +47,8 @@ export const PowerupTemplate = {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(26).string(message.powerupTemplateIndex)
@@ -112,7 +112,7 @@ export const PowerupTemplate = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 3:
           message.powerupTemplateIndex = reader.string()
@@ -177,10 +177,10 @@ export const PowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -268,7 +268,7 @@ export const PowerupTemplate = {
   toJSON(message: PowerupTemplate): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.name !== undefined && (obj.name = message.name)
     message.description !== undefined && (obj.description = message.description)
@@ -295,10 +295,10 @@ export const PowerupTemplate = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex

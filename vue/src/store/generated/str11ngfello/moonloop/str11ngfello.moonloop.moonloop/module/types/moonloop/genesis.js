@@ -5,6 +5,7 @@ import { MintStrategy } from '../moonloop/mint_strategy';
 import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
+import { ClassTemplate } from '../moonloop/class_template';
 import { Writer, Reader } from 'protobufjs/minimal';
 export const protobufPackage = 'str11ngfello.moonloop.moonloop';
 const baseGenesisState = {};
@@ -28,6 +29,9 @@ export const GenesisState = {
         for (const v of message.powerupList) {
             Powerup.encode(v, writer.uint32(50).fork()).ldelim();
         }
+        for (const v of message.classTemplateList) {
+            ClassTemplate.encode(v, writer.uint32(58).fork()).ldelim();
+        }
         return writer;
     },
     decode(input, length) {
@@ -40,6 +44,7 @@ export const GenesisState = {
         message.contributionList = [];
         message.powerupTemplateList = [];
         message.powerupList = [];
+        message.classTemplateList = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -61,6 +66,9 @@ export const GenesisState = {
                 case 6:
                     message.powerupList.push(Powerup.decode(reader, reader.uint32()));
                     break;
+                case 7:
+                    message.classTemplateList.push(ClassTemplate.decode(reader, reader.uint32()));
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -76,6 +84,7 @@ export const GenesisState = {
         message.contributionList = [];
         message.powerupTemplateList = [];
         message.powerupList = [];
+        message.classTemplateList = [];
         if (object.collectionList !== undefined && object.collectionList !== null) {
             for (const e of object.collectionList) {
                 message.collectionList.push(Collection.fromJSON(e));
@@ -104,6 +113,11 @@ export const GenesisState = {
         if (object.powerupList !== undefined && object.powerupList !== null) {
             for (const e of object.powerupList) {
                 message.powerupList.push(Powerup.fromJSON(e));
+            }
+        }
+        if (object.classTemplateList !== undefined && object.classTemplateList !== null) {
+            for (const e of object.classTemplateList) {
+                message.classTemplateList.push(ClassTemplate.fromJSON(e));
             }
         }
         return message;
@@ -146,6 +160,12 @@ export const GenesisState = {
         else {
             obj.powerupList = [];
         }
+        if (message.classTemplateList) {
+            obj.classTemplateList = message.classTemplateList.map((e) => (e ? ClassTemplate.toJSON(e) : undefined));
+        }
+        else {
+            obj.classTemplateList = [];
+        }
         return obj;
     },
     fromPartial(object) {
@@ -156,6 +176,7 @@ export const GenesisState = {
         message.contributionList = [];
         message.powerupTemplateList = [];
         message.powerupList = [];
+        message.classTemplateList = [];
         if (object.collectionList !== undefined && object.collectionList !== null) {
             for (const e of object.collectionList) {
                 message.collectionList.push(Collection.fromPartial(e));
@@ -184,6 +205,11 @@ export const GenesisState = {
         if (object.powerupList !== undefined && object.powerupList !== null) {
             for (const e of object.powerupList) {
                 message.powerupList.push(Powerup.fromPartial(e));
+            }
+        }
+        if (object.classTemplateList !== undefined && object.classTemplateList !== null) {
+            for (const e of object.classTemplateList) {
+                message.classTemplateList.push(ClassTemplate.fromPartial(e));
             }
         }
         return message;

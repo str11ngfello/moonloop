@@ -10,7 +10,7 @@ var _ sdk.Msg = &MsgCreateContribution{}
 func NewMsgCreateContribution(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 	contributors []string,
@@ -20,7 +20,7 @@ func NewMsgCreateContribution(
 	return &MsgCreateContribution{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 		Contributors:         contributors,
@@ -62,7 +62,7 @@ var _ sdk.Msg = &MsgUpdateContribution{}
 func NewMsgUpdateContribution(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 	contributors []string,
@@ -72,7 +72,7 @@ func NewMsgUpdateContribution(
 	return &MsgUpdateContribution{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 		Contributors:         contributors,
@@ -114,7 +114,7 @@ var _ sdk.Msg = &MsgDeleteContribution{}
 func NewMsgDeleteContribution(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 
@@ -122,7 +122,7 @@ func NewMsgDeleteContribution(
 	return &MsgDeleteContribution{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 	}

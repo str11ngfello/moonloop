@@ -30,7 +30,7 @@ func networkWithContributionObjects(t *testing.T, n int) (*network.Network, []ty
 	for i := 0; i < n; i++ {
 		contribution := types.Contribution{
 			CollectionIndex:      strconv.Itoa(i),
-			ClassIndex:           strconv.Itoa(i),
+			ClassTemplateIndex:   strconv.Itoa(i),
 			PowerupTemplateIndex: strconv.Itoa(i),
 			InstanceIndex:        strconv.Itoa(i),
 		}
@@ -64,7 +64,7 @@ func TestShowContribution(t *testing.T) {
 		{
 			desc:                   "found",
 			idCollectionIndex:      objs[0].CollectionIndex,
-			idClassIndex:           objs[0].ClassIndex,
+			idClassIndex:           objs[0].ClassTemplateIndex,
 			idPowerupTemplateIndex: objs[0].PowerupTemplateIndex,
 			idInstanceIndex:        objs[0].InstanceIndex,
 

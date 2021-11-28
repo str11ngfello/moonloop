@@ -30,7 +30,7 @@ export interface MsgDeleteCollectionResponse {
 export interface MsgCreateClass {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     name: string;
     description: string;
     mintStrategy: string;
@@ -43,7 +43,7 @@ export interface MsgCreateClassResponse {
 export interface MsgUpdateClass {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     name: string;
     description: string;
     mintStrategy: string;
@@ -58,7 +58,7 @@ export interface MsgUpdateClassResponse {
 export interface MsgDeleteClass {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
 }
 export interface MsgDeleteClassResponse {
 }
@@ -91,7 +91,7 @@ export interface MsgDeleteMintStrategyResponse {
 export interface MsgCreateContribution {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
     contributors: string[];
@@ -102,7 +102,7 @@ export interface MsgCreateContributionResponse {
 export interface MsgUpdateContribution {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
     contributors: string[];
@@ -113,7 +113,7 @@ export interface MsgUpdateContributionResponse {
 export interface MsgDeleteContribution {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
 }
@@ -122,7 +122,7 @@ export interface MsgDeleteContributionResponse {
 export interface MsgCreatePowerupTemplate {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     name: string;
     description: string;
@@ -144,7 +144,7 @@ export interface MsgCreatePowerupTemplateResponse {
 export interface MsgUpdatePowerupTemplate {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     name: string;
     description: string;
@@ -166,7 +166,7 @@ export interface MsgUpdatePowerupTemplateResponse {
 export interface MsgDeletePowerupTemplate {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
 }
 export interface MsgDeletePowerupTemplateResponse {
@@ -174,7 +174,7 @@ export interface MsgDeletePowerupTemplateResponse {
 export interface MsgCreatePowerup {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
     balance: Coin | undefined;
@@ -189,7 +189,7 @@ export interface MsgCreatePowerupResponse {
 export interface MsgUpdatePowerup {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
     balance: Coin | undefined;
@@ -204,7 +204,7 @@ export interface MsgUpdatePowerupResponse {
 export interface MsgDeletePowerup {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
 }
@@ -220,7 +220,7 @@ export interface MsgSetCollectionMintStrategyResponse {
 export interface MsgSendPower {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
     power: Coin | undefined;
@@ -230,7 +230,7 @@ export interface MsgSendPowerResponse {
 export interface MsgFreePower {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
 }
@@ -239,10 +239,47 @@ export interface MsgFreePowerResponse {
 export interface MsgMint {
     creator: string;
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     numInstances: number;
 }
 export interface MsgMintResponse {
+}
+export interface MsgCreateClassTemplate {
+    creator: string;
+    collectionIndex: string;
+    classTemplateIndex: string;
+    name: string;
+    description: string;
+    mintStrategy: string;
+    gltfHash: string;
+    metadata: string;
+    maxInstances: number;
+    count: number;
+    powerupTemplates: string[];
+}
+export interface MsgCreateClassTemplateResponse {
+}
+export interface MsgUpdateClassTemplate {
+    creator: string;
+    collectionIndex: string;
+    classTemplateIndex: string;
+    name: string;
+    description: string;
+    mintStrategy: string;
+    gltfHash: string;
+    metadata: string;
+    maxInstances: number;
+    count: number;
+    powerupTemplates: string[];
+}
+export interface MsgUpdateClassTemplateResponse {
+}
+export interface MsgDeleteClassTemplate {
+    creator: string;
+    collectionIndex: string;
+    classTemplateIndex: string;
+}
+export interface MsgDeleteClassTemplateResponse {
 }
 export declare const MsgCreateCollection: {
     encode(message: MsgCreateCollection, writer?: Writer): Writer;
@@ -552,6 +589,48 @@ export declare const MsgMintResponse: {
     toJSON(_: MsgMintResponse): unknown;
     fromPartial(_: DeepPartial<MsgMintResponse>): MsgMintResponse;
 };
+export declare const MsgCreateClassTemplate: {
+    encode(message: MsgCreateClassTemplate, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateClassTemplate;
+    fromJSON(object: any): MsgCreateClassTemplate;
+    toJSON(message: MsgCreateClassTemplate): unknown;
+    fromPartial(object: DeepPartial<MsgCreateClassTemplate>): MsgCreateClassTemplate;
+};
+export declare const MsgCreateClassTemplateResponse: {
+    encode(_: MsgCreateClassTemplateResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateClassTemplateResponse;
+    fromJSON(_: any): MsgCreateClassTemplateResponse;
+    toJSON(_: MsgCreateClassTemplateResponse): unknown;
+    fromPartial(_: DeepPartial<MsgCreateClassTemplateResponse>): MsgCreateClassTemplateResponse;
+};
+export declare const MsgUpdateClassTemplate: {
+    encode(message: MsgUpdateClassTemplate, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateClassTemplate;
+    fromJSON(object: any): MsgUpdateClassTemplate;
+    toJSON(message: MsgUpdateClassTemplate): unknown;
+    fromPartial(object: DeepPartial<MsgUpdateClassTemplate>): MsgUpdateClassTemplate;
+};
+export declare const MsgUpdateClassTemplateResponse: {
+    encode(_: MsgUpdateClassTemplateResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateClassTemplateResponse;
+    fromJSON(_: any): MsgUpdateClassTemplateResponse;
+    toJSON(_: MsgUpdateClassTemplateResponse): unknown;
+    fromPartial(_: DeepPartial<MsgUpdateClassTemplateResponse>): MsgUpdateClassTemplateResponse;
+};
+export declare const MsgDeleteClassTemplate: {
+    encode(message: MsgDeleteClassTemplate, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteClassTemplate;
+    fromJSON(object: any): MsgDeleteClassTemplate;
+    toJSON(message: MsgDeleteClassTemplate): unknown;
+    fromPartial(object: DeepPartial<MsgDeleteClassTemplate>): MsgDeleteClassTemplate;
+};
+export declare const MsgDeleteClassTemplateResponse: {
+    encode(_: MsgDeleteClassTemplateResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteClassTemplateResponse;
+    fromJSON(_: any): MsgDeleteClassTemplateResponse;
+    toJSON(_: MsgDeleteClassTemplateResponse): unknown;
+    fromPartial(_: DeepPartial<MsgDeleteClassTemplateResponse>): MsgDeleteClassTemplateResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     CreateCollection(request: MsgCreateCollection): Promise<MsgCreateCollectionResponse>;
@@ -575,8 +654,11 @@ export interface Msg {
     SetCollectionMintStrategy(request: MsgSetCollectionMintStrategy): Promise<MsgSetCollectionMintStrategyResponse>;
     SendPower(request: MsgSendPower): Promise<MsgSendPowerResponse>;
     FreePower(request: MsgFreePower): Promise<MsgFreePowerResponse>;
-    /** this line is used by starport scaffolding # proto/tx/rpc */
     Mint(request: MsgMint): Promise<MsgMintResponse>;
+    CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse>;
+    UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse>;
+    /** this line is used by starport scaffolding # proto/tx/rpc */
+    DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
@@ -603,6 +685,9 @@ export declare class MsgClientImpl implements Msg {
     SendPower(request: MsgSendPower): Promise<MsgSendPowerResponse>;
     FreePower(request: MsgFreePower): Promise<MsgFreePowerResponse>;
     Mint(request: MsgMint): Promise<MsgMintResponse>;
+    CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse>;
+    UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse>;
+    DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

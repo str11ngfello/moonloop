@@ -6,6 +6,7 @@ import { MintStrategy } from '../moonloop/mint_strategy';
 import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
+import { ClassTemplate } from '../moonloop/class_template';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 export interface QueryGetCollectionRequest {
     index: string;
@@ -22,7 +23,7 @@ export interface QueryAllCollectionResponse {
 }
 export interface QueryGetClassRequest {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
 }
 export interface QueryGetClassResponse {
     class: Class | undefined;
@@ -49,7 +50,7 @@ export interface QueryAllMintStrategyResponse {
 }
 export interface QueryGetContributionRequest {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
 }
@@ -65,7 +66,7 @@ export interface QueryAllContributionResponse {
 }
 export interface QueryGetPowerupTemplateRequest {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
 }
 export interface QueryGetPowerupTemplateResponse {
@@ -80,7 +81,7 @@ export interface QueryAllPowerupTemplateResponse {
 }
 export interface QueryGetPowerupRequest {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
 }
@@ -96,14 +97,28 @@ export interface QueryAllPowerupResponse {
 }
 export interface QueryGetInstanceRequest {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     instanceIndex: string;
 }
 export interface QueryGetInstanceResponse {
     collection: Collection | undefined;
-    class: Class | undefined;
+    classTemplate: ClassTemplate | undefined;
     powerupTemplates: PowerupTemplate[];
     powerups: Powerup[];
+}
+export interface QueryGetClassTemplateRequest {
+    collectionIndex: string;
+    classTemplateIndex: string;
+}
+export interface QueryGetClassTemplateResponse {
+    classTemplate: ClassTemplate | undefined;
+}
+export interface QueryAllClassTemplateRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryAllClassTemplateResponse {
+    classTemplate: ClassTemplate[];
+    pagination: PageResponse | undefined;
 }
 export declare const QueryGetCollectionRequest: {
     encode(message: QueryGetCollectionRequest, writer?: Writer): Writer;
@@ -287,6 +302,34 @@ export declare const QueryGetInstanceResponse: {
     toJSON(message: QueryGetInstanceResponse): unknown;
     fromPartial(object: DeepPartial<QueryGetInstanceResponse>): QueryGetInstanceResponse;
 };
+export declare const QueryGetClassTemplateRequest: {
+    encode(message: QueryGetClassTemplateRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetClassTemplateRequest;
+    fromJSON(object: any): QueryGetClassTemplateRequest;
+    toJSON(message: QueryGetClassTemplateRequest): unknown;
+    fromPartial(object: DeepPartial<QueryGetClassTemplateRequest>): QueryGetClassTemplateRequest;
+};
+export declare const QueryGetClassTemplateResponse: {
+    encode(message: QueryGetClassTemplateResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetClassTemplateResponse;
+    fromJSON(object: any): QueryGetClassTemplateResponse;
+    toJSON(message: QueryGetClassTemplateResponse): unknown;
+    fromPartial(object: DeepPartial<QueryGetClassTemplateResponse>): QueryGetClassTemplateResponse;
+};
+export declare const QueryAllClassTemplateRequest: {
+    encode(message: QueryAllClassTemplateRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllClassTemplateRequest;
+    fromJSON(object: any): QueryAllClassTemplateRequest;
+    toJSON(message: QueryAllClassTemplateRequest): unknown;
+    fromPartial(object: DeepPartial<QueryAllClassTemplateRequest>): QueryAllClassTemplateRequest;
+};
+export declare const QueryAllClassTemplateResponse: {
+    encode(message: QueryAllClassTemplateResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllClassTemplateResponse;
+    fromJSON(object: any): QueryAllClassTemplateResponse;
+    toJSON(message: QueryAllClassTemplateResponse): unknown;
+    fromPartial(object: DeepPartial<QueryAllClassTemplateResponse>): QueryAllClassTemplateResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Queries a collection by index. */
@@ -315,6 +358,10 @@ export interface Query {
     PowerupAll(request: QueryAllPowerupRequest): Promise<QueryAllPowerupResponse>;
     /** Queries a list of getInstance items. */
     GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>;
+    /** Queries a classTemplate by index. */
+    ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse>;
+    /** Queries a list of classTemplate items. */
+    ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -332,6 +379,8 @@ export declare class QueryClientImpl implements Query {
     Powerup(request: QueryGetPowerupRequest): Promise<QueryGetPowerupResponse>;
     PowerupAll(request: QueryAllPowerupRequest): Promise<QueryAllPowerupResponse>;
     GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>;
+    ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse>;
+    ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

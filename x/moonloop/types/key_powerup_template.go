@@ -12,7 +12,7 @@ const (
 // PowerupTemplateKey returns the store key to retrieve a PowerupTemplate from the index fields
 func PowerupTemplateKey(
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 ) []byte {
 	var key []byte
@@ -21,7 +21,7 @@ func PowerupTemplateKey(
 	key = append(key, collectionIndexBytes...)
 	key = append(key, []byte("/")...)
 
-	classIndexBytes := []byte(classIndex)
+	classIndexBytes := []byte(classTemplateIndex)
 	key = append(key, classIndexBytes...)
 	key = append(key, []byte("/")...)
 

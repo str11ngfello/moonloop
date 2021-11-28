@@ -15,7 +15,7 @@ func (k msgServer) CreatePowerup(goCtx context.Context, msg *types.MsgCreatePowe
 	_, isFound := k.GetPowerup(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)
@@ -26,7 +26,7 @@ func (k msgServer) CreatePowerup(goCtx context.Context, msg *types.MsgCreatePowe
 	var powerup = types.Powerup{
 		Creator:              msg.Creator,
 		CollectionIndex:      msg.CollectionIndex,
-		ClassIndex:           msg.ClassIndex,
+		ClassTemplateIndex:   msg.ClassTemplateIndex,
 		PowerupTemplateIndex: msg.PowerupTemplateIndex,
 		InstanceIndex:        msg.InstanceIndex,
 		Balance:              msg.Balance,
@@ -51,7 +51,7 @@ func (k msgServer) UpdatePowerup(goCtx context.Context, msg *types.MsgUpdatePowe
 	valFound, isFound := k.GetPowerup(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)
@@ -67,7 +67,7 @@ func (k msgServer) UpdatePowerup(goCtx context.Context, msg *types.MsgUpdatePowe
 	var powerup = types.Powerup{
 		Creator:              msg.Creator,
 		CollectionIndex:      msg.CollectionIndex,
-		ClassIndex:           msg.ClassIndex,
+		ClassTemplateIndex:   msg.ClassTemplateIndex,
 		PowerupTemplateIndex: msg.PowerupTemplateIndex,
 		InstanceIndex:        msg.InstanceIndex,
 		Balance:              msg.Balance,
@@ -90,7 +90,7 @@ func (k msgServer) DeletePowerup(goCtx context.Context, msg *types.MsgDeletePowe
 	valFound, isFound := k.GetPowerup(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)
@@ -106,7 +106,7 @@ func (k msgServer) DeletePowerup(goCtx context.Context, msg *types.MsgDeletePowe
 	k.RemovePowerup(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)

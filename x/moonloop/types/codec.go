@@ -30,6 +30,9 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgSendPower{}, "moonloop/SendPower", nil)
 	cdc.RegisterConcrete(&MsgFreePower{}, "moonloop/FreePower", nil)
 	cdc.RegisterConcrete(&MsgMint{}, "moonloop/Mint", nil)
+	cdc.RegisterConcrete(&MsgCreateClassTemplate{}, "moonloop/CreateClassTemplate", nil)
+	cdc.RegisterConcrete(&MsgUpdateClassTemplate{}, "moonloop/UpdateClassTemplate", nil)
+	cdc.RegisterConcrete(&MsgDeleteClassTemplate{}, "moonloop/DeleteClassTemplate", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -75,6 +78,11 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgMint{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreateClassTemplate{},
+		&MsgUpdateClassTemplate{},
+		&MsgDeleteClassTemplate{},
 	)
 	// this line is used by starport scaffolding # 3
 

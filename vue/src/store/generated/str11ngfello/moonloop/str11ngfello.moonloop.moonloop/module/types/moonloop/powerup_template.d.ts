@@ -3,7 +3,7 @@ import { Writer, Reader } from 'protobufjs/minimal';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 export interface PowerupTemplate {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     name: string;
     description: string;

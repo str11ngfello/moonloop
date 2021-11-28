@@ -7,11 +7,11 @@ import (
 
 var _ sdk.Msg = &MsgSendPower{}
 
-func NewMsgSendPower(creator string, collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, power sdk.Coin) *MsgSendPower {
+func NewMsgSendPower(creator string, collectionIndex string, classTemplateIndex string, powerupTemplateIndex string, instanceIndex string, power sdk.Coin) *MsgSendPower {
 	return &MsgSendPower{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 		Power:                power,

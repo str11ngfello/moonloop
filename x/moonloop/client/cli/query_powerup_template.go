@@ -58,7 +58,7 @@ func CmdShowPowerupTemplate() *cobra.Command {
 
 			params := &types.QueryGetPowerupTemplateRequest{
 				CollectionIndex:      argCollectionIndex,
-				ClassIndex:           argClassIndex,
+				ClassTemplateIndex:   argClassIndex,
 				PowerupTemplateIndex: argPowerupTemplateIndex,
 			}
 

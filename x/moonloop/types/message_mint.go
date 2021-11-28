@@ -7,12 +7,12 @@ import (
 
 var _ sdk.Msg = &MsgMint{}
 
-func NewMsgMint(creator string, collectionIndex string, classIndex string, numInstances int32) *MsgMint {
+func NewMsgMint(creator string, collectionIndex string, classTemplateIndex string, numInstances int32) *MsgMint {
 	return &MsgMint{
-		Creator:         creator,
-		CollectionIndex: collectionIndex,
-		ClassIndex:      classIndex,
-		NumInstances:    numInstances,
+		Creator:            creator,
+		CollectionIndex:    collectionIndex,
+		ClassTemplateIndex: classTemplateIndex,
+		NumInstances:       numInstances,
 	}
 }
 

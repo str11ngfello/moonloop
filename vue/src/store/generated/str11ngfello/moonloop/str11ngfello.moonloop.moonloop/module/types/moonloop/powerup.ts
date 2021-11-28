@@ -6,7 +6,7 @@ export const protobufPackage = 'str11ngfello.moonloop.moonloop'
 
 export interface Powerup {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
   balance: Coin | undefined
@@ -20,7 +20,7 @@ export interface Powerup {
 
 const basePowerup: object = {
   collectionIndex: '',
-  classIndex: '',
+  classTemplateIndex: '',
   powerupTemplateIndex: '',
   instanceIndex: '',
   startTime: 0,
@@ -35,8 +35,8 @@ export const Powerup = {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(26).string(message.powerupTemplateIndex)
@@ -79,7 +79,7 @@ export const Powerup = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 3:
           message.powerupTemplateIndex = reader.string()
@@ -123,10 +123,10 @@ export const Powerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -179,7 +179,7 @@ export const Powerup = {
   toJSON(message: Powerup): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     message.balance !== undefined && (obj.balance = message.balance ? Coin.toJSON(message.balance) : undefined)
@@ -199,10 +199,10 @@ export const Powerup = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex

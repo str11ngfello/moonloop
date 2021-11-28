@@ -4,6 +4,7 @@ import { MintStrategy } from '../moonloop/mint_strategy';
 import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
+import { ClassTemplate } from '../moonloop/class_template';
 import { Writer, Reader } from 'protobufjs/minimal';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 /** GenesisState defines the moonloop module's genesis state. */
@@ -13,8 +14,9 @@ export interface GenesisState {
     mintStrategyList: MintStrategy[];
     contributionList: Contribution[];
     powerupTemplateList: PowerupTemplate[];
-    /** this line is used by starport scaffolding # genesis/proto/state */
     powerupList: Powerup[];
+    /** this line is used by starport scaffolding # genesis/proto/state */
+    classTemplateList: ClassTemplate[];
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: Writer): Writer;

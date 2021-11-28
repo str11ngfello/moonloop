@@ -33,6 +33,10 @@ func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) 
 	for _, elem := range genState.PowerupList {
 		k.SetPowerup(ctx, elem)
 	}
+	// Set all the classTemplate
+	for _, elem := range genState.ClassTemplateList {
+		k.SetClassTemplate(ctx, elem)
+	}
 	// this line is used by starport scaffolding # genesis/module/init
 }
 
@@ -46,6 +50,7 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis.ContributionList = k.GetAllContribution(ctx)
 	genesis.PowerupTemplateList = k.GetAllPowerupTemplate(ctx)
 	genesis.PowerupList = k.GetAllPowerup(ctx)
+	genesis.ClassTemplateList = k.GetAllClassTemplate(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

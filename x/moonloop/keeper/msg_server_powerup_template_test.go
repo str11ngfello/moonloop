@@ -24,14 +24,14 @@ func TestPowerupTemplateMsgServerCreate(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		expected := &types.MsgCreatePowerupTemplate{Creator: creator,
 			CollectionIndex:      strconv.Itoa(i),
-			ClassIndex:           strconv.Itoa(i),
+			ClassTemplateIndex:   strconv.Itoa(i),
 			PowerupTemplateIndex: strconv.Itoa(i),
 		}
 		_, err := srv.CreatePowerupTemplate(wctx, expected)
 		require.NoError(t, err)
 		rst, found := k.GetPowerupTemplate(ctx,
 			expected.CollectionIndex,
-			expected.ClassIndex,
+			expected.ClassTemplateIndex,
 			expected.PowerupTemplateIndex,
 		)
 		require.True(t, found)
@@ -51,7 +51,7 @@ func TestPowerupTemplateMsgServerUpdate(t *testing.T) {
 			desc: "Completed",
 			request: &types.MsgUpdatePowerupTemplate{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 			},
 		},
@@ -59,7 +59,7 @@ func TestPowerupTemplateMsgServerUpdate(t *testing.T) {
 			desc: "Unauthorized",
 			request: &types.MsgUpdatePowerupTemplate{Creator: "B",
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
@@ -68,7 +68,7 @@ func TestPowerupTemplateMsgServerUpdate(t *testing.T) {
 			desc: "KeyNotFound",
 			request: &types.MsgUpdatePowerupTemplate{Creator: creator,
 				CollectionIndex:      strconv.Itoa(100000),
-				ClassIndex:           strconv.Itoa(100000),
+				ClassTemplateIndex:   strconv.Itoa(100000),
 				PowerupTemplateIndex: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
@@ -80,7 +80,7 @@ func TestPowerupTemplateMsgServerUpdate(t *testing.T) {
 			wctx := sdk.WrapSDKContext(ctx)
 			expected := &types.MsgCreatePowerupTemplate{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 			}
 			_, err := srv.CreatePowerupTemplate(wctx, expected)
@@ -93,7 +93,7 @@ func TestPowerupTemplateMsgServerUpdate(t *testing.T) {
 				require.NoError(t, err)
 				rst, found := k.GetPowerupTemplate(ctx,
 					expected.CollectionIndex,
-					expected.ClassIndex,
+					expected.ClassTemplateIndex,
 					expected.PowerupTemplateIndex,
 				)
 				require.True(t, found)
@@ -115,7 +115,7 @@ func TestPowerupTemplateMsgServerDelete(t *testing.T) {
 			desc: "Completed",
 			request: &types.MsgDeletePowerupTemplate{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 			},
 		},
@@ -123,7 +123,7 @@ func TestPowerupTemplateMsgServerDelete(t *testing.T) {
 			desc: "Unauthorized",
 			request: &types.MsgDeletePowerupTemplate{Creator: "B",
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
@@ -132,7 +132,7 @@ func TestPowerupTemplateMsgServerDelete(t *testing.T) {
 			desc: "KeyNotFound",
 			request: &types.MsgDeletePowerupTemplate{Creator: creator,
 				CollectionIndex:      strconv.Itoa(100000),
-				ClassIndex:           strconv.Itoa(100000),
+				ClassTemplateIndex:   strconv.Itoa(100000),
 				PowerupTemplateIndex: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
@@ -145,7 +145,7 @@ func TestPowerupTemplateMsgServerDelete(t *testing.T) {
 
 			_, err := srv.CreatePowerupTemplate(wctx, &types.MsgCreatePowerupTemplate{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 			})
 			require.NoError(t, err)
@@ -156,7 +156,7 @@ func TestPowerupTemplateMsgServerDelete(t *testing.T) {
 				require.NoError(t, err)
 				_, found := k.GetPowerupTemplate(ctx,
 					tc.request.CollectionIndex,
-					tc.request.ClassIndex,
+					tc.request.ClassTemplateIndex,
 					tc.request.PowerupTemplateIndex,
 				)
 				require.False(t, found)

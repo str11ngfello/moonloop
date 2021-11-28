@@ -15,7 +15,7 @@ func (k msgServer) CreateContribution(goCtx context.Context, msg *types.MsgCreat
 	_, isFound := k.GetContribution(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)
@@ -26,7 +26,7 @@ func (k msgServer) CreateContribution(goCtx context.Context, msg *types.MsgCreat
 	var contribution = types.Contribution{
 		Creator:              msg.Creator,
 		CollectionIndex:      msg.CollectionIndex,
-		ClassIndex:           msg.ClassIndex,
+		ClassTemplateIndex:   msg.ClassTemplateIndex,
 		PowerupTemplateIndex: msg.PowerupTemplateIndex,
 		InstanceIndex:        msg.InstanceIndex,
 		Contributors:         msg.Contributors,
@@ -47,7 +47,7 @@ func (k msgServer) UpdateContribution(goCtx context.Context, msg *types.MsgUpdat
 	valFound, isFound := k.GetContribution(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)
@@ -63,7 +63,7 @@ func (k msgServer) UpdateContribution(goCtx context.Context, msg *types.MsgUpdat
 	var contribution = types.Contribution{
 		Creator:              msg.Creator,
 		CollectionIndex:      msg.CollectionIndex,
-		ClassIndex:           msg.ClassIndex,
+		ClassTemplateIndex:   msg.ClassTemplateIndex,
 		PowerupTemplateIndex: msg.PowerupTemplateIndex,
 		InstanceIndex:        msg.InstanceIndex,
 		Contributors:         msg.Contributors,
@@ -82,7 +82,7 @@ func (k msgServer) DeleteContribution(goCtx context.Context, msg *types.MsgDelet
 	valFound, isFound := k.GetContribution(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)
@@ -98,7 +98,7 @@ func (k msgServer) DeleteContribution(goCtx context.Context, msg *types.MsgDelet
 	k.RemoveContribution(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 		msg.InstanceIndex,
 	)

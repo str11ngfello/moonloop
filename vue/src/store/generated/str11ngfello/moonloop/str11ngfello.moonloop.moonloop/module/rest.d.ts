@@ -1,6 +1,13 @@
 export interface MoonloopClass {
     collectionIndex?: string;
-    classIndex?: string;
+    classTemplateIndex?: string;
+    instanceIndex?: string;
+    creator?: string;
+    owner?: string;
+}
+export interface MoonloopClassTemplate {
+    collectionIndex?: string;
+    classTemplateIndex?: string;
     name?: string;
     description?: string;
     mintStrategy?: string;
@@ -12,7 +19,6 @@ export interface MoonloopClass {
     count?: number;
     powerupTemplates?: string[];
     creator?: string;
-    owner?: string;
 }
 export interface MoonloopCollection {
     index?: string;
@@ -24,7 +30,7 @@ export interface MoonloopCollection {
 }
 export interface MoonloopContribution {
     collectionIndex?: string;
-    classIndex?: string;
+    classTemplateIndex?: string;
     powerupTemplateIndex?: string;
     instanceIndex?: string;
     contributors?: string[];
@@ -41,12 +47,14 @@ export interface MoonloopMintStrategy {
     creator?: string;
 }
 export declare type MoonloopMsgCreateClassResponse = object;
+export declare type MoonloopMsgCreateClassTemplateResponse = object;
 export declare type MoonloopMsgCreateCollectionResponse = object;
 export declare type MoonloopMsgCreateContributionResponse = object;
 export declare type MoonloopMsgCreateMintStrategyResponse = object;
 export declare type MoonloopMsgCreatePowerupResponse = object;
 export declare type MoonloopMsgCreatePowerupTemplateResponse = object;
 export declare type MoonloopMsgDeleteClassResponse = object;
+export declare type MoonloopMsgDeleteClassTemplateResponse = object;
 export declare type MoonloopMsgDeleteCollectionResponse = object;
 export declare type MoonloopMsgDeleteContributionResponse = object;
 export declare type MoonloopMsgDeleteMintStrategyResponse = object;
@@ -57,6 +65,7 @@ export declare type MoonloopMsgMintResponse = object;
 export declare type MoonloopMsgSendPowerResponse = object;
 export declare type MoonloopMsgSetCollectionMintStrategyResponse = object;
 export declare type MoonloopMsgUpdateClassResponse = object;
+export declare type MoonloopMsgUpdateClassTemplateResponse = object;
 export declare type MoonloopMsgUpdateCollectionResponse = object;
 export declare type MoonloopMsgUpdateContributionResponse = object;
 export declare type MoonloopMsgUpdateMintStrategyResponse = object;
@@ -64,7 +73,7 @@ export declare type MoonloopMsgUpdatePowerupResponse = object;
 export declare type MoonloopMsgUpdatePowerupTemplateResponse = object;
 export interface MoonloopPowerup {
     collectionIndex?: string;
-    classIndex?: string;
+    classTemplateIndex?: string;
     powerupTemplateIndex?: string;
     instanceIndex?: string;
     /**
@@ -92,7 +101,7 @@ export interface MoonloopPowerup {
 }
 export interface MoonloopPowerupTemplate {
     collectionIndex?: string;
-    classIndex?: string;
+    classTemplateIndex?: string;
     powerupTemplateIndex?: string;
     name?: string;
     description?: string;
@@ -143,6 +152,19 @@ export interface MoonloopPowerupTemplate {
 }
 export interface MoonloopQueryAllClassResponse {
     class?: MoonloopClass[];
+    /**
+     * PageResponse is to be embedded in gRPC response messages where the
+     * corresponding request message has used PageRequest.
+     *
+     *  message SomeResponse {
+     *          repeated Bar results = 1;
+     *          PageResponse page = 2;
+     *  }
+     */
+    pagination?: V1Beta1PageResponse;
+}
+export interface MoonloopQueryAllClassTemplateResponse {
+    classTemplate?: MoonloopClassTemplate[];
     /**
      * PageResponse is to be embedded in gRPC response messages where the
      * corresponding request message has used PageRequest.
@@ -222,6 +244,9 @@ export interface MoonloopQueryAllPowerupTemplateResponse {
 export interface MoonloopQueryGetClassResponse {
     class?: MoonloopClass;
 }
+export interface MoonloopQueryGetClassTemplateResponse {
+    classTemplate?: MoonloopClassTemplate;
+}
 export interface MoonloopQueryGetCollectionResponse {
     collection?: MoonloopCollection;
 }
@@ -230,7 +255,7 @@ export interface MoonloopQueryGetContributionResponse {
 }
 export interface MoonloopQueryGetInstanceResponse {
     collection?: MoonloopCollection;
-    class?: MoonloopClass;
+    classTemplate?: MoonloopClassTemplate;
     powerupTemplates?: MoonloopPowerupTemplate[];
     powerups?: MoonloopPowerup[];
 }
@@ -393,9 +418,33 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @tags Query
      * @name QueryClass
      * @summary Queries a class by index.
-     * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classIndex}
+     * @request GET:/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}
      */
-    queryClass: (collectionIndex: string, classIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetClassResponse, RpcStatus>>;
+    queryClass: (collectionIndex: string, classTemplateIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetClassResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryClassTemplateAll
+     * @summary Queries a list of classTemplate items.
+     * @request GET:/str11ngfello/moonloop/moonloop/classTemplate
+     */
+    queryClassTemplateAll: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.countTotal"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryAllClassTemplateResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryClassTemplate
+     * @summary Queries a classTemplate by index.
+     * @request GET:/str11ngfello/moonloop/moonloop/classTemplate/{collectionIndex}/{classTemplateIndex}
+     */
+    queryClassTemplate: (collectionIndex: string, classTemplateIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetClassTemplateResponse, RpcStatus>>;
     /**
      * No description
      *
@@ -441,9 +490,9 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @tags Query
      * @name QueryContribution
      * @summary Queries a contribution by index.
-     * @request GET:/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}
+     * @request GET:/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}/{instanceIndex}
      */
-    queryContribution: (collectionIndex: string, classIndex: string, powerupTemplateIndex: string, instanceIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetContributionResponse, RpcStatus>>;
+    queryContribution: (collectionIndex: string, classTemplateIndex: string, powerupTemplateIndex: string, instanceIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetContributionResponse, RpcStatus>>;
     /**
      * No description
      *
@@ -454,7 +503,7 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      */
     queryGetInstance: (query?: {
         collectionIndex?: string;
-        classIndex?: string;
+        classTemplateIndex?: string;
         instanceIndex?: string;
     }, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetInstanceResponse, RpcStatus>>;
     /**
@@ -502,9 +551,9 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @tags Query
      * @name QueryPowerup
      * @summary Queries a powerup by index.
-     * @request GET:/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}
+     * @request GET:/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}/{instanceIndex}
      */
-    queryPowerup: (collectionIndex: string, classIndex: string, powerupTemplateIndex: string, instanceIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetPowerupResponse, RpcStatus>>;
+    queryPowerup: (collectionIndex: string, classTemplateIndex: string, powerupTemplateIndex: string, instanceIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetPowerupResponse, RpcStatus>>;
     /**
      * No description
      *
@@ -526,8 +575,8 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * @tags Query
      * @name QueryPowerupTemplate
      * @summary Queries a powerupTemplate by index.
-     * @request GET:/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classIndex}/{powerupTemplateIndex}
+     * @request GET:/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}
      */
-    queryPowerupTemplate: (collectionIndex: string, classIndex: string, powerupTemplateIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetPowerupTemplateResponse, RpcStatus>>;
+    queryPowerupTemplate: (collectionIndex: string, classTemplateIndex: string, powerupTemplateIndex: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetPowerupTemplateResponse, RpcStatus>>;
 }
 export {};

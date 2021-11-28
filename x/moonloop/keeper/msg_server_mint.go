@@ -17,13 +17,13 @@ func (k msgServer) Mint(goCtx context.Context, msg *types.MsgMint) (*types.MsgMi
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "collection not found")
 	}
 
-	class, isFound := k.GetClass(ctx, msg.CollectionIndex, msg.ClassIndex)
+	classTemplate, isFound := k.GetClassTemplate(ctx, msg.CollectionIndex, msg.ClassTemplateIndex)
 	if !isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "class not found")
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "class template not found")
 	}
 
-	// Do we have a class mint strategy? If not, the collection must provide the strategy
-	_, isFound = k.GetMintStrategy(ctx, class.MintStrategy)
+	// Do we have a class template mint strategy? If not, the collection must provide the strategy
+	_, isFound = k.GetMintStrategy(ctx, classTemplate.MintStrategy)
 	if !isFound {
 		_, isFound = k.GetMintStrategy(ctx, collection.MintStrategy)
 		if !isFound {
@@ -32,18 +32,18 @@ func (k msgServer) Mint(goCtx context.Context, msg *types.MsgMint) (*types.MsgMi
 	}
 
 	// Can we mint this amount?
-	// if (msg.NumInstances + class.
+	// if (msg.NumInstances + classTemplate.
 
 	// For each instance we want to mint, create the powerups
-	var startInstanceIndex int32 = int32(class.Count)
+	var startInstanceIndex int32 = int32(classTemplate.Count)
 	var endCount int32 = startInstanceIndex + msg.NumInstances
 	for startInstanceIndex < endCount {
-		for _, powerupTemplateIndex := range class.PowerupTemplates {
+		for _, powerupTemplateIndex := range classTemplate.PowerupTemplates {
 
 			var powerup = types.Powerup{
 				Creator:              msg.Creator,
 				CollectionIndex:      msg.CollectionIndex,
-				ClassIndex:           msg.ClassIndex,
+				ClassTemplateIndex:   msg.ClassTemplateIndex,
 				PowerupTemplateIndex: powerupTemplateIndex,
 				InstanceIndex:        strconv.Itoa(int(startInstanceIndex)),
 				Balance:              sdk.NewCoin("upower", sdk.NewInt(0)),
@@ -61,8 +61,21 @@ func (k msgServer) Mint(goCtx context.Context, msg *types.MsgMint) (*types.MsgMi
 		}
 		startInstanceIndex++
 	}
-	class.Count = endCount
-	k.SetClass(ctx, class)
+
+	var class = types.Class{
+		Creator:            msg.Creator,
+		CollectionIndex:    msg.CollectionIndex,
+		ClassTemplateIndex: msg.ClassTemplateIndex,
+		Owner:              msg.Creator,
+	}
+
+	k.SetClass(
+		ctx,
+		class,
+	)
+
+	classTemplate.Count = endCount
+	k.SetClassTemplate(ctx, classTemplate)
 
 	return &types.MsgMintResponse{}, nil
 }

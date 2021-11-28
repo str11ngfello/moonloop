@@ -12,7 +12,7 @@ func (k Keeper) SetContribution(ctx sdk.Context, contribution types.Contribution
 	b := k.cdc.MustMarshal(&contribution)
 	store.Set(types.ContributionKey(
 		contribution.CollectionIndex,
-		contribution.ClassIndex,
+		contribution.ClassTemplateIndex,
 		contribution.PowerupTemplateIndex,
 		contribution.InstanceIndex,
 	), b)
@@ -22,7 +22,7 @@ func (k Keeper) SetContribution(ctx sdk.Context, contribution types.Contribution
 func (k Keeper) GetContribution(
 	ctx sdk.Context,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 
@@ -31,7 +31,7 @@ func (k Keeper) GetContribution(
 
 	b := store.Get(types.ContributionKey(
 		collectionIndex,
-		classIndex,
+		classTemplateIndex,
 		powerupTemplateIndex,
 		instanceIndex,
 	))
@@ -47,7 +47,7 @@ func (k Keeper) GetContribution(
 func (k Keeper) RemoveContribution(
 	ctx sdk.Context,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 
@@ -55,7 +55,7 @@ func (k Keeper) RemoveContribution(
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.ContributionKeyPrefix))
 	store.Delete(types.ContributionKey(
 		collectionIndex,
-		classIndex,
+		classTemplateIndex,
 		powerupTemplateIndex,
 		instanceIndex,
 	))

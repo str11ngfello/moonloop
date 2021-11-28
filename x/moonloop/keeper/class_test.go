@@ -19,7 +19,7 @@ func createNClass(keeper *keeper.Keeper, ctx sdk.Context, n int) []types.Class {
 	items := make([]types.Class, n)
 	for i := range items {
 		items[i].CollectionIndex = strconv.Itoa(i)
-		items[i].ClassIndex = strconv.Itoa(i)
+		items[i].ClassTemplateIndex = strconv.Itoa(i)
 
 		keeper.SetClass(ctx, items[i])
 	}
@@ -32,7 +32,7 @@ func TestClassGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetClass(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 		)
 		require.True(t, found)
 		require.Equal(t,
@@ -47,11 +47,11 @@ func TestClassRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemoveClass(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 		)
 		_, found := keeper.GetClass(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 		)
 		require.False(t, found)
 	}

@@ -20,25 +20,17 @@ func (k msgServer) CreateClass(goCtx context.Context, msg *types.MsgCreateClass)
 	_, isFound = k.GetClass(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 	)
 	if isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "class already exists")
 	}
 
 	var class = types.Class{
-		Creator:          msg.Creator,
-		CollectionIndex:  msg.CollectionIndex,
-		ClassIndex:       msg.ClassIndex,
-		Name:             msg.Name,
-		Description:      msg.Description,
-		MintStrategy:     msg.MintStrategy,
-		GltfHash:         msg.GltfHash,
-		Metadata:         msg.Metadata,
-		MaxInstances:     msg.MaxInstances,
-		Count:            0,
-		PowerupTemplates: []string{},
-		Owner:            msg.Creator,
+		Creator:            msg.Creator,
+		CollectionIndex:    msg.CollectionIndex,
+		ClassTemplateIndex: msg.ClassTemplateIndex,
+		Owner:              msg.Creator,
 	}
 
 	k.SetClass(
@@ -46,7 +38,7 @@ func (k msgServer) CreateClass(goCtx context.Context, msg *types.MsgCreateClass)
 		class,
 	)
 
-	collection.Classes = append(collection.Classes, msg.ClassIndex)
+	collection.Classes = append(collection.Classes, msg.ClassTemplateIndex)
 	k.SetCollection(ctx, collection)
 
 	return &types.MsgCreateClassResponse{}, nil
@@ -59,7 +51,7 @@ func (k msgServer) UpdateClass(goCtx context.Context, msg *types.MsgUpdateClass)
 	valFound, isFound := k.GetClass(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -71,16 +63,9 @@ func (k msgServer) UpdateClass(goCtx context.Context, msg *types.MsgUpdateClass)
 	}
 
 	var class = types.Class{
-		Creator:          msg.Creator,
-		CollectionIndex:  msg.CollectionIndex,
-		ClassIndex:       msg.ClassIndex,
-		Name:             msg.Name,
-		Description:      msg.Description,
-		MintStrategy:     msg.MintStrategy,
-		GltfHash:         msg.GltfHash,
-		Metadata:         msg.Metadata,
-		Count:            msg.Count,
-		PowerupTemplates: msg.PowerupTemplates,
+		Creator:            msg.Creator,
+		CollectionIndex:    msg.CollectionIndex,
+		ClassTemplateIndex: msg.ClassTemplateIndex,
 	}
 
 	k.SetClass(ctx, class)
@@ -95,7 +80,7 @@ func (k msgServer) DeleteClass(goCtx context.Context, msg *types.MsgDeleteClass)
 	valFound, isFound := k.GetClass(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 	)
 	if !isFound {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, "index not set")
@@ -109,7 +94,7 @@ func (k msgServer) DeleteClass(goCtx context.Context, msg *types.MsgDeleteClass)
 	k.RemoveClass(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 	)
 
 	return &types.MsgDeleteClassResponse{}, nil

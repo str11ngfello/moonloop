@@ -145,15 +145,15 @@ func request_Query_Class_0(ctx context.Context, marshaler runtime.Marshaler, cli
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	msg, err := client.Class(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -183,15 +183,15 @@ func local_request_Query_Class_0(ctx context.Context, marshaler runtime.Marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	msg, err := server.Class(ctx, &protoReq)
@@ -347,15 +347,15 @@ func request_Query_Contribution_0(ctx context.Context, marshaler runtime.Marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	val, ok = pathParams["powerupTemplateIndex"]
@@ -407,15 +407,15 @@ func local_request_Query_Contribution_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	val, ok = pathParams["powerupTemplateIndex"]
@@ -503,15 +503,15 @@ func request_Query_PowerupTemplate_0(ctx context.Context, marshaler runtime.Mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	val, ok = pathParams["powerupTemplateIndex"]
@@ -552,15 +552,15 @@ func local_request_Query_PowerupTemplate_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	val, ok = pathParams["powerupTemplateIndex"]
@@ -637,15 +637,15 @@ func request_Query_Powerup_0(ctx context.Context, marshaler runtime.Marshaler, c
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	val, ok = pathParams["powerupTemplateIndex"]
@@ -697,15 +697,15 @@ func local_request_Query_Powerup_0(ctx context.Context, marshaler runtime.Marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
 	}
 
-	val, ok = pathParams["classIndex"]
+	val, ok = pathParams["classTemplateIndex"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classIndex")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
 	}
 
-	protoReq.ClassIndex, err = runtime.String(val)
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classIndex", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
 	}
 
 	val, ok = pathParams["powerupTemplateIndex"]
@@ -803,6 +803,118 @@ func local_request_Query_GetInstance_0(ctx context.Context, marshaler runtime.Ma
 	}
 
 	msg, err := server.GetInstance(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Query_ClassTemplate_0(ctx context.Context, marshaler runtime.Marshaler, client QueryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq QueryGetClassTemplateRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["collectionIndex"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "collectionIndex")
+	}
+
+	protoReq.CollectionIndex, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
+	}
+
+	val, ok = pathParams["classTemplateIndex"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
+	}
+
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
+	}
+
+	msg, err := client.ClassTemplate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Query_ClassTemplate_0(ctx context.Context, marshaler runtime.Marshaler, server QueryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq QueryGetClassTemplateRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["collectionIndex"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "collectionIndex")
+	}
+
+	protoReq.CollectionIndex, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "collectionIndex", err)
+	}
+
+	val, ok = pathParams["classTemplateIndex"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classTemplateIndex")
+	}
+
+	protoReq.ClassTemplateIndex, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classTemplateIndex", err)
+	}
+
+	msg, err := server.ClassTemplate(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+var (
+	filter_Query_ClassTemplateAll_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+)
+
+func request_Query_ClassTemplateAll_0(ctx context.Context, marshaler runtime.Marshaler, client QueryClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq QueryAllClassTemplateRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Query_ClassTemplateAll_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.ClassTemplateAll(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Query_ClassTemplateAll_0(ctx context.Context, marshaler runtime.Marshaler, server QueryServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq QueryAllClassTemplateRequest
+	var metadata runtime.ServerMetadata
+
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Query_ClassTemplateAll_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.ClassTemplateAll(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1112,6 +1224,52 @@ func RegisterQueryHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 
 	})
 
+	mux.Handle("GET", pattern_Query_ClassTemplate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Query_ClassTemplate_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Query_ClassTemplate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Query_ClassTemplateAll_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Query_ClassTemplateAll_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Query_ClassTemplateAll_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1413,6 +1571,46 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 
 	})
 
+	mux.Handle("GET", pattern_Query_ClassTemplate_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Query_ClassTemplate_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Query_ClassTemplate_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Query_ClassTemplateAll_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Query_ClassTemplateAll_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Query_ClassTemplateAll_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -1421,7 +1619,7 @@ var (
 
 	pattern_Query_CollectionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "collection"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_Class_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"str11ngfello", "moonloop", "class", "collectionIndex", "classIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Class_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"str11ngfello", "moonloop", "class", "collectionIndex", "classTemplateIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Query_ClassAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "class"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -1429,19 +1627,23 @@ var (
 
 	pattern_Query_MintStrategyAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "mintStrategy"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_Contribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"str11ngfello", "moonloop", "contribution", "collectionIndex", "classIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Contribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"str11ngfello", "moonloop", "contribution", "collectionIndex", "classTemplateIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Query_ContributionAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "contribution"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_PowerupTemplate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"str11ngfello", "moonloop", "powerupTemplate", "collectionIndex", "classIndex", "powerupTemplateIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_PowerupTemplate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"str11ngfello", "moonloop", "powerupTemplate", "collectionIndex", "classTemplateIndex", "powerupTemplateIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Query_PowerupTemplateAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "powerupTemplate"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Query_Powerup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"str11ngfello", "moonloop", "powerup", "collectionIndex", "classIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Query_Powerup_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"str11ngfello", "moonloop", "powerup", "collectionIndex", "classTemplateIndex", "powerupTemplateIndex", "instanceIndex"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Query_PowerupAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "powerup"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Query_GetInstance_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "getInstance"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Query_ClassTemplate_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"str11ngfello", "moonloop", "classTemplate", "collectionIndex", "classTemplateIndex"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Query_ClassTemplateAll_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 1, 2, 2}, []string{"str11ngfello", "moonloop", "classTemplate"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -1470,4 +1672,8 @@ var (
 	forward_Query_PowerupAll_0 = runtime.ForwardResponseMessage
 
 	forward_Query_GetInstance_0 = runtime.ForwardResponseMessage
+
+	forward_Query_ClassTemplate_0 = runtime.ForwardResponseMessage
+
+	forward_Query_ClassTemplateAll_0 = runtime.ForwardResponseMessage
 )

@@ -7,7 +7,7 @@ import "cosmos/base/v1beta1/coin.proto";
 
 message Powerup {
   string collectionIndex = 1; 
-  string classIndex = 2; 
+  string classTemplateIndex = 2; 
   string powerupTemplateIndex = 3; 
   string instanceIndex = 4; 
   cosmos.base.v1beta1.Coin balance = 5 [(gogoproto.nullable) = false]; 

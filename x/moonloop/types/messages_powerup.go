@@ -10,7 +10,7 @@ var _ sdk.Msg = &MsgCreatePowerup{}
 func NewMsgCreatePowerup(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 	balance sdk.Coin,
@@ -24,7 +24,7 @@ func NewMsgCreatePowerup(
 	return &MsgCreatePowerup{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 		Balance:              balance,
@@ -70,7 +70,7 @@ var _ sdk.Msg = &MsgUpdatePowerup{}
 func NewMsgUpdatePowerup(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 	balance sdk.Coin,
@@ -84,7 +84,7 @@ func NewMsgUpdatePowerup(
 	return &MsgUpdatePowerup{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 		Balance:              balance,
@@ -130,7 +130,7 @@ var _ sdk.Msg = &MsgDeletePowerup{}
 func NewMsgDeletePowerup(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	instanceIndex string,
 
@@ -138,7 +138,7 @@ func NewMsgDeletePowerup(
 	return &MsgDeletePowerup{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 	}

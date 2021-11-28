@@ -7,6 +7,7 @@ import { MintStrategy } from '../moonloop/mint_strategy';
 import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
+import { ClassTemplate } from '../moonloop/class_template';
 export const protobufPackage = 'str11ngfello.moonloop.moonloop';
 const baseQueryGetCollectionRequest = { index: '' };
 export const QueryGetCollectionRequest = {
@@ -237,14 +238,14 @@ export const QueryAllCollectionResponse = {
         return message;
     }
 };
-const baseQueryGetClassRequest = { collectionIndex: '', classIndex: '' };
+const baseQueryGetClassRequest = { collectionIndex: '', classTemplateIndex: '' };
 export const QueryGetClassRequest = {
     encode(message, writer = Writer.create()) {
         if (message.collectionIndex !== '') {
             writer.uint32(10).string(message.collectionIndex);
         }
-        if (message.classIndex !== '') {
-            writer.uint32(18).string(message.classIndex);
+        if (message.classTemplateIndex !== '') {
+            writer.uint32(18).string(message.classTemplateIndex);
         }
         return writer;
     },
@@ -259,7 +260,7 @@ export const QueryGetClassRequest = {
                     message.collectionIndex = reader.string();
                     break;
                 case 2:
-                    message.classIndex = reader.string();
+                    message.classTemplateIndex = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -276,18 +277,18 @@ export const QueryGetClassRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = String(object.classIndex);
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = String(object.classTemplateIndex);
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         return message;
     },
     toJSON(message) {
         const obj = {};
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
-        message.classIndex !== undefined && (obj.classIndex = message.classIndex);
+        message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
         return obj;
     },
     fromPartial(object) {
@@ -298,11 +299,11 @@ export const QueryGetClassRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = object.classIndex;
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = object.classTemplateIndex;
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         return message;
     }
@@ -714,14 +715,14 @@ export const QueryAllMintStrategyResponse = {
         return message;
     }
 };
-const baseQueryGetContributionRequest = { collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' };
+const baseQueryGetContributionRequest = { collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' };
 export const QueryGetContributionRequest = {
     encode(message, writer = Writer.create()) {
         if (message.collectionIndex !== '') {
             writer.uint32(10).string(message.collectionIndex);
         }
-        if (message.classIndex !== '') {
-            writer.uint32(18).string(message.classIndex);
+        if (message.classTemplateIndex !== '') {
+            writer.uint32(18).string(message.classTemplateIndex);
         }
         if (message.powerupTemplateIndex !== '') {
             writer.uint32(26).string(message.powerupTemplateIndex);
@@ -742,7 +743,7 @@ export const QueryGetContributionRequest = {
                     message.collectionIndex = reader.string();
                     break;
                 case 2:
-                    message.classIndex = reader.string();
+                    message.classTemplateIndex = reader.string();
                     break;
                 case 3:
                     message.powerupTemplateIndex = reader.string();
@@ -765,11 +766,11 @@ export const QueryGetContributionRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = String(object.classIndex);
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = String(object.classTemplateIndex);
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
             message.powerupTemplateIndex = String(object.powerupTemplateIndex);
@@ -788,7 +789,7 @@ export const QueryGetContributionRequest = {
     toJSON(message) {
         const obj = {};
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
-        message.classIndex !== undefined && (obj.classIndex = message.classIndex);
+        message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
         message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex);
         message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
         return obj;
@@ -801,11 +802,11 @@ export const QueryGetContributionRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = object.classIndex;
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = object.classTemplateIndex;
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
             message.powerupTemplateIndex = object.powerupTemplateIndex;
@@ -1000,14 +1001,14 @@ export const QueryAllContributionResponse = {
         return message;
     }
 };
-const baseQueryGetPowerupTemplateRequest = { collectionIndex: '', classIndex: '', powerupTemplateIndex: '' };
+const baseQueryGetPowerupTemplateRequest = { collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '' };
 export const QueryGetPowerupTemplateRequest = {
     encode(message, writer = Writer.create()) {
         if (message.collectionIndex !== '') {
             writer.uint32(10).string(message.collectionIndex);
         }
-        if (message.classIndex !== '') {
-            writer.uint32(18).string(message.classIndex);
+        if (message.classTemplateIndex !== '') {
+            writer.uint32(18).string(message.classTemplateIndex);
         }
         if (message.powerupTemplateIndex !== '') {
             writer.uint32(26).string(message.powerupTemplateIndex);
@@ -1025,7 +1026,7 @@ export const QueryGetPowerupTemplateRequest = {
                     message.collectionIndex = reader.string();
                     break;
                 case 2:
-                    message.classIndex = reader.string();
+                    message.classTemplateIndex = reader.string();
                     break;
                 case 3:
                     message.powerupTemplateIndex = reader.string();
@@ -1045,11 +1046,11 @@ export const QueryGetPowerupTemplateRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = String(object.classIndex);
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = String(object.classTemplateIndex);
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
             message.powerupTemplateIndex = String(object.powerupTemplateIndex);
@@ -1062,7 +1063,7 @@ export const QueryGetPowerupTemplateRequest = {
     toJSON(message) {
         const obj = {};
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
-        message.classIndex !== undefined && (obj.classIndex = message.classIndex);
+        message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
         message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex);
         return obj;
     },
@@ -1074,11 +1075,11 @@ export const QueryGetPowerupTemplateRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = object.classIndex;
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = object.classTemplateIndex;
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
             message.powerupTemplateIndex = object.powerupTemplateIndex;
@@ -1267,14 +1268,14 @@ export const QueryAllPowerupTemplateResponse = {
         return message;
     }
 };
-const baseQueryGetPowerupRequest = { collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' };
+const baseQueryGetPowerupRequest = { collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' };
 export const QueryGetPowerupRequest = {
     encode(message, writer = Writer.create()) {
         if (message.collectionIndex !== '') {
             writer.uint32(10).string(message.collectionIndex);
         }
-        if (message.classIndex !== '') {
-            writer.uint32(18).string(message.classIndex);
+        if (message.classTemplateIndex !== '') {
+            writer.uint32(18).string(message.classTemplateIndex);
         }
         if (message.powerupTemplateIndex !== '') {
             writer.uint32(26).string(message.powerupTemplateIndex);
@@ -1295,7 +1296,7 @@ export const QueryGetPowerupRequest = {
                     message.collectionIndex = reader.string();
                     break;
                 case 2:
-                    message.classIndex = reader.string();
+                    message.classTemplateIndex = reader.string();
                     break;
                 case 3:
                     message.powerupTemplateIndex = reader.string();
@@ -1318,11 +1319,11 @@ export const QueryGetPowerupRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = String(object.classIndex);
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = String(object.classTemplateIndex);
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
             message.powerupTemplateIndex = String(object.powerupTemplateIndex);
@@ -1341,7 +1342,7 @@ export const QueryGetPowerupRequest = {
     toJSON(message) {
         const obj = {};
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
-        message.classIndex !== undefined && (obj.classIndex = message.classIndex);
+        message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
         message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex);
         message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
         return obj;
@@ -1354,11 +1355,11 @@ export const QueryGetPowerupRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = object.classIndex;
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = object.classTemplateIndex;
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
             message.powerupTemplateIndex = object.powerupTemplateIndex;
@@ -1553,14 +1554,14 @@ export const QueryAllPowerupResponse = {
         return message;
     }
 };
-const baseQueryGetInstanceRequest = { collectionIndex: '', classIndex: '', instanceIndex: '' };
+const baseQueryGetInstanceRequest = { collectionIndex: '', classTemplateIndex: '', instanceIndex: '' };
 export const QueryGetInstanceRequest = {
     encode(message, writer = Writer.create()) {
         if (message.collectionIndex !== '') {
             writer.uint32(10).string(message.collectionIndex);
         }
-        if (message.classIndex !== '') {
-            writer.uint32(18).string(message.classIndex);
+        if (message.classTemplateIndex !== '') {
+            writer.uint32(18).string(message.classTemplateIndex);
         }
         if (message.instanceIndex !== '') {
             writer.uint32(26).string(message.instanceIndex);
@@ -1578,7 +1579,7 @@ export const QueryGetInstanceRequest = {
                     message.collectionIndex = reader.string();
                     break;
                 case 2:
-                    message.classIndex = reader.string();
+                    message.classTemplateIndex = reader.string();
                     break;
                 case 3:
                     message.instanceIndex = reader.string();
@@ -1598,11 +1599,11 @@ export const QueryGetInstanceRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = String(object.classIndex);
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = String(object.classTemplateIndex);
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
             message.instanceIndex = String(object.instanceIndex);
@@ -1615,7 +1616,7 @@ export const QueryGetInstanceRequest = {
     toJSON(message) {
         const obj = {};
         message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
-        message.classIndex !== undefined && (obj.classIndex = message.classIndex);
+        message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
         message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex);
         return obj;
     },
@@ -1627,11 +1628,11 @@ export const QueryGetInstanceRequest = {
         else {
             message.collectionIndex = '';
         }
-        if (object.classIndex !== undefined && object.classIndex !== null) {
-            message.classIndex = object.classIndex;
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = object.classTemplateIndex;
         }
         else {
-            message.classIndex = '';
+            message.classTemplateIndex = '';
         }
         if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
             message.instanceIndex = object.instanceIndex;
@@ -1648,8 +1649,8 @@ export const QueryGetInstanceResponse = {
         if (message.collection !== undefined) {
             Collection.encode(message.collection, writer.uint32(10).fork()).ldelim();
         }
-        if (message.class !== undefined) {
-            Class.encode(message.class, writer.uint32(18).fork()).ldelim();
+        if (message.classTemplate !== undefined) {
+            ClassTemplate.encode(message.classTemplate, writer.uint32(18).fork()).ldelim();
         }
         for (const v of message.powerupTemplates) {
             PowerupTemplate.encode(v, writer.uint32(26).fork()).ldelim();
@@ -1672,7 +1673,7 @@ export const QueryGetInstanceResponse = {
                     message.collection = Collection.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.class = Class.decode(reader, reader.uint32());
+                    message.classTemplate = ClassTemplate.decode(reader, reader.uint32());
                     break;
                 case 3:
                     message.powerupTemplates.push(PowerupTemplate.decode(reader, reader.uint32()));
@@ -1697,11 +1698,11 @@ export const QueryGetInstanceResponse = {
         else {
             message.collection = undefined;
         }
-        if (object.class !== undefined && object.class !== null) {
-            message.class = Class.fromJSON(object.class);
+        if (object.classTemplate !== undefined && object.classTemplate !== null) {
+            message.classTemplate = ClassTemplate.fromJSON(object.classTemplate);
         }
         else {
-            message.class = undefined;
+            message.classTemplate = undefined;
         }
         if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
             for (const e of object.powerupTemplates) {
@@ -1718,7 +1719,7 @@ export const QueryGetInstanceResponse = {
     toJSON(message) {
         const obj = {};
         message.collection !== undefined && (obj.collection = message.collection ? Collection.toJSON(message.collection) : undefined);
-        message.class !== undefined && (obj.class = message.class ? Class.toJSON(message.class) : undefined);
+        message.classTemplate !== undefined && (obj.classTemplate = message.classTemplate ? ClassTemplate.toJSON(message.classTemplate) : undefined);
         if (message.powerupTemplates) {
             obj.powerupTemplates = message.powerupTemplates.map((e) => (e ? PowerupTemplate.toJSON(e) : undefined));
         }
@@ -1743,11 +1744,11 @@ export const QueryGetInstanceResponse = {
         else {
             message.collection = undefined;
         }
-        if (object.class !== undefined && object.class !== null) {
-            message.class = Class.fromPartial(object.class);
+        if (object.classTemplate !== undefined && object.classTemplate !== null) {
+            message.classTemplate = ClassTemplate.fromPartial(object.classTemplate);
         }
         else {
-            message.class = undefined;
+            message.classTemplate = undefined;
         }
         if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
             for (const e of object.powerupTemplates) {
@@ -1758,6 +1759,254 @@ export const QueryGetInstanceResponse = {
             for (const e of object.powerups) {
                 message.powerups.push(Powerup.fromPartial(e));
             }
+        }
+        return message;
+    }
+};
+const baseQueryGetClassTemplateRequest = { collectionIndex: '', classTemplateIndex: '' };
+export const QueryGetClassTemplateRequest = {
+    encode(message, writer = Writer.create()) {
+        if (message.collectionIndex !== '') {
+            writer.uint32(10).string(message.collectionIndex);
+        }
+        if (message.classTemplateIndex !== '') {
+            writer.uint32(18).string(message.classTemplateIndex);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryGetClassTemplateRequest };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.collectionIndex = reader.string();
+                    break;
+                case 2:
+                    message.classTemplateIndex = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryGetClassTemplateRequest };
+        if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+            message.collectionIndex = String(object.collectionIndex);
+        }
+        else {
+            message.collectionIndex = '';
+        }
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = String(object.classTemplateIndex);
+        }
+        else {
+            message.classTemplateIndex = '';
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex);
+        message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryGetClassTemplateRequest };
+        if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+            message.collectionIndex = object.collectionIndex;
+        }
+        else {
+            message.collectionIndex = '';
+        }
+        if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+            message.classTemplateIndex = object.classTemplateIndex;
+        }
+        else {
+            message.classTemplateIndex = '';
+        }
+        return message;
+    }
+};
+const baseQueryGetClassTemplateResponse = {};
+export const QueryGetClassTemplateResponse = {
+    encode(message, writer = Writer.create()) {
+        if (message.classTemplate !== undefined) {
+            ClassTemplate.encode(message.classTemplate, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryGetClassTemplateResponse };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.classTemplate = ClassTemplate.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryGetClassTemplateResponse };
+        if (object.classTemplate !== undefined && object.classTemplate !== null) {
+            message.classTemplate = ClassTemplate.fromJSON(object.classTemplate);
+        }
+        else {
+            message.classTemplate = undefined;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.classTemplate !== undefined && (obj.classTemplate = message.classTemplate ? ClassTemplate.toJSON(message.classTemplate) : undefined);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryGetClassTemplateResponse };
+        if (object.classTemplate !== undefined && object.classTemplate !== null) {
+            message.classTemplate = ClassTemplate.fromPartial(object.classTemplate);
+        }
+        else {
+            message.classTemplate = undefined;
+        }
+        return message;
+    }
+};
+const baseQueryAllClassTemplateRequest = {};
+export const QueryAllClassTemplateRequest = {
+    encode(message, writer = Writer.create()) {
+        if (message.pagination !== undefined) {
+            PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryAllClassTemplateRequest };
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.pagination = PageRequest.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryAllClassTemplateRequest };
+        if (object.pagination !== undefined && object.pagination !== null) {
+            message.pagination = PageRequest.fromJSON(object.pagination);
+        }
+        else {
+            message.pagination = undefined;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryAllClassTemplateRequest };
+        if (object.pagination !== undefined && object.pagination !== null) {
+            message.pagination = PageRequest.fromPartial(object.pagination);
+        }
+        else {
+            message.pagination = undefined;
+        }
+        return message;
+    }
+};
+const baseQueryAllClassTemplateResponse = {};
+export const QueryAllClassTemplateResponse = {
+    encode(message, writer = Writer.create()) {
+        for (const v of message.classTemplate) {
+            ClassTemplate.encode(v, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.pagination !== undefined) {
+            PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof Uint8Array ? new Reader(input) : input;
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = { ...baseQueryAllClassTemplateResponse };
+        message.classTemplate = [];
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    message.classTemplate.push(ClassTemplate.decode(reader, reader.uint32()));
+                    break;
+                case 2:
+                    message.pagination = PageResponse.decode(reader, reader.uint32());
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+            }
+        }
+        return message;
+    },
+    fromJSON(object) {
+        const message = { ...baseQueryAllClassTemplateResponse };
+        message.classTemplate = [];
+        if (object.classTemplate !== undefined && object.classTemplate !== null) {
+            for (const e of object.classTemplate) {
+                message.classTemplate.push(ClassTemplate.fromJSON(e));
+            }
+        }
+        if (object.pagination !== undefined && object.pagination !== null) {
+            message.pagination = PageResponse.fromJSON(object.pagination);
+        }
+        else {
+            message.pagination = undefined;
+        }
+        return message;
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.classTemplate) {
+            obj.classTemplate = message.classTemplate.map((e) => (e ? ClassTemplate.toJSON(e) : undefined));
+        }
+        else {
+            obj.classTemplate = [];
+        }
+        message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+        return obj;
+    },
+    fromPartial(object) {
+        const message = { ...baseQueryAllClassTemplateResponse };
+        message.classTemplate = [];
+        if (object.classTemplate !== undefined && object.classTemplate !== null) {
+            for (const e of object.classTemplate) {
+                message.classTemplate.push(ClassTemplate.fromPartial(e));
+            }
+        }
+        if (object.pagination !== undefined && object.pagination !== null) {
+            message.pagination = PageResponse.fromPartial(object.pagination);
+        }
+        else {
+            message.pagination = undefined;
         }
         return message;
     }
@@ -1830,5 +2079,15 @@ export class QueryClientImpl {
         const data = QueryGetInstanceRequest.encode(request).finish();
         const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'GetInstance', data);
         return promise.then((data) => QueryGetInstanceResponse.decode(new Reader(data)));
+    }
+    ClassTemplate(request) {
+        const data = QueryGetClassTemplateRequest.encode(request).finish();
+        const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'ClassTemplate', data);
+        return promise.then((data) => QueryGetClassTemplateResponse.decode(new Reader(data)));
+    }
+    ClassTemplateAll(request) {
+        const data = QueryAllClassTemplateRequest.encode(request).finish();
+        const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'ClassTemplateAll', data);
+        return promise.then((data) => QueryAllClassTemplateResponse.decode(new Reader(data)));
     }
 }

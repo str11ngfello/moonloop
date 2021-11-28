@@ -3,7 +3,7 @@ import { Coin } from '../cosmos/base/v1beta1/coin';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 export interface Contribution {
     collectionIndex: string;
-    classIndex: string;
+    classTemplateIndex: string;
     powerupTemplateIndex: string;
     instanceIndex: string;
     contributors: string[];

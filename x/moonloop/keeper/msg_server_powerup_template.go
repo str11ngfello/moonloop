@@ -16,16 +16,16 @@ func (k msgServer) CreatePowerupTemplate(goCtx context.Context, msg *types.MsgCr
 		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "collection not found")
 	}
 
-	class, isFound := k.GetClass(ctx, msg.CollectionIndex, msg.ClassIndex)
+	classTemplate, isFound := k.GetClassTemplate(ctx, msg.CollectionIndex, msg.ClassTemplateIndex)
 	if !isFound {
-		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "class not found")
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "class template not found")
 	}
 
 	// Check if the value already exists
 	_, isFound = k.GetPowerupTemplate(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 	)
 	if isFound {
@@ -35,7 +35,7 @@ func (k msgServer) CreatePowerupTemplate(goCtx context.Context, msg *types.MsgCr
 	var powerupTemplate = types.PowerupTemplate{
 		Creator:              msg.Creator,
 		CollectionIndex:      msg.CollectionIndex,
-		ClassIndex:           msg.ClassIndex,
+		ClassTemplateIndex:   msg.ClassTemplateIndex,
 		PowerupTemplateIndex: msg.PowerupTemplateIndex,
 		Name:                 msg.Name,
 		Description:          msg.Description,
@@ -58,8 +58,8 @@ func (k msgServer) CreatePowerupTemplate(goCtx context.Context, msg *types.MsgCr
 		powerupTemplate,
 	)
 
-	class.PowerupTemplates = append(class.PowerupTemplates, msg.PowerupTemplateIndex)
-	k.SetClass(ctx, class)
+	classTemplate.PowerupTemplates = append(classTemplate.PowerupTemplates, msg.PowerupTemplateIndex)
+	k.SetClassTemplate(ctx, classTemplate)
 
 	return &types.MsgCreatePowerupTemplateResponse{}, nil
 }
@@ -71,7 +71,7 @@ func (k msgServer) UpdatePowerupTemplate(goCtx context.Context, msg *types.MsgUp
 	valFound, isFound := k.GetPowerupTemplate(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 	)
 	if !isFound {
@@ -86,7 +86,7 @@ func (k msgServer) UpdatePowerupTemplate(goCtx context.Context, msg *types.MsgUp
 	var powerupTemplate = types.PowerupTemplate{
 		Creator:              msg.Creator,
 		CollectionIndex:      msg.CollectionIndex,
-		ClassIndex:           msg.ClassIndex,
+		ClassTemplateIndex:   msg.ClassTemplateIndex,
 		PowerupTemplateIndex: msg.PowerupTemplateIndex,
 		Name:                 msg.Name,
 		Description:          msg.Description,
@@ -116,7 +116,7 @@ func (k msgServer) DeletePowerupTemplate(goCtx context.Context, msg *types.MsgDe
 	valFound, isFound := k.GetPowerupTemplate(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 	)
 	if !isFound {
@@ -131,7 +131,7 @@ func (k msgServer) DeletePowerupTemplate(goCtx context.Context, msg *types.MsgDe
 	k.RemovePowerupTemplate(
 		ctx,
 		msg.CollectionIndex,
-		msg.ClassIndex,
+		msg.ClassTemplateIndex,
 		msg.PowerupTemplateIndex,
 	)
 

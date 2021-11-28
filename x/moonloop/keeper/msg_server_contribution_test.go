@@ -24,7 +24,7 @@ func TestContributionMsgServerCreate(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		expected := &types.MsgCreateContribution{Creator: creator,
 			CollectionIndex:      strconv.Itoa(i),
-			ClassIndex:           strconv.Itoa(i),
+			ClassTemplateIndex:   strconv.Itoa(i),
 			PowerupTemplateIndex: strconv.Itoa(i),
 			InstanceIndex:        strconv.Itoa(i),
 		}
@@ -32,7 +32,7 @@ func TestContributionMsgServerCreate(t *testing.T) {
 		require.NoError(t, err)
 		rst, found := k.GetContribution(ctx,
 			expected.CollectionIndex,
-			expected.ClassIndex,
+			expected.ClassTemplateIndex,
 			expected.PowerupTemplateIndex,
 			expected.InstanceIndex,
 		)
@@ -53,7 +53,7 @@ func TestContributionMsgServerUpdate(t *testing.T) {
 			desc: "Completed",
 			request: &types.MsgUpdateContribution{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 				InstanceIndex:        strconv.Itoa(0),
 			},
@@ -62,7 +62,7 @@ func TestContributionMsgServerUpdate(t *testing.T) {
 			desc: "Unauthorized",
 			request: &types.MsgUpdateContribution{Creator: "B",
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 				InstanceIndex:        strconv.Itoa(0),
 			},
@@ -72,7 +72,7 @@ func TestContributionMsgServerUpdate(t *testing.T) {
 			desc: "KeyNotFound",
 			request: &types.MsgUpdateContribution{Creator: creator,
 				CollectionIndex:      strconv.Itoa(100000),
-				ClassIndex:           strconv.Itoa(100000),
+				ClassTemplateIndex:   strconv.Itoa(100000),
 				PowerupTemplateIndex: strconv.Itoa(100000),
 				InstanceIndex:        strconv.Itoa(100000),
 			},
@@ -85,7 +85,7 @@ func TestContributionMsgServerUpdate(t *testing.T) {
 			wctx := sdk.WrapSDKContext(ctx)
 			expected := &types.MsgCreateContribution{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 				InstanceIndex:        strconv.Itoa(0),
 			}
@@ -99,7 +99,7 @@ func TestContributionMsgServerUpdate(t *testing.T) {
 				require.NoError(t, err)
 				rst, found := k.GetContribution(ctx,
 					expected.CollectionIndex,
-					expected.ClassIndex,
+					expected.ClassTemplateIndex,
 					expected.PowerupTemplateIndex,
 					expected.InstanceIndex,
 				)
@@ -122,7 +122,7 @@ func TestContributionMsgServerDelete(t *testing.T) {
 			desc: "Completed",
 			request: &types.MsgDeleteContribution{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 				InstanceIndex:        strconv.Itoa(0),
 			},
@@ -131,7 +131,7 @@ func TestContributionMsgServerDelete(t *testing.T) {
 			desc: "Unauthorized",
 			request: &types.MsgDeleteContribution{Creator: "B",
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 				InstanceIndex:        strconv.Itoa(0),
 			},
@@ -141,7 +141,7 @@ func TestContributionMsgServerDelete(t *testing.T) {
 			desc: "KeyNotFound",
 			request: &types.MsgDeleteContribution{Creator: creator,
 				CollectionIndex:      strconv.Itoa(100000),
-				ClassIndex:           strconv.Itoa(100000),
+				ClassTemplateIndex:   strconv.Itoa(100000),
 				PowerupTemplateIndex: strconv.Itoa(100000),
 				InstanceIndex:        strconv.Itoa(100000),
 			},
@@ -155,7 +155,7 @@ func TestContributionMsgServerDelete(t *testing.T) {
 
 			_, err := srv.CreateContribution(wctx, &types.MsgCreateContribution{Creator: creator,
 				CollectionIndex:      strconv.Itoa(0),
-				ClassIndex:           strconv.Itoa(0),
+				ClassTemplateIndex:   strconv.Itoa(0),
 				PowerupTemplateIndex: strconv.Itoa(0),
 				InstanceIndex:        strconv.Itoa(0),
 			})
@@ -167,7 +167,7 @@ func TestContributionMsgServerDelete(t *testing.T) {
 				require.NoError(t, err)
 				_, found := k.GetContribution(ctx,
 					tc.request.CollectionIndex,
-					tc.request.ClassIndex,
+					tc.request.ClassTemplateIndex,
 					tc.request.PowerupTemplateIndex,
 					tc.request.InstanceIndex,
 				)

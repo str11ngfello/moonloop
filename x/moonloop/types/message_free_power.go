@@ -7,11 +7,11 @@ import (
 
 var _ sdk.Msg = &MsgFreePower{}
 
-func NewMsgFreePower(creator string, collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string) *MsgFreePower {
+func NewMsgFreePower(creator string, collectionIndex string, classTemplateIndex string, powerupTemplateIndex string, instanceIndex string) *MsgFreePower {
 	return &MsgFreePower{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		InstanceIndex:        instanceIndex,
 	}

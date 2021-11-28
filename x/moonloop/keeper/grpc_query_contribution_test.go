@@ -32,7 +32,7 @@ func TestContributionQuerySingle(t *testing.T) {
 			desc: "First",
 			request: &types.QueryGetContributionRequest{
 				CollectionIndex:      msgs[0].CollectionIndex,
-				ClassIndex:           msgs[0].ClassIndex,
+				ClassTemplateIndex:   msgs[0].ClassTemplateIndex,
 				PowerupTemplateIndex: msgs[0].PowerupTemplateIndex,
 				InstanceIndex:        msgs[0].InstanceIndex,
 			},
@@ -42,7 +42,7 @@ func TestContributionQuerySingle(t *testing.T) {
 			desc: "Second",
 			request: &types.QueryGetContributionRequest{
 				CollectionIndex:      msgs[1].CollectionIndex,
-				ClassIndex:           msgs[1].ClassIndex,
+				ClassTemplateIndex:   msgs[1].ClassTemplateIndex,
 				PowerupTemplateIndex: msgs[1].PowerupTemplateIndex,
 				InstanceIndex:        msgs[1].InstanceIndex,
 			},
@@ -52,7 +52,7 @@ func TestContributionQuerySingle(t *testing.T) {
 			desc: "KeyNotFound",
 			request: &types.QueryGetContributionRequest{
 				CollectionIndex:      strconv.Itoa(100000),
-				ClassIndex:           strconv.Itoa(100000),
+				ClassTemplateIndex:   strconv.Itoa(100000),
 				PowerupTemplateIndex: strconv.Itoa(100000),
 				InstanceIndex:        strconv.Itoa(100000),
 			},

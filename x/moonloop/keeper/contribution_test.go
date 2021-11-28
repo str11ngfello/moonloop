@@ -19,7 +19,7 @@ func createNContribution(keeper *keeper.Keeper, ctx sdk.Context, n int) []types.
 	items := make([]types.Contribution, n)
 	for i := range items {
 		items[i].CollectionIndex = strconv.Itoa(i)
-		items[i].ClassIndex = strconv.Itoa(i)
+		items[i].ClassTemplateIndex = strconv.Itoa(i)
 		items[i].PowerupTemplateIndex = strconv.Itoa(i)
 		items[i].InstanceIndex = strconv.Itoa(i)
 
@@ -34,7 +34,7 @@ func TestContributionGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetContribution(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 			item.PowerupTemplateIndex,
 			item.InstanceIndex,
 		)
@@ -51,13 +51,13 @@ func TestContributionRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemoveContribution(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 			item.PowerupTemplateIndex,
 			item.InstanceIndex,
 		)
 		_, found := keeper.GetContribution(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 			item.PowerupTemplateIndex,
 			item.InstanceIndex,
 		)

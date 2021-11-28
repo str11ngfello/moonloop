@@ -2,15 +2,8 @@ import { Writer, Reader } from 'protobufjs/minimal';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 export interface Class {
     collectionIndex: string;
-    classIndex: string;
-    name: string;
-    description: string;
-    mintStrategy: string;
-    gltfHash: string;
-    metadata: string;
-    maxInstances: number;
-    count: number;
-    powerupTemplates: string[];
+    classTemplateIndex: string;
+    instanceIndex: string;
     creator: string;
     owner: string;
 }

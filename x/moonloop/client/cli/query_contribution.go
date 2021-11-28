@@ -59,7 +59,7 @@ func CmdShowContribution() *cobra.Command {
 
 			params := &types.QueryGetContributionRequest{
 				CollectionIndex:      argCollectionIndex,
-				ClassIndex:           argClassIndex,
+				ClassTemplateIndex:   argClassIndex,
 				PowerupTemplateIndex: argPowerupTemplateIndex,
 				InstanceIndex:        argInstanceIndex,
 			}

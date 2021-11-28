@@ -56,8 +56,8 @@ func CmdShowClass() *cobra.Command {
 			argClassIndex := args[1]
 
 			params := &types.QueryGetClassRequest{
-				CollectionIndex: argCollectionIndex,
-				ClassIndex:      argClassIndex,
+				CollectionIndex:    argCollectionIndex,
+				ClassTemplateIndex: argClassIndex,
 			}
 
 			res, err := queryClient.Class(context.Background(), params)

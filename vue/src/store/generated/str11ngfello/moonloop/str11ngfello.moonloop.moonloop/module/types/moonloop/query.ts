@@ -7,6 +7,7 @@ import { MintStrategy } from '../moonloop/mint_strategy'
 import { Contribution } from '../moonloop/contribution'
 import { PowerupTemplate } from '../moonloop/powerup_template'
 import { Powerup } from '../moonloop/powerup'
+import { ClassTemplate } from '../moonloop/class_template'
 
 export const protobufPackage = 'str11ngfello.moonloop.moonloop'
 
@@ -29,7 +30,7 @@ export interface QueryAllCollectionResponse {
 
 export interface QueryGetClassRequest {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
 }
 
 export interface QueryGetClassResponse {
@@ -64,7 +65,7 @@ export interface QueryAllMintStrategyResponse {
 
 export interface QueryGetContributionRequest {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
 }
@@ -84,7 +85,7 @@ export interface QueryAllContributionResponse {
 
 export interface QueryGetPowerupTemplateRequest {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
 }
 
@@ -103,7 +104,7 @@ export interface QueryAllPowerupTemplateResponse {
 
 export interface QueryGetPowerupRequest {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   powerupTemplateIndex: string
   instanceIndex: string
 }
@@ -123,15 +124,33 @@ export interface QueryAllPowerupResponse {
 
 export interface QueryGetInstanceRequest {
   collectionIndex: string
-  classIndex: string
+  classTemplateIndex: string
   instanceIndex: string
 }
 
 export interface QueryGetInstanceResponse {
   collection: Collection | undefined
-  class: Class | undefined
+  classTemplate: ClassTemplate | undefined
   powerupTemplates: PowerupTemplate[]
   powerups: Powerup[]
+}
+
+export interface QueryGetClassTemplateRequest {
+  collectionIndex: string
+  classTemplateIndex: string
+}
+
+export interface QueryGetClassTemplateResponse {
+  classTemplate: ClassTemplate | undefined
+}
+
+export interface QueryAllClassTemplateRequest {
+  pagination: PageRequest | undefined
+}
+
+export interface QueryAllClassTemplateResponse {
+  classTemplate: ClassTemplate[]
+  pagination: PageResponse | undefined
 }
 
 const baseQueryGetCollectionRequest: object = { index: '' }
@@ -378,15 +397,15 @@ export const QueryAllCollectionResponse = {
   }
 }
 
-const baseQueryGetClassRequest: object = { collectionIndex: '', classIndex: '' }
+const baseQueryGetClassRequest: object = { collectionIndex: '', classTemplateIndex: '' }
 
 export const QueryGetClassRequest = {
   encode(message: QueryGetClassRequest, writer: Writer = Writer.create()): Writer {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     return writer
   },
@@ -402,7 +421,7 @@ export const QueryGetClassRequest = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         default:
           reader.skipType(tag & 7)
@@ -419,10 +438,10 @@ export const QueryGetClassRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     return message
   },
@@ -430,7 +449,7 @@ export const QueryGetClassRequest = {
   toJSON(message: QueryGetClassRequest): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     return obj
   },
 
@@ -441,10 +460,10 @@ export const QueryGetClassRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     return message
   }
@@ -883,15 +902,15 @@ export const QueryAllMintStrategyResponse = {
   }
 }
 
-const baseQueryGetContributionRequest: object = { collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
+const baseQueryGetContributionRequest: object = { collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
 
 export const QueryGetContributionRequest = {
   encode(message: QueryGetContributionRequest, writer: Writer = Writer.create()): Writer {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(26).string(message.powerupTemplateIndex)
@@ -913,7 +932,7 @@ export const QueryGetContributionRequest = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 3:
           message.powerupTemplateIndex = reader.string()
@@ -936,10 +955,10 @@ export const QueryGetContributionRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -957,7 +976,7 @@ export const QueryGetContributionRequest = {
   toJSON(message: QueryGetContributionRequest): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
@@ -970,10 +989,10 @@ export const QueryGetContributionRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -1178,15 +1197,15 @@ export const QueryAllContributionResponse = {
   }
 }
 
-const baseQueryGetPowerupTemplateRequest: object = { collectionIndex: '', classIndex: '', powerupTemplateIndex: '' }
+const baseQueryGetPowerupTemplateRequest: object = { collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '' }
 
 export const QueryGetPowerupTemplateRequest = {
   encode(message: QueryGetPowerupTemplateRequest, writer: Writer = Writer.create()): Writer {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(26).string(message.powerupTemplateIndex)
@@ -1205,7 +1224,7 @@ export const QueryGetPowerupTemplateRequest = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 3:
           message.powerupTemplateIndex = reader.string()
@@ -1225,10 +1244,10 @@ export const QueryGetPowerupTemplateRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -1241,7 +1260,7 @@ export const QueryGetPowerupTemplateRequest = {
   toJSON(message: QueryGetPowerupTemplateRequest): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     return obj
   },
@@ -1253,10 +1272,10 @@ export const QueryGetPowerupTemplateRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -1456,15 +1475,15 @@ export const QueryAllPowerupTemplateResponse = {
   }
 }
 
-const baseQueryGetPowerupRequest: object = { collectionIndex: '', classIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
+const baseQueryGetPowerupRequest: object = { collectionIndex: '', classTemplateIndex: '', powerupTemplateIndex: '', instanceIndex: '' }
 
 export const QueryGetPowerupRequest = {
   encode(message: QueryGetPowerupRequest, writer: Writer = Writer.create()): Writer {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     if (message.powerupTemplateIndex !== '') {
       writer.uint32(26).string(message.powerupTemplateIndex)
@@ -1486,7 +1505,7 @@ export const QueryGetPowerupRequest = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 3:
           message.powerupTemplateIndex = reader.string()
@@ -1509,10 +1528,10 @@ export const QueryGetPowerupRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = String(object.powerupTemplateIndex)
@@ -1530,7 +1549,7 @@ export const QueryGetPowerupRequest = {
   toJSON(message: QueryGetPowerupRequest): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.powerupTemplateIndex !== undefined && (obj.powerupTemplateIndex = message.powerupTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
@@ -1543,10 +1562,10 @@ export const QueryGetPowerupRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.powerupTemplateIndex !== undefined && object.powerupTemplateIndex !== null) {
       message.powerupTemplateIndex = object.powerupTemplateIndex
@@ -1751,15 +1770,15 @@ export const QueryAllPowerupResponse = {
   }
 }
 
-const baseQueryGetInstanceRequest: object = { collectionIndex: '', classIndex: '', instanceIndex: '' }
+const baseQueryGetInstanceRequest: object = { collectionIndex: '', classTemplateIndex: '', instanceIndex: '' }
 
 export const QueryGetInstanceRequest = {
   encode(message: QueryGetInstanceRequest, writer: Writer = Writer.create()): Writer {
     if (message.collectionIndex !== '') {
       writer.uint32(10).string(message.collectionIndex)
     }
-    if (message.classIndex !== '') {
-      writer.uint32(18).string(message.classIndex)
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
     }
     if (message.instanceIndex !== '') {
       writer.uint32(26).string(message.instanceIndex)
@@ -1778,7 +1797,7 @@ export const QueryGetInstanceRequest = {
           message.collectionIndex = reader.string()
           break
         case 2:
-          message.classIndex = reader.string()
+          message.classTemplateIndex = reader.string()
           break
         case 3:
           message.instanceIndex = reader.string()
@@ -1798,10 +1817,10 @@ export const QueryGetInstanceRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = String(object.classIndex)
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
       message.instanceIndex = String(object.instanceIndex)
@@ -1814,7 +1833,7 @@ export const QueryGetInstanceRequest = {
   toJSON(message: QueryGetInstanceRequest): unknown {
     const obj: any = {}
     message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
-    message.classIndex !== undefined && (obj.classIndex = message.classIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
     message.instanceIndex !== undefined && (obj.instanceIndex = message.instanceIndex)
     return obj
   },
@@ -1826,10 +1845,10 @@ export const QueryGetInstanceRequest = {
     } else {
       message.collectionIndex = ''
     }
-    if (object.classIndex !== undefined && object.classIndex !== null) {
-      message.classIndex = object.classIndex
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
     } else {
-      message.classIndex = ''
+      message.classTemplateIndex = ''
     }
     if (object.instanceIndex !== undefined && object.instanceIndex !== null) {
       message.instanceIndex = object.instanceIndex
@@ -1847,8 +1866,8 @@ export const QueryGetInstanceResponse = {
     if (message.collection !== undefined) {
       Collection.encode(message.collection, writer.uint32(10).fork()).ldelim()
     }
-    if (message.class !== undefined) {
-      Class.encode(message.class, writer.uint32(18).fork()).ldelim()
+    if (message.classTemplate !== undefined) {
+      ClassTemplate.encode(message.classTemplate, writer.uint32(18).fork()).ldelim()
     }
     for (const v of message.powerupTemplates) {
       PowerupTemplate.encode(v!, writer.uint32(26).fork()).ldelim()
@@ -1872,7 +1891,7 @@ export const QueryGetInstanceResponse = {
           message.collection = Collection.decode(reader, reader.uint32())
           break
         case 2:
-          message.class = Class.decode(reader, reader.uint32())
+          message.classTemplate = ClassTemplate.decode(reader, reader.uint32())
           break
         case 3:
           message.powerupTemplates.push(PowerupTemplate.decode(reader, reader.uint32()))
@@ -1897,10 +1916,10 @@ export const QueryGetInstanceResponse = {
     } else {
       message.collection = undefined
     }
-    if (object.class !== undefined && object.class !== null) {
-      message.class = Class.fromJSON(object.class)
+    if (object.classTemplate !== undefined && object.classTemplate !== null) {
+      message.classTemplate = ClassTemplate.fromJSON(object.classTemplate)
     } else {
-      message.class = undefined
+      message.classTemplate = undefined
     }
     if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
       for (const e of object.powerupTemplates) {
@@ -1918,7 +1937,7 @@ export const QueryGetInstanceResponse = {
   toJSON(message: QueryGetInstanceResponse): unknown {
     const obj: any = {}
     message.collection !== undefined && (obj.collection = message.collection ? Collection.toJSON(message.collection) : undefined)
-    message.class !== undefined && (obj.class = message.class ? Class.toJSON(message.class) : undefined)
+    message.classTemplate !== undefined && (obj.classTemplate = message.classTemplate ? ClassTemplate.toJSON(message.classTemplate) : undefined)
     if (message.powerupTemplates) {
       obj.powerupTemplates = message.powerupTemplates.map((e) => (e ? PowerupTemplate.toJSON(e) : undefined))
     } else {
@@ -1941,10 +1960,10 @@ export const QueryGetInstanceResponse = {
     } else {
       message.collection = undefined
     }
-    if (object.class !== undefined && object.class !== null) {
-      message.class = Class.fromPartial(object.class)
+    if (object.classTemplate !== undefined && object.classTemplate !== null) {
+      message.classTemplate = ClassTemplate.fromPartial(object.classTemplate)
     } else {
-      message.class = undefined
+      message.classTemplate = undefined
     }
     if (object.powerupTemplates !== undefined && object.powerupTemplates !== null) {
       for (const e of object.powerupTemplates) {
@@ -1955,6 +1974,267 @@ export const QueryGetInstanceResponse = {
       for (const e of object.powerups) {
         message.powerups.push(Powerup.fromPartial(e))
       }
+    }
+    return message
+  }
+}
+
+const baseQueryGetClassTemplateRequest: object = { collectionIndex: '', classTemplateIndex: '' }
+
+export const QueryGetClassTemplateRequest = {
+  encode(message: QueryGetClassTemplateRequest, writer: Writer = Writer.create()): Writer {
+    if (message.collectionIndex !== '') {
+      writer.uint32(10).string(message.collectionIndex)
+    }
+    if (message.classTemplateIndex !== '') {
+      writer.uint32(18).string(message.classTemplateIndex)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetClassTemplateRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetClassTemplateRequest } as QueryGetClassTemplateRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.collectionIndex = reader.string()
+          break
+        case 2:
+          message.classTemplateIndex = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetClassTemplateRequest {
+    const message = { ...baseQueryGetClassTemplateRequest } as QueryGetClassTemplateRequest
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = String(object.collectionIndex)
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = String(object.classTemplateIndex)
+    } else {
+      message.classTemplateIndex = ''
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetClassTemplateRequest): unknown {
+    const obj: any = {}
+    message.collectionIndex !== undefined && (obj.collectionIndex = message.collectionIndex)
+    message.classTemplateIndex !== undefined && (obj.classTemplateIndex = message.classTemplateIndex)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetClassTemplateRequest>): QueryGetClassTemplateRequest {
+    const message = { ...baseQueryGetClassTemplateRequest } as QueryGetClassTemplateRequest
+    if (object.collectionIndex !== undefined && object.collectionIndex !== null) {
+      message.collectionIndex = object.collectionIndex
+    } else {
+      message.collectionIndex = ''
+    }
+    if (object.classTemplateIndex !== undefined && object.classTemplateIndex !== null) {
+      message.classTemplateIndex = object.classTemplateIndex
+    } else {
+      message.classTemplateIndex = ''
+    }
+    return message
+  }
+}
+
+const baseQueryGetClassTemplateResponse: object = {}
+
+export const QueryGetClassTemplateResponse = {
+  encode(message: QueryGetClassTemplateResponse, writer: Writer = Writer.create()): Writer {
+    if (message.classTemplate !== undefined) {
+      ClassTemplate.encode(message.classTemplate, writer.uint32(10).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetClassTemplateResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetClassTemplateResponse } as QueryGetClassTemplateResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.classTemplate = ClassTemplate.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetClassTemplateResponse {
+    const message = { ...baseQueryGetClassTemplateResponse } as QueryGetClassTemplateResponse
+    if (object.classTemplate !== undefined && object.classTemplate !== null) {
+      message.classTemplate = ClassTemplate.fromJSON(object.classTemplate)
+    } else {
+      message.classTemplate = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetClassTemplateResponse): unknown {
+    const obj: any = {}
+    message.classTemplate !== undefined && (obj.classTemplate = message.classTemplate ? ClassTemplate.toJSON(message.classTemplate) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetClassTemplateResponse>): QueryGetClassTemplateResponse {
+    const message = { ...baseQueryGetClassTemplateResponse } as QueryGetClassTemplateResponse
+    if (object.classTemplate !== undefined && object.classTemplate !== null) {
+      message.classTemplate = ClassTemplate.fromPartial(object.classTemplate)
+    } else {
+      message.classTemplate = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryAllClassTemplateRequest: object = {}
+
+export const QueryAllClassTemplateRequest = {
+  encode(message: QueryAllClassTemplateRequest, writer: Writer = Writer.create()): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllClassTemplateRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryAllClassTemplateRequest } as QueryAllClassTemplateRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryAllClassTemplateRequest {
+    const message = { ...baseQueryAllClassTemplateRequest } as QueryAllClassTemplateRequest
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryAllClassTemplateRequest): unknown {
+    const obj: any = {}
+    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryAllClassTemplateRequest>): QueryAllClassTemplateRequest {
+    const message = { ...baseQueryAllClassTemplateRequest } as QueryAllClassTemplateRequest
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryAllClassTemplateResponse: object = {}
+
+export const QueryAllClassTemplateResponse = {
+  encode(message: QueryAllClassTemplateResponse, writer: Writer = Writer.create()): Writer {
+    for (const v of message.classTemplate) {
+      ClassTemplate.encode(v!, writer.uint32(10).fork()).ldelim()
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllClassTemplateResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryAllClassTemplateResponse } as QueryAllClassTemplateResponse
+    message.classTemplate = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.classTemplate.push(ClassTemplate.decode(reader, reader.uint32()))
+          break
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryAllClassTemplateResponse {
+    const message = { ...baseQueryAllClassTemplateResponse } as QueryAllClassTemplateResponse
+    message.classTemplate = []
+    if (object.classTemplate !== undefined && object.classTemplate !== null) {
+      for (const e of object.classTemplate) {
+        message.classTemplate.push(ClassTemplate.fromJSON(e))
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryAllClassTemplateResponse): unknown {
+    const obj: any = {}
+    if (message.classTemplate) {
+      obj.classTemplate = message.classTemplate.map((e) => (e ? ClassTemplate.toJSON(e) : undefined))
+    } else {
+      obj.classTemplate = []
+    }
+    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryAllClassTemplateResponse>): QueryAllClassTemplateResponse {
+    const message = { ...baseQueryAllClassTemplateResponse } as QueryAllClassTemplateResponse
+    message.classTemplate = []
+    if (object.classTemplate !== undefined && object.classTemplate !== null) {
+      for (const e of object.classTemplate) {
+        message.classTemplate.push(ClassTemplate.fromPartial(e))
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination)
+    } else {
+      message.pagination = undefined
     }
     return message
   }
@@ -1988,6 +2268,10 @@ export interface Query {
   PowerupAll(request: QueryAllPowerupRequest): Promise<QueryAllPowerupResponse>
   /** Queries a list of getInstance items. */
   GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>
+  /** Queries a classTemplate by index. */
+  ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse>
+  /** Queries a list of classTemplate items. */
+  ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse>
 }
 
 export class QueryClientImpl implements Query {
@@ -2071,6 +2355,18 @@ export class QueryClientImpl implements Query {
     const data = QueryGetInstanceRequest.encode(request).finish()
     const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'GetInstance', data)
     return promise.then((data) => QueryGetInstanceResponse.decode(new Reader(data)))
+  }
+
+  ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse> {
+    const data = QueryGetClassTemplateRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'ClassTemplate', data)
+    return promise.then((data) => QueryGetClassTemplateResponse.decode(new Reader(data)))
+  }
+
+  ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse> {
+    const data = QueryAllClassTemplateRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'ClassTemplateAll', data)
+    return promise.then((data) => QueryAllClassTemplateResponse.decode(new Reader(data)))
   }
 }
 

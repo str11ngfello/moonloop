@@ -7,6 +7,7 @@ import "moonloop/mint_strategy.proto";
 import "moonloop/contribution.proto";
 import "moonloop/powerup_template.proto";
 import "moonloop/powerup.proto";
+import "moonloop/class_template.proto";
 // this line is used by starport scaffolding # proto/tx/import
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
@@ -37,6 +38,9 @@ service Msg {
   rpc SendPower(MsgSendPower) returns (MsgSendPowerResponse);
   rpc FreePower(MsgFreePower) returns (MsgFreePowerResponse);
   rpc Mint(MsgMint) returns (MsgMintResponse);
+  rpc CreateClassTemplate(MsgCreateClassTemplate) returns (MsgCreateClassTemplateResponse);
+  rpc UpdateClassTemplate(MsgUpdateClassTemplate) returns (MsgUpdateClassTemplateResponse);
+  rpc DeleteClassTemplate(MsgDeleteClassTemplate) returns (MsgDeleteClassTemplateResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -71,7 +75,7 @@ message MsgDeleteCollectionResponse {}
 message MsgCreateClass {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
 
   string name = 4;
   string description = 5;
@@ -85,7 +89,7 @@ message MsgCreateClassResponse {}
 message MsgUpdateClass {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
 
   string name = 4;
   string description = 5;
@@ -101,7 +105,7 @@ message MsgUpdateClassResponse {}
 message MsgDeleteClass {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
 }
 message MsgDeleteClassResponse {}
 
@@ -136,7 +140,7 @@ message MsgDeleteMintStrategyResponse {}
 message MsgCreateContribution {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 
@@ -148,7 +152,7 @@ message MsgCreateContributionResponse {}
 message MsgUpdateContribution {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 
@@ -160,7 +164,7 @@ message MsgUpdateContributionResponse {}
 message MsgDeleteContribution {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 }
@@ -169,7 +173,7 @@ message MsgDeleteContributionResponse {}
 message MsgCreatePowerupTemplate {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
 
   string name = 5;
@@ -192,7 +196,7 @@ message MsgCreatePowerupTemplateResponse {}
 message MsgUpdatePowerupTemplate {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
 
   string name = 5;
@@ -215,7 +219,7 @@ message MsgUpdatePowerupTemplateResponse {}
 message MsgDeletePowerupTemplate {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
 }
 message MsgDeletePowerupTemplateResponse {}
@@ -223,7 +227,7 @@ message MsgDeletePowerupTemplateResponse {}
 message MsgCreatePowerup {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 
@@ -239,7 +243,7 @@ message MsgCreatePowerupResponse {}
 message MsgUpdatePowerup {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 
@@ -255,7 +259,7 @@ message MsgUpdatePowerupResponse {}
 message MsgDeletePowerup {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 }
@@ -273,7 +277,7 @@ message MsgSetCollectionMintStrategyResponse {
 message MsgSendPower {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
   cosmos.base.v1beta1.Coin power = 6 [(gogoproto.nullable) = false];
@@ -285,7 +289,7 @@ message MsgSendPowerResponse {
 message MsgFreePower {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   string powerupTemplateIndex = 4;
   string instanceIndex = 5;
 }
@@ -296,11 +300,50 @@ message MsgFreePowerResponse {
 message MsgMint {
   string creator = 1;
   string collectionIndex = 2;
-  string classIndex = 3;
+  string classTemplateIndex = 3;
   int32 numInstances = 4;
 }
 
 message MsgMintResponse {
 }
+
+message MsgCreateClassTemplate {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classTemplateIndex = 3;
+
+  string name = 4;
+  string description = 5;
+  string mintStrategy = 6;
+  string gltfHash = 7;
+  string metadata = 8;
+  int32 maxInstances = 9;
+  int32 count = 10;
+  repeated string powerupTemplates = 11;
+}
+message MsgCreateClassTemplateResponse {}
+
+message MsgUpdateClassTemplate {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classTemplateIndex = 3;
+
+  string name = 4;
+  string description = 5;
+  string mintStrategy = 6;
+  string gltfHash = 7;
+  string metadata = 8;
+  int32 maxInstances = 9;
+  int32 count = 10;
+  repeated string powerupTemplates = 11;
+}
+message MsgUpdateClassTemplateResponse {}
+
+message MsgDeleteClassTemplate {
+  string creator = 1;
+  string collectionIndex = 2;
+  string classTemplateIndex = 3;
+}
+message MsgDeleteClassTemplateResponse {}
 
 // this line is used by starport scaffolding # proto/tx/message

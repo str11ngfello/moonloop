@@ -19,7 +19,7 @@ func createNPowerupTemplate(keeper *keeper.Keeper, ctx sdk.Context, n int) []typ
 	items := make([]types.PowerupTemplate, n)
 	for i := range items {
 		items[i].CollectionIndex = strconv.Itoa(i)
-		items[i].ClassIndex = strconv.Itoa(i)
+		items[i].ClassTemplateIndex = strconv.Itoa(i)
 		items[i].PowerupTemplateIndex = strconv.Itoa(i)
 
 		keeper.SetPowerupTemplate(ctx, items[i])
@@ -33,7 +33,7 @@ func TestPowerupTemplateGet(t *testing.T) {
 	for _, item := range items {
 		rst, found := keeper.GetPowerupTemplate(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 			item.PowerupTemplateIndex,
 		)
 		require.True(t, found)
@@ -49,12 +49,12 @@ func TestPowerupTemplateRemove(t *testing.T) {
 	for _, item := range items {
 		keeper.RemovePowerupTemplate(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 			item.PowerupTemplateIndex,
 		)
 		_, found := keeper.GetPowerupTemplate(ctx,
 			item.CollectionIndex,
-			item.ClassIndex,
+			item.ClassTemplateIndex,
 			item.PowerupTemplateIndex,
 		)
 		require.False(t, found)

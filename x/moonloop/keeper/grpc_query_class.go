@@ -48,7 +48,7 @@ func (k Keeper) Class(c context.Context, req *types.QueryGetClassRequest) (*type
 	val, found := k.GetClass(
 		ctx,
 		req.CollectionIndex,
-		req.ClassIndex,
+		req.ClassTemplateIndex,
 	)
 	if !found {
 		return nil, status.Error(codes.InvalidArgument, "not found")

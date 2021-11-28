@@ -13,7 +13,7 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
 	// Find the powerup
-	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
+	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found {
 		return nil, types.ErrPowerupInvalidPowerup
 	}
@@ -24,7 +24,7 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 	}
 
 	// Find the powerup template
-	powerupTemplate, found := k.GetPowerupTemplate(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex)
+	powerupTemplate, found := k.GetPowerupTemplate(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex)
 	if !found {
 		return nil, types.ErrPowerupInvalidPowerup
 	}
@@ -50,7 +50,7 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 			}
 		}
 		ctx.EventManager().EmitEvent(
-			types.NewPowerupRechargeEvent(msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, timeToAdd, powerup.EndTime+timeToAdd),
+			types.NewPowerupRechargeEvent(msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, timeToAdd, powerup.EndTime+timeToAdd),
 		)
 	} else {
 		// Not activated currently, make sure its not cooling down
@@ -81,16 +81,16 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 		powerup.StartTime = int32(time.Now().Unix())
 		powerup.EndTime = powerup.StartTime + powerupTemplate.Duration
 		powerup.NumActivations++
-		types.EmitPowerupActivatedEvents(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, powerup.StartTime, powerup.EndTime)
+		types.EmitPowerupActivatedEvents(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, powerup.StartTime, powerup.EndTime)
 	}
 
 	// Record contribution
-	contribution, found := k.GetContribution(ctx, msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
+	contribution, found := k.GetContribution(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found {
 		contribution = types.Contribution{
 			Creator:              msg.Creator,
 			CollectionIndex:      msg.CollectionIndex,
-			ClassIndex:           msg.ClassIndex,
+			ClassTemplateIndex:   msg.ClassTemplateIndex,
 			PowerupTemplateIndex: msg.PowerupTemplateIndex,
 			InstanceIndex:        msg.InstanceIndex,
 			Contributors:         make([]string, 0),
@@ -103,7 +103,7 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 	contribution.Timestamps = append(contribution.Timestamps, time.Now().Unix())
 	if len(contribution.Contributors) == 1 {
 		ctx.EventManager().EmitEvent(
-			types.NewPowerupRefundAtTimeEvent(msg.CollectionIndex, msg.ClassIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, int32(time.Now().Unix())+powerupTemplate.RefundDuration),
+			types.NewPowerupRefundAtTimeEvent(msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex, int32(time.Now().Unix())+powerupTemplate.RefundDuration),
 		)
 	}
 	k.SetContribution(ctx, contribution)

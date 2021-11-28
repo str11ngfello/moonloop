@@ -10,7 +10,7 @@ var _ sdk.Msg = &MsgCreatePowerupTemplate{}
 func NewMsgCreatePowerupTemplate(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	name string,
 	description string,
@@ -31,7 +31,7 @@ func NewMsgCreatePowerupTemplate(
 	return &MsgCreatePowerupTemplate{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		Name:                 name,
 		Description:          description,
@@ -84,7 +84,7 @@ var _ sdk.Msg = &MsgUpdatePowerupTemplate{}
 func NewMsgUpdatePowerupTemplate(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 	name string,
 	description string,
@@ -105,7 +105,7 @@ func NewMsgUpdatePowerupTemplate(
 	return &MsgUpdatePowerupTemplate{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 		Name:                 name,
 		Description:          description,
@@ -158,14 +158,14 @@ var _ sdk.Msg = &MsgDeletePowerupTemplate{}
 func NewMsgDeletePowerupTemplate(
 	creator string,
 	collectionIndex string,
-	classIndex string,
+	classTemplateIndex string,
 	powerupTemplateIndex string,
 
 ) *MsgDeletePowerupTemplate {
 	return &MsgDeletePowerupTemplate{
 		Creator:              creator,
 		CollectionIndex:      collectionIndex,
-		ClassIndex:           classIndex,
+		ClassTemplateIndex:   classTemplateIndex,
 		PowerupTemplateIndex: powerupTemplateIndex,
 	}
 }

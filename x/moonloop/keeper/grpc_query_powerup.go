@@ -48,7 +48,7 @@ func (k Keeper) Powerup(c context.Context, req *types.QueryGetPowerupRequest) (*
 	val, found := k.GetPowerup(
 		ctx,
 		req.CollectionIndex,
-		req.ClassIndex,
+		req.ClassTemplateIndex,
 		req.PowerupTemplateIndex,
 		req.InstanceIndex,
 	)

@@ -9,6 +9,7 @@ import "moonloop/mint_strategy.proto";
 import "moonloop/contribution.proto";
 import "moonloop/powerup_template.proto";
 import "moonloop/powerup.proto";
+import "moonloop/class_template.proto";
 // this line is used by starport scaffolding # 1
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
@@ -29,7 +30,7 @@ service Query {
 
 // Queries a class by index.
 	rpc Class(QueryGetClassRequest) returns (QueryGetClassResponse) {
-		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/class/{collectionIndex}/{classTemplateIndex}";
 	}
 
 	// Queries a list of class items.
@@ -49,7 +50,7 @@ service Query {
 
 // Queries a contribution by index.
 	rpc Contribution(QueryGetContributionRequest) returns (QueryGetContributionResponse) {
-		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/contribution/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}/{instanceIndex}";
 	}
 
 	// Queries a list of contribution items.
@@ -59,7 +60,7 @@ service Query {
 
 // Queries a powerupTemplate by index.
 	rpc PowerupTemplate(QueryGetPowerupTemplateRequest) returns (QueryGetPowerupTemplateResponse) {
-		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classIndex}/{powerupTemplateIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerupTemplate/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}";
 	}
 
 	// Queries a list of powerupTemplate items.
@@ -69,7 +70,7 @@ service Query {
 
 // Queries a powerup by index.
 	rpc Powerup(QueryGetPowerupRequest) returns (QueryGetPowerupResponse) {
-		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classIndex}/{powerupTemplateIndex}/{instanceIndex}";
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/powerup/{collectionIndex}/{classTemplateIndex}/{powerupTemplateIndex}/{instanceIndex}";
 	}
 
 	// Queries a list of powerup items.
@@ -80,6 +81,16 @@ service Query {
 // Queries a list of getInstance items.
 	rpc GetInstance(QueryGetInstanceRequest) returns (QueryGetInstanceResponse) {
 		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/getInstance";
+	}
+
+// Queries a classTemplate by index.
+	rpc ClassTemplate(QueryGetClassTemplateRequest) returns (QueryGetClassTemplateResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/classTemplate/{collectionIndex}/{classTemplateIndex}";
+	}
+
+	// Queries a list of classTemplate items.
+	rpc ClassTemplateAll(QueryAllClassTemplateRequest) returns (QueryAllClassTemplateResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/classTemplate";
 	}
 
 // this line is used by starport scaffolding # 2
@@ -105,7 +116,7 @@ message QueryAllCollectionResponse {
 
 message QueryGetClassRequest {
 	  string collectionIndex = 1;
-  string classIndex = 2;
+  string classTemplateIndex = 2;
 
 }
 
@@ -142,7 +153,7 @@ message QueryAllMintStrategyResponse {
 
 message QueryGetContributionRequest {
 	  string collectionIndex = 1;
-  string classIndex = 2;
+  string classTemplateIndex = 2;
   string powerupTemplateIndex = 3;
   string instanceIndex = 4;
 
@@ -163,7 +174,7 @@ message QueryAllContributionResponse {
 
 message QueryGetPowerupTemplateRequest {
 	  string collectionIndex = 1;
-  string classIndex = 2;
+  string classTemplateIndex = 2;
   string powerupTemplateIndex = 3;
 
 }
@@ -183,7 +194,7 @@ message QueryAllPowerupTemplateResponse {
 
 message QueryGetPowerupRequest {
 	  string collectionIndex = 1;
-  string classIndex = 2;
+  string classTemplateIndex = 2;
   string powerupTemplateIndex = 3;
   string instanceIndex = 4;
 
@@ -204,15 +215,34 @@ message QueryAllPowerupResponse {
 
 message QueryGetInstanceRequest {
   string collectionIndex = 1;
-  string classIndex = 2;
+  string classTemplateIndex = 2;
   string instanceIndex = 3;
 }
 
 message QueryGetInstanceResponse {
 	Collection collection = 1 [(gogoproto.nullable) = false];
-	Class class = 2 [(gogoproto.nullable) = false];
+	ClassTemplate classTemplate = 2 [(gogoproto.nullable) = false];
 	repeated PowerupTemplate powerupTemplates = 3 [(gogoproto.nullable) = false];
 	repeated Powerup powerups = 4 [(gogoproto.nullable) = false];
+}
+
+message QueryGetClassTemplateRequest {
+	  string collectionIndex = 1;
+  string classTemplateIndex = 2;
+
+}
+
+message QueryGetClassTemplateResponse {
+	ClassTemplate classTemplate = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllClassTemplateRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllClassTemplateResponse {
+	repeated ClassTemplate classTemplate = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // this line is used by starport scaffolding # 3

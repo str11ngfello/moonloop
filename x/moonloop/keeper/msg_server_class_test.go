@@ -23,14 +23,14 @@ func TestClassMsgServerCreate(t *testing.T) {
 	creator := "A"
 	for i := 0; i < 5; i++ {
 		expected := &types.MsgCreateClass{Creator: creator,
-			CollectionIndex: strconv.Itoa(i),
-			ClassIndex:      strconv.Itoa(i),
+			CollectionIndex:    strconv.Itoa(i),
+			ClassTemplateIndex: strconv.Itoa(i),
 		}
 		_, err := srv.CreateClass(wctx, expected)
 		require.NoError(t, err)
 		rst, found := k.GetClass(ctx,
 			expected.CollectionIndex,
-			expected.ClassIndex,
+			expected.ClassTemplateIndex,
 		)
 		require.True(t, found)
 		require.Equal(t, expected.Creator, rst.Creator)
@@ -48,23 +48,23 @@ func TestClassMsgServerUpdate(t *testing.T) {
 		{
 			desc: "Completed",
 			request: &types.MsgUpdateClass{Creator: creator,
-				CollectionIndex: strconv.Itoa(0),
-				ClassIndex:      strconv.Itoa(0),
+				CollectionIndex:    strconv.Itoa(0),
+				ClassTemplateIndex: strconv.Itoa(0),
 			},
 		},
 		{
 			desc: "Unauthorized",
 			request: &types.MsgUpdateClass{Creator: "B",
-				CollectionIndex: strconv.Itoa(0),
-				ClassIndex:      strconv.Itoa(0),
+				CollectionIndex:    strconv.Itoa(0),
+				ClassTemplateIndex: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.MsgUpdateClass{Creator: creator,
-				CollectionIndex: strconv.Itoa(100000),
-				ClassIndex:      strconv.Itoa(100000),
+				CollectionIndex:    strconv.Itoa(100000),
+				ClassTemplateIndex: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
 		},
@@ -74,8 +74,8 @@ func TestClassMsgServerUpdate(t *testing.T) {
 			srv := keeper.NewMsgServerImpl(*k)
 			wctx := sdk.WrapSDKContext(ctx)
 			expected := &types.MsgCreateClass{Creator: creator,
-				CollectionIndex: strconv.Itoa(0),
-				ClassIndex:      strconv.Itoa(0),
+				CollectionIndex:    strconv.Itoa(0),
+				ClassTemplateIndex: strconv.Itoa(0),
 			}
 			_, err := srv.CreateClass(wctx, expected)
 			require.NoError(t, err)
@@ -87,7 +87,7 @@ func TestClassMsgServerUpdate(t *testing.T) {
 				require.NoError(t, err)
 				rst, found := k.GetClass(ctx,
 					expected.CollectionIndex,
-					expected.ClassIndex,
+					expected.ClassTemplateIndex,
 				)
 				require.True(t, found)
 				require.Equal(t, expected.Creator, rst.Creator)
@@ -107,23 +107,23 @@ func TestClassMsgServerDelete(t *testing.T) {
 		{
 			desc: "Completed",
 			request: &types.MsgDeleteClass{Creator: creator,
-				CollectionIndex: strconv.Itoa(0),
-				ClassIndex:      strconv.Itoa(0),
+				CollectionIndex:    strconv.Itoa(0),
+				ClassTemplateIndex: strconv.Itoa(0),
 			},
 		},
 		{
 			desc: "Unauthorized",
 			request: &types.MsgDeleteClass{Creator: "B",
-				CollectionIndex: strconv.Itoa(0),
-				ClassIndex:      strconv.Itoa(0),
+				CollectionIndex:    strconv.Itoa(0),
+				ClassTemplateIndex: strconv.Itoa(0),
 			},
 			err: sdkerrors.ErrUnauthorized,
 		},
 		{
 			desc: "KeyNotFound",
 			request: &types.MsgDeleteClass{Creator: creator,
-				CollectionIndex: strconv.Itoa(100000),
-				ClassIndex:      strconv.Itoa(100000),
+				CollectionIndex:    strconv.Itoa(100000),
+				ClassTemplateIndex: strconv.Itoa(100000),
 			},
 			err: sdkerrors.ErrKeyNotFound,
 		},
@@ -134,8 +134,8 @@ func TestClassMsgServerDelete(t *testing.T) {
 			wctx := sdk.WrapSDKContext(ctx)
 
 			_, err := srv.CreateClass(wctx, &types.MsgCreateClass{Creator: creator,
-				CollectionIndex: strconv.Itoa(0),
-				ClassIndex:      strconv.Itoa(0),
+				CollectionIndex:    strconv.Itoa(0),
+				ClassTemplateIndex: strconv.Itoa(0),
 			})
 			require.NoError(t, err)
 			_, err = srv.DeleteClass(wctx, tc.request)
@@ -145,7 +145,7 @@ func TestClassMsgServerDelete(t *testing.T) {
 				require.NoError(t, err)
 				_, found := k.GetClass(ctx,
 					tc.request.CollectionIndex,
-					tc.request.ClassIndex,
+					tc.request.ClassTemplateIndex,
 				)
 				require.False(t, found)
 			}

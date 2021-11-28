@@ -5,16 +5,9 @@ option go_package = "github.com/str11ngfello/moonloop/x/moonloop/types";
 
 message Class {
   string collectionIndex = 1; 
-  string classIndex = 2; 
-  string name = 3; 
-  string description = 4; 
-  string mintStrategy = 5; 
-  string gltfHash = 6; 
-  string metadata = 7; 
-  int32 maxInstances = 8; 
-  int32 count = 9; 
-  repeated string powerupTemplates = 10; 
-  string creator = 11;
-  string owner = 12;
+  string classTemplateIndex = 2; 
+  string instanceIndex = 3; 
+  string creator = 4;
+  string owner = 5;
 }
 

@@ -48,7 +48,7 @@ func (k Keeper) Contribution(c context.Context, req *types.QueryGetContributionR
 	val, found := k.GetContribution(
 		ctx,
 		req.CollectionIndex,
-		req.ClassIndex,
+		req.ClassTemplateIndex,
 		req.PowerupTemplateIndex,
 		req.InstanceIndex,
 	)

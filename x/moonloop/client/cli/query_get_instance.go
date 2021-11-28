@@ -30,9 +30,9 @@ func CmdGetInstance() *cobra.Command {
 
 			params := &types.QueryGetInstanceRequest{
 
-				CollectionIndex: reqCollectionIndex,
-				ClassIndex:      reqClassIndex,
-				InstanceIndex:   reqInstanceIndex,
+				CollectionIndex:    reqCollectionIndex,
+				ClassTemplateIndex: reqClassIndex,
+				InstanceIndex:      reqInstanceIndex,
 			}
 
 			res, err := queryClient.GetInstance(cmd.Context(), params)

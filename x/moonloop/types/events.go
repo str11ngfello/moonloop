@@ -15,23 +15,23 @@ const (
 	EventPowerupRecharge     = "powerup_recharge"
 )
 
-func NewPowerupRefundAtTimeEvent(collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, refundAtTime int32) sdk.Event {
+func NewPowerupRefundAtTimeEvent(collectionIndex string, classTemplateIndex string, powerupTemplateIndex string, instanceIndex string, refundAtTime int32) sdk.Event {
 	return sdk.NewEvent(
 		EventPowerupRefundAtTime,
 		sdk.NewAttribute("collection_index", collectionIndex),
-		sdk.NewAttribute("class_index", classIndex),
+		sdk.NewAttribute("class_index", classTemplateIndex),
 		sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
 		sdk.NewAttribute("instance_index", instanceIndex),
 		sdk.NewAttribute("refund_at", strconv.Itoa(int(refundAtTime))),
 	)
 }
 
-func EmitPowerupActivatedEvents(ctx sdk.Context, collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, startTime int32, endTime int32) {
+func EmitPowerupActivatedEvents(ctx sdk.Context, collectionIndex string, classTemplateIndex string, powerupTemplateIndex string, instanceIndex string, startTime int32, endTime int32) {
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(
 			EventPowerupIndex,
 			sdk.NewAttribute("collection_index", collectionIndex),
-			sdk.NewAttribute("class_index", classIndex),
+			sdk.NewAttribute("class_index", classTemplateIndex),
 			sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
 			sdk.NewAttribute("instance_index", instanceIndex),
 		),
@@ -46,11 +46,11 @@ func EmitPowerupActivatedEvents(ctx sdk.Context, collectionIndex string, classIn
 	)
 }
 
-func NewPowerupRechargeEvent(collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string, timeToAdd int32, newEndTime int32) sdk.Event {
+func NewPowerupRechargeEvent(collectionIndex string, classTemplateIndex string, powerupTemplateIndex string, instanceIndex string, timeToAdd int32, newEndTime int32) sdk.Event {
 	return sdk.NewEvent(
 		EventPowerupRecharge,
 		sdk.NewAttribute("collection_index", collectionIndex),
-		sdk.NewAttribute("class_index", classIndex),
+		sdk.NewAttribute("class_index", classTemplateIndex),
 		sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
 		sdk.NewAttribute("instance_index", instanceIndex),
 		sdk.NewAttribute("time_to_add", strconv.Itoa(int(timeToAdd))),
@@ -58,12 +58,12 @@ func NewPowerupRechargeEvent(collectionIndex string, classIndex string, powerupT
 	)
 }
 
-func EmitPowerupDeactivatedEvents(ctx sdk.Context, collectionIndex string, classIndex string, powerupTemplateIndex string, instanceIndex string) {
+func EmitPowerupDeactivatedEvents(ctx sdk.Context, collectionIndex string, classTemplateIndex string, powerupTemplateIndex string, instanceIndex string) {
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(
 			EventPowerupIndex,
 			sdk.NewAttribute("collection_index", collectionIndex),
-			sdk.NewAttribute("class_index", classIndex),
+			sdk.NewAttribute("class_index", classTemplateIndex),
 			sdk.NewAttribute("powerup_template_index", powerupTemplateIndex),
 			sdk.NewAttribute("instance_index", instanceIndex),
 		),
