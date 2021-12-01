@@ -12,6 +12,12 @@ import (
 func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*types.MsgFreePowerResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	// Find the class
+	class, found := k.GetClass(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.InstanceIndex)
+	if !found {
+		return nil, types.ErrPowerupInvalidPowerup
+	}
+
 	// Find the powerup
 	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found {
@@ -46,12 +52,25 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 	moduleAddress := authTypes.NewModuleAddress(types.ModuleName)
 	for i, contributorAddress := range contribution.Contributors {
 
-		coinsToReturn := sdk.NewCoin(contribution.Amounts[i].Denom, sdk.NewInt(int64(contribution.Amounts[i].Amount.ToDec().MustFloat64()*.9)))
+		feeRate, err := sdk.NewDecFromStr(powerupTemplate.FeeRate)
+		if err != nil {
+			return nil, err
+		}
+		coinsToKeep := sdk.NewCoin(contribution.Amounts[i].Denom, sdk.NewInt(contribution.Amounts[i].Amount.ToDec().Mul(feeRate).RoundInt64()))
+		coinsToReturn := contribution.Amounts[i].Sub(coinsToKeep)
 		contributorSdkAddress, err := sdk.AccAddressFromBech32(contributorAddress)
 		if err != nil {
 			return &types.MsgFreePowerResponse{}, err
 		}
+		ownerSdkAddress, err := sdk.AccAddressFromBech32(class.Owner)
+		if err != nil {
+			return &types.MsgFreePowerResponse{}, err
+		}
 		err = k.bankKeeper.SendCoins(ctx, moduleAddress, contributorSdkAddress, sdk.NewCoins(coinsToReturn))
+		if err != nil {
+			return &types.MsgFreePowerResponse{}, err
+		}
+		err = k.bankKeeper.SendCoins(ctx, moduleAddress, ownerSdkAddress, sdk.NewCoins(coinsToKeep))
 		if err != nil {
 			return &types.MsgFreePowerResponse{}, err
 		}

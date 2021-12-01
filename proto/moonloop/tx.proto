@@ -176,7 +176,7 @@ message MsgCreatePowerupTemplate {
   int32 maxActivations = 13;
   int32 coolDownDuration = 14;
   cosmos.base.v1beta1.Coin rechargeRate = 15 [(gogoproto.nullable) = false];
-  cosmos.base.v1beta1.Coin feeRate = 16 [(gogoproto.nullable) = false];
+  string feeRate = 16;
   int32 activationType = 17;
   string eventData = 18;
 }
@@ -199,7 +199,7 @@ message MsgUpdatePowerupTemplate {
   int32 maxActivations = 13;
   int32 coolDownDuration = 14;
   cosmos.base.v1beta1.Coin rechargeRate = 15 [(gogoproto.nullable) = false];
-  cosmos.base.v1beta1.Coin feeRate = 16 [(gogoproto.nullable) = false];
+  string feeRate = 16;
   int32 activationType = 17;
   string eventData = 18;
 }

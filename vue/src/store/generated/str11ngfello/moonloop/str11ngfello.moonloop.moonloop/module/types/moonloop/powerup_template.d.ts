@@ -16,7 +16,7 @@ export interface PowerupTemplate {
     maxActivations: number;
     coolDownDuration: number;
     rechargeRate: Coin | undefined;
-    feeRate: Coin | undefined;
+    feeRate: string;
     activationType: number;
     eventData: string;
     creator: string;

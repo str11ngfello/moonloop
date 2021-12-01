@@ -5,7 +5,7 @@ starport-develop scaffold map classTemplate name:string description:string mintS
 starport-develop scaffold map class owner:string --index collectionIndex,classTemplateIndex,instanceIndex
 starport-develop scaffold map mintStrategy minters:strings instanceLevels:ints priceLevels:ints paused:bool
 starport-develop scaffold map contribution contributors:strings amounts:coins --index collectionIndex,classTemplateIndex,powerupTemplateIndex,instanceIndex
-starport-develop scaffold map powerupTemplate name description count:int activationBalance:coin maxBalance:coin duration:int maxDuration:int refundDuration:int maxActivations:int coolDownDuration:int rechargeRate:coin feeRate:coin activationType:int eventData:string --index collectionIndex,classTemplateIndex,powerupTemplateIndex
+starport-develop scaffold map powerupTemplate name description count:int activationBalance:coin maxBalance:coin duration:int maxDuration:int refundDuration:int maxActivations:int coolDownDuration:int rechargeRate:coin feeRate:string activationType:int eventData:string --index collectionIndex,classTemplateIndex,powerupTemplateIndex
 starport-develop scaffold map powerup balance:coin startTime:int endTime:int numActivations:int fees:coin acceptingPower:bool --index collectionIndex,classTemplateIndex,powerupTemplateIndex,instanceIndex
 starport-develop scaffold message setCollectionMintStrategy collectionIndex:string mintStrategyIndex:string
 starport-develop scaffold message sendPower collectionIndex:string classTemplateIndex:string powerupTemplateIndex:string instanceIndex:string power:coin

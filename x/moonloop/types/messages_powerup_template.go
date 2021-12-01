@@ -23,7 +23,7 @@ func NewMsgCreatePowerupTemplate(
 	maxActivations int32,
 	coolDownDuration int32,
 	rechargeRate sdk.Coin,
-	feeRate sdk.Coin,
+	feeRate string,
 	activationType int32,
 	eventData string,
 
@@ -97,7 +97,7 @@ func NewMsgUpdatePowerupTemplate(
 	maxActivations int32,
 	coolDownDuration int32,
 	rechargeRate sdk.Coin,
-	feeRate sdk.Coin,
+	feeRate string,
 	activationType int32,
 	eventData string,
 

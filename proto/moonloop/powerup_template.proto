@@ -20,7 +20,7 @@ message PowerupTemplate {
   int32 maxActivations = 12; 
   int32 coolDownDuration = 13; 
   cosmos.base.v1beta1.Coin rechargeRate = 14 [(gogoproto.nullable) = false]; 
-  cosmos.base.v1beta1.Coin feeRate = 15 [(gogoproto.nullable) = false]; 
+  string feeRate = 15;
   int32 activationType = 16; 
   string eventData = 17; 
   string creator = 18;

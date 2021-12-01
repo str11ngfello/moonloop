@@ -126,7 +126,7 @@ export interface MsgCreatePowerupTemplate {
     maxActivations: number;
     coolDownDuration: number;
     rechargeRate: Coin | undefined;
-    feeRate: Coin | undefined;
+    feeRate: string;
     activationType: number;
     eventData: string;
 }
@@ -148,7 +148,7 @@ export interface MsgUpdatePowerupTemplate {
     maxActivations: number;
     coolDownDuration: number;
     rechargeRate: Coin | undefined;
-    feeRate: Coin | undefined;
+    feeRate: string;
     activationType: number;
     eventData: string;
 }

@@ -60,10 +60,8 @@ func CmdCreatePowerupTemplate() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			argFeeRate, err := sdk.ParseCoinNormalized(args[14])
-			if err != nil {
-				return err
-			}
+			argFeeRate := args[14]
+
 			argActivationType, err := cast.ToInt32E(args[15])
 			if err != nil {
 				return err
@@ -157,10 +155,8 @@ func CmdUpdatePowerupTemplate() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			argFeeRate, err := sdk.ParseCoinNormalized(args[14])
-			if err != nil {
-				return err
-			}
+			argFeeRate := args[14]
+
 			argActivationType, err := cast.ToInt32E(args[15])
 			if err != nil {
 				return err

@@ -14,6 +14,7 @@ const basePowerupTemplate = {
     refundDuration: 0,
     maxActivations: 0,
     coolDownDuration: 0,
+    feeRate: '',
     activationType: 0,
     eventData: '',
     creator: ''
@@ -62,8 +63,8 @@ export const PowerupTemplate = {
         if (message.rechargeRate !== undefined) {
             Coin.encode(message.rechargeRate, writer.uint32(114).fork()).ldelim();
         }
-        if (message.feeRate !== undefined) {
-            Coin.encode(message.feeRate, writer.uint32(122).fork()).ldelim();
+        if (message.feeRate !== '') {
+            writer.uint32(122).string(message.feeRate);
         }
         if (message.activationType !== 0) {
             writer.uint32(128).int32(message.activationType);
@@ -126,7 +127,7 @@ export const PowerupTemplate = {
                     message.rechargeRate = Coin.decode(reader, reader.uint32());
                     break;
                 case 15:
-                    message.feeRate = Coin.decode(reader, reader.uint32());
+                    message.feeRate = reader.string();
                     break;
                 case 16:
                     message.activationType = reader.int32();
@@ -231,10 +232,10 @@ export const PowerupTemplate = {
             message.rechargeRate = undefined;
         }
         if (object.feeRate !== undefined && object.feeRate !== null) {
-            message.feeRate = Coin.fromJSON(object.feeRate);
+            message.feeRate = String(object.feeRate);
         }
         else {
-            message.feeRate = undefined;
+            message.feeRate = '';
         }
         if (object.activationType !== undefined && object.activationType !== null) {
             message.activationType = Number(object.activationType);
@@ -272,7 +273,7 @@ export const PowerupTemplate = {
         message.maxActivations !== undefined && (obj.maxActivations = message.maxActivations);
         message.coolDownDuration !== undefined && (obj.coolDownDuration = message.coolDownDuration);
         message.rechargeRate !== undefined && (obj.rechargeRate = message.rechargeRate ? Coin.toJSON(message.rechargeRate) : undefined);
-        message.feeRate !== undefined && (obj.feeRate = message.feeRate ? Coin.toJSON(message.feeRate) : undefined);
+        message.feeRate !== undefined && (obj.feeRate = message.feeRate);
         message.activationType !== undefined && (obj.activationType = message.activationType);
         message.eventData !== undefined && (obj.eventData = message.eventData);
         message.creator !== undefined && (obj.creator = message.creator);
@@ -365,10 +366,10 @@ export const PowerupTemplate = {
             message.rechargeRate = undefined;
         }
         if (object.feeRate !== undefined && object.feeRate !== null) {
-            message.feeRate = Coin.fromPartial(object.feeRate);
+            message.feeRate = object.feeRate;
         }
         else {
-            message.feeRate = undefined;
+            message.feeRate = '';
         }
         if (object.activationType !== undefined && object.activationType !== null) {
             message.activationType = object.activationType;

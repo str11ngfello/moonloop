@@ -196,14 +196,7 @@ export interface MoonloopPowerupTemplate {
    * signatures required by gogoproto.
    */
   rechargeRate?: V1Beta1Coin;
-
-  /**
-   * Coin defines a token with a denomination and an amount.
-   *
-   * NOTE: The amount field is an Int which implements the custom method
-   * signatures required by gogoproto.
-   */
-  feeRate?: V1Beta1Coin;
+  feeRate?: string;
 
   /** @format int32 */
   activationType?: number;

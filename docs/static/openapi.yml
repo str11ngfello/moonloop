@@ -13449,20 +13449,7 @@ paths:
 
                         signatures required by gogoproto.
                     feeRate:
-                      type: object
-                      properties:
-                        denom:
-                          type: string
-                        amount:
-                          type: string
-                      description: >-
-                        Coin defines a token with a denomination and an amount.
-
-
-                        NOTE: The amount field is an Int which implements the
-                        custom method
-
-                        signatures required by gogoproto.
+                      type: string
                     activationType:
                       type: integer
                       format: int32
@@ -14110,20 +14097,7 @@ paths:
 
                         signatures required by gogoproto.
                     feeRate:
-                      type: object
-                      properties:
-                        denom:
-                          type: string
-                        amount:
-                          type: string
-                      description: >-
-                        Coin defines a token with a denomination and an amount.
-
-
-                        NOTE: The amount field is an Int which implements the
-                        custom method
-
-                        signatures required by gogoproto.
+                      type: string
                     activationType:
                       type: integer
                       format: int32
@@ -14319,20 +14293,7 @@ paths:
 
                       signatures required by gogoproto.
                   feeRate:
-                    type: object
-                    properties:
-                      denom:
-                        type: string
-                      amount:
-                        type: string
-                    description: >-
-                      Coin defines a token with a denomination and an amount.
-
-
-                      NOTE: The amount field is an Int which implements the
-                      custom method
-
-                      signatures required by gogoproto.
+                    type: string
                   activationType:
                     type: integer
                     format: int32
@@ -21971,17 +21932,7 @@ definitions:
           NOTE: The amount field is an Int which implements the custom method
           signatures required by gogoproto.
       feeRate:
-        type: object
-        properties:
-          denom:
-            type: string
-          amount:
-            type: string
-        description: |-
-          Coin defines a token with a denomination and an amount.
-
-          NOTE: The amount field is an Int which implements the custom method
-          signatures required by gogoproto.
+        type: string
       activationType:
         type: integer
         format: int32
@@ -22426,20 +22377,7 @@ definitions:
 
                 signatures required by gogoproto.
             feeRate:
-              type: object
-              properties:
-                denom:
-                  type: string
-                amount:
-                  type: string
-              description: >-
-                Coin defines a token with a denomination and an amount.
-
-
-                NOTE: The amount field is an Int which implements the custom
-                method
-
-                signatures required by gogoproto.
+              type: string
             activationType:
               type: integer
               format: int32
@@ -22710,20 +22648,7 @@ definitions:
 
                 signatures required by gogoproto.
             feeRate:
-              type: object
-              properties:
-                denom:
-                  type: string
-                amount:
-                  type: string
-              description: >-
-                Coin defines a token with a denomination and an amount.
-
-
-                NOTE: The amount field is an Int which implements the custom
-                method
-
-                signatures required by gogoproto.
+              type: string
             activationType:
               type: integer
               format: int32
@@ -22950,20 +22875,7 @@ definitions:
 
               signatures required by gogoproto.
           feeRate:
-            type: object
-            properties:
-              denom:
-                type: string
-              amount:
-                type: string
-            description: >-
-              Coin defines a token with a denomination and an amount.
-
-
-              NOTE: The amount field is an Int which implements the custom
-              method
-
-              signatures required by gogoproto.
+            type: string
           activationType:
             type: integer
             format: int32

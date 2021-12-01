@@ -2068,6 +2068,7 @@ const baseMsgCreatePowerupTemplate = {
     refundDuration: 0,
     maxActivations: 0,
     coolDownDuration: 0,
+    feeRate: '',
     activationType: 0,
     eventData: ''
 };
@@ -2118,8 +2119,8 @@ export const MsgCreatePowerupTemplate = {
         if (message.rechargeRate !== undefined) {
             Coin.encode(message.rechargeRate, writer.uint32(122).fork()).ldelim();
         }
-        if (message.feeRate !== undefined) {
-            Coin.encode(message.feeRate, writer.uint32(130).fork()).ldelim();
+        if (message.feeRate !== '') {
+            writer.uint32(130).string(message.feeRate);
         }
         if (message.activationType !== 0) {
             writer.uint32(136).int32(message.activationType);
@@ -2182,7 +2183,7 @@ export const MsgCreatePowerupTemplate = {
                     message.rechargeRate = Coin.decode(reader, reader.uint32());
                     break;
                 case 16:
-                    message.feeRate = Coin.decode(reader, reader.uint32());
+                    message.feeRate = reader.string();
                     break;
                 case 17:
                     message.activationType = reader.int32();
@@ -2290,10 +2291,10 @@ export const MsgCreatePowerupTemplate = {
             message.rechargeRate = undefined;
         }
         if (object.feeRate !== undefined && object.feeRate !== null) {
-            message.feeRate = Coin.fromJSON(object.feeRate);
+            message.feeRate = String(object.feeRate);
         }
         else {
-            message.feeRate = undefined;
+            message.feeRate = '';
         }
         if (object.activationType !== undefined && object.activationType !== null) {
             message.activationType = Number(object.activationType);
@@ -2326,7 +2327,7 @@ export const MsgCreatePowerupTemplate = {
         message.maxActivations !== undefined && (obj.maxActivations = message.maxActivations);
         message.coolDownDuration !== undefined && (obj.coolDownDuration = message.coolDownDuration);
         message.rechargeRate !== undefined && (obj.rechargeRate = message.rechargeRate ? Coin.toJSON(message.rechargeRate) : undefined);
-        message.feeRate !== undefined && (obj.feeRate = message.feeRate ? Coin.toJSON(message.feeRate) : undefined);
+        message.feeRate !== undefined && (obj.feeRate = message.feeRate);
         message.activationType !== undefined && (obj.activationType = message.activationType);
         message.eventData !== undefined && (obj.eventData = message.eventData);
         return obj;
@@ -2424,10 +2425,10 @@ export const MsgCreatePowerupTemplate = {
             message.rechargeRate = undefined;
         }
         if (object.feeRate !== undefined && object.feeRate !== null) {
-            message.feeRate = Coin.fromPartial(object.feeRate);
+            message.feeRate = object.feeRate;
         }
         else {
-            message.feeRate = undefined;
+            message.feeRate = '';
         }
         if (object.activationType !== undefined && object.activationType !== null) {
             message.activationType = object.activationType;
@@ -2489,6 +2490,7 @@ const baseMsgUpdatePowerupTemplate = {
     refundDuration: 0,
     maxActivations: 0,
     coolDownDuration: 0,
+    feeRate: '',
     activationType: 0,
     eventData: ''
 };
@@ -2539,8 +2541,8 @@ export const MsgUpdatePowerupTemplate = {
         if (message.rechargeRate !== undefined) {
             Coin.encode(message.rechargeRate, writer.uint32(122).fork()).ldelim();
         }
-        if (message.feeRate !== undefined) {
-            Coin.encode(message.feeRate, writer.uint32(130).fork()).ldelim();
+        if (message.feeRate !== '') {
+            writer.uint32(130).string(message.feeRate);
         }
         if (message.activationType !== 0) {
             writer.uint32(136).int32(message.activationType);
@@ -2603,7 +2605,7 @@ export const MsgUpdatePowerupTemplate = {
                     message.rechargeRate = Coin.decode(reader, reader.uint32());
                     break;
                 case 16:
-                    message.feeRate = Coin.decode(reader, reader.uint32());
+                    message.feeRate = reader.string();
                     break;
                 case 17:
                     message.activationType = reader.int32();
@@ -2711,10 +2713,10 @@ export const MsgUpdatePowerupTemplate = {
             message.rechargeRate = undefined;
         }
         if (object.feeRate !== undefined && object.feeRate !== null) {
-            message.feeRate = Coin.fromJSON(object.feeRate);
+            message.feeRate = String(object.feeRate);
         }
         else {
-            message.feeRate = undefined;
+            message.feeRate = '';
         }
         if (object.activationType !== undefined && object.activationType !== null) {
             message.activationType = Number(object.activationType);
@@ -2747,7 +2749,7 @@ export const MsgUpdatePowerupTemplate = {
         message.maxActivations !== undefined && (obj.maxActivations = message.maxActivations);
         message.coolDownDuration !== undefined && (obj.coolDownDuration = message.coolDownDuration);
         message.rechargeRate !== undefined && (obj.rechargeRate = message.rechargeRate ? Coin.toJSON(message.rechargeRate) : undefined);
-        message.feeRate !== undefined && (obj.feeRate = message.feeRate ? Coin.toJSON(message.feeRate) : undefined);
+        message.feeRate !== undefined && (obj.feeRate = message.feeRate);
         message.activationType !== undefined && (obj.activationType = message.activationType);
         message.eventData !== undefined && (obj.eventData = message.eventData);
         return obj;
@@ -2845,10 +2847,10 @@ export const MsgUpdatePowerupTemplate = {
             message.rechargeRate = undefined;
         }
         if (object.feeRate !== undefined && object.feeRate !== null) {
-            message.feeRate = Coin.fromPartial(object.feeRate);
+            message.feeRate = object.feeRate;
         }
         else {
-            message.feeRate = undefined;
+            message.feeRate = '';
         }
         if (object.activationType !== undefined && object.activationType !== null) {
             message.activationType = object.activationType;
