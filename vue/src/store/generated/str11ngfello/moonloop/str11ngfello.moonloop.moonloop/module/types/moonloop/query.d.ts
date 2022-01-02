@@ -7,6 +7,8 @@ import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
 import { ClassTemplate } from '../moonloop/class_template';
+import { CollectionOwner } from '../moonloop/collection_owner';
+import { InstanceOwner } from '../moonloop/instance_owner';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 export interface QueryGetCollectionRequest {
     index: string;
@@ -119,6 +121,32 @@ export interface QueryAllClassTemplateRequest {
 }
 export interface QueryAllClassTemplateResponse {
     classTemplate: ClassTemplate[];
+    pagination: PageResponse | undefined;
+}
+export interface QueryGetCollectionOwnerRequest {
+    index: string;
+}
+export interface QueryGetCollectionOwnerResponse {
+    collectionOwner: CollectionOwner | undefined;
+}
+export interface QueryAllCollectionOwnerRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryAllCollectionOwnerResponse {
+    collectionOwner: CollectionOwner[];
+    pagination: PageResponse | undefined;
+}
+export interface QueryGetInstanceOwnerRequest {
+    index: string;
+}
+export interface QueryGetInstanceOwnerResponse {
+    instanceOwner: InstanceOwner | undefined;
+}
+export interface QueryAllInstanceOwnerRequest {
+    pagination: PageRequest | undefined;
+}
+export interface QueryAllInstanceOwnerResponse {
+    instanceOwner: InstanceOwner[];
     pagination: PageResponse | undefined;
 }
 export declare const QueryGetCollectionRequest: {
@@ -331,6 +359,62 @@ export declare const QueryAllClassTemplateResponse: {
     toJSON(message: QueryAllClassTemplateResponse): unknown;
     fromPartial(object: DeepPartial<QueryAllClassTemplateResponse>): QueryAllClassTemplateResponse;
 };
+export declare const QueryGetCollectionOwnerRequest: {
+    encode(message: QueryGetCollectionOwnerRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetCollectionOwnerRequest;
+    fromJSON(object: any): QueryGetCollectionOwnerRequest;
+    toJSON(message: QueryGetCollectionOwnerRequest): unknown;
+    fromPartial(object: DeepPartial<QueryGetCollectionOwnerRequest>): QueryGetCollectionOwnerRequest;
+};
+export declare const QueryGetCollectionOwnerResponse: {
+    encode(message: QueryGetCollectionOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetCollectionOwnerResponse;
+    fromJSON(object: any): QueryGetCollectionOwnerResponse;
+    toJSON(message: QueryGetCollectionOwnerResponse): unknown;
+    fromPartial(object: DeepPartial<QueryGetCollectionOwnerResponse>): QueryGetCollectionOwnerResponse;
+};
+export declare const QueryAllCollectionOwnerRequest: {
+    encode(message: QueryAllCollectionOwnerRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllCollectionOwnerRequest;
+    fromJSON(object: any): QueryAllCollectionOwnerRequest;
+    toJSON(message: QueryAllCollectionOwnerRequest): unknown;
+    fromPartial(object: DeepPartial<QueryAllCollectionOwnerRequest>): QueryAllCollectionOwnerRequest;
+};
+export declare const QueryAllCollectionOwnerResponse: {
+    encode(message: QueryAllCollectionOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllCollectionOwnerResponse;
+    fromJSON(object: any): QueryAllCollectionOwnerResponse;
+    toJSON(message: QueryAllCollectionOwnerResponse): unknown;
+    fromPartial(object: DeepPartial<QueryAllCollectionOwnerResponse>): QueryAllCollectionOwnerResponse;
+};
+export declare const QueryGetInstanceOwnerRequest: {
+    encode(message: QueryGetInstanceOwnerRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceOwnerRequest;
+    fromJSON(object: any): QueryGetInstanceOwnerRequest;
+    toJSON(message: QueryGetInstanceOwnerRequest): unknown;
+    fromPartial(object: DeepPartial<QueryGetInstanceOwnerRequest>): QueryGetInstanceOwnerRequest;
+};
+export declare const QueryGetInstanceOwnerResponse: {
+    encode(message: QueryGetInstanceOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceOwnerResponse;
+    fromJSON(object: any): QueryGetInstanceOwnerResponse;
+    toJSON(message: QueryGetInstanceOwnerResponse): unknown;
+    fromPartial(object: DeepPartial<QueryGetInstanceOwnerResponse>): QueryGetInstanceOwnerResponse;
+};
+export declare const QueryAllInstanceOwnerRequest: {
+    encode(message: QueryAllInstanceOwnerRequest, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllInstanceOwnerRequest;
+    fromJSON(object: any): QueryAllInstanceOwnerRequest;
+    toJSON(message: QueryAllInstanceOwnerRequest): unknown;
+    fromPartial(object: DeepPartial<QueryAllInstanceOwnerRequest>): QueryAllInstanceOwnerRequest;
+};
+export declare const QueryAllInstanceOwnerResponse: {
+    encode(message: QueryAllInstanceOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): QueryAllInstanceOwnerResponse;
+    fromJSON(object: any): QueryAllInstanceOwnerResponse;
+    toJSON(message: QueryAllInstanceOwnerResponse): unknown;
+    fromPartial(object: DeepPartial<QueryAllInstanceOwnerResponse>): QueryAllInstanceOwnerResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Queries a collection by index. */
@@ -363,6 +447,14 @@ export interface Query {
     ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse>;
     /** Queries a list of classTemplate items. */
     ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse>;
+    /** Queries a collectionOwner by index. */
+    CollectionOwner(request: QueryGetCollectionOwnerRequest): Promise<QueryGetCollectionOwnerResponse>;
+    /** Queries a list of collectionOwner items. */
+    CollectionOwnerAll(request: QueryAllCollectionOwnerRequest): Promise<QueryAllCollectionOwnerResponse>;
+    /** Queries a instanceOwner by index. */
+    InstanceOwner(request: QueryGetInstanceOwnerRequest): Promise<QueryGetInstanceOwnerResponse>;
+    /** Queries a list of instanceOwner items. */
+    InstanceOwnerAll(request: QueryAllInstanceOwnerRequest): Promise<QueryAllInstanceOwnerResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -382,6 +474,10 @@ export declare class QueryClientImpl implements Query {
     GetInstance(request: QueryGetInstanceRequest): Promise<QueryGetInstanceResponse>;
     ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse>;
     ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse>;
+    CollectionOwner(request: QueryGetCollectionOwnerRequest): Promise<QueryGetCollectionOwnerResponse>;
+    CollectionOwnerAll(request: QueryAllCollectionOwnerRequest): Promise<QueryAllCollectionOwnerResponse>;
+    InstanceOwner(request: QueryGetInstanceOwnerRequest): Promise<QueryGetInstanceOwnerResponse>;
+    InstanceOwnerAll(request: QueryAllInstanceOwnerRequest): Promise<QueryAllInstanceOwnerResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

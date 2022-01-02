@@ -17,6 +17,8 @@ func DefaultGenesis() *GenesisState {
 		PowerupTemplateList: []PowerupTemplate{},
 		PowerupList:         []Powerup{},
 		ClassTemplateList:   []ClassTemplate{},
+		CollectionOwnerList: []CollectionOwner{},
+		InstanceOwnerList:   []InstanceOwner{},
 		// this line is used by starport scaffolding # genesis/types/default
 	}
 }
@@ -93,6 +95,26 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("duplicated index for classTemplate")
 		}
 		classTemplateIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated index in collectionOwner
+	collectionOwnerIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.CollectionOwnerList {
+		index := string(CollectionOwnerKey(elem.Index))
+		if _, ok := collectionOwnerIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for collectionOwner")
+		}
+		collectionOwnerIndexMap[index] = struct{}{}
+	}
+	// Check for duplicated index in instanceOwner
+	instanceOwnerIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.InstanceOwnerList {
+		index := string(InstanceOwnerKey(elem.Index))
+		if _, ok := instanceOwnerIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for instanceOwner")
+		}
+		instanceOwnerIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

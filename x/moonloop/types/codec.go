@@ -33,6 +33,12 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgCreateClassTemplate{}, "moonloop/CreateClassTemplate", nil)
 	cdc.RegisterConcrete(&MsgUpdateClassTemplate{}, "moonloop/UpdateClassTemplate", nil)
 	cdc.RegisterConcrete(&MsgDeleteClassTemplate{}, "moonloop/DeleteClassTemplate", nil)
+	cdc.RegisterConcrete(&MsgCreateCollectionOwner{}, "moonloop/CreateCollectionOwner", nil)
+	cdc.RegisterConcrete(&MsgUpdateCollectionOwner{}, "moonloop/UpdateCollectionOwner", nil)
+	cdc.RegisterConcrete(&MsgDeleteCollectionOwner{}, "moonloop/DeleteCollectionOwner", nil)
+	cdc.RegisterConcrete(&MsgCreateInstanceOwner{}, "moonloop/CreateInstanceOwner", nil)
+	cdc.RegisterConcrete(&MsgUpdateInstanceOwner{}, "moonloop/UpdateInstanceOwner", nil)
+	cdc.RegisterConcrete(&MsgDeleteInstanceOwner{}, "moonloop/DeleteInstanceOwner", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -83,6 +89,16 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgCreateClassTemplate{},
 		&MsgUpdateClassTemplate{},
 		&MsgDeleteClassTemplate{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreateCollectionOwner{},
+		&MsgUpdateCollectionOwner{},
+		&MsgDeleteCollectionOwner{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreateInstanceOwner{},
+		&MsgUpdateInstanceOwner{},
+		&MsgDeleteInstanceOwner{},
 	)
 	// this line is used by starport scaffolding # 3
 

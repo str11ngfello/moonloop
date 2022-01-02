@@ -15,18 +15,18 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 	// Find the powerup
 	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopPowerupNotFound
 	}
 
 	// Accepting more power?
 	if !powerup.AcceptingPower {
-		return nil, types.ErrPowerupNotAcceptingPower
+		return nil, types.ErrMoonLoopNotAcceptingPower
 	}
 
 	// Find the powerup template
 	powerupTemplate, found := k.GetPowerupTemplate(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopPowerupNotFound
 	}
 
 	// Create coins and get sender address
@@ -41,12 +41,12 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 	currentlyActivated := time.Now().Unix() < int64(powerup.EndTime)
 	if currentlyActivated {
 		if powerupTemplate.RechargeRate == sdk.NewCoin("upower", sdk.NewInt(0)) {
-			return nil, types.ErrPowerupNotAcceptingPower
+			return nil, types.ErrMoonLoopNotAcceptingPower
 		}
 		timeToAdd = int32(msg.Power.Amount.Quo(powerupTemplate.RechargeRate.Amount).Int64())
 		if powerupTemplate.MaxDuration != 0 {
 			if (powerup.EndTime - powerup.StartTime + timeToAdd) >= powerupTemplate.MaxDuration {
-				return nil, types.ErrPowerupMaxDuration
+				return nil, types.ErrMoonLoopMaxDuration
 			}
 		}
 		ctx.EventManager().EmitEvent(
@@ -55,12 +55,12 @@ func (k msgServer) SendPower(goCtx context.Context, msg *types.MsgSendPower) (*t
 	} else {
 		// Not activated currently, make sure its not cooling down
 		if time.Now().Unix() < int64(powerup.EndTime+powerupTemplate.CoolDownDuration) {
-			return nil, types.ErrPowerupCoolingDown
+			return nil, types.ErrMoonLoopCoolingDown
 		}
 
 		if powerupTemplate.MaxActivations != 0 {
 			if powerup.NumActivations >= powerupTemplate.MaxActivations {
-				return nil, types.ErrPowerupMaxActivations
+				return nil, types.ErrMoonLoopMaxActivations
 			}
 		}
 	}

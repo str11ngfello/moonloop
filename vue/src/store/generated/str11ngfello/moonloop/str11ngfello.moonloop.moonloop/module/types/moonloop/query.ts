@@ -8,6 +8,8 @@ import { Contribution } from '../moonloop/contribution'
 import { PowerupTemplate } from '../moonloop/powerup_template'
 import { Powerup } from '../moonloop/powerup'
 import { ClassTemplate } from '../moonloop/class_template'
+import { CollectionOwner } from '../moonloop/collection_owner'
+import { InstanceOwner } from '../moonloop/instance_owner'
 
 export const protobufPackage = 'str11ngfello.moonloop.moonloop'
 
@@ -151,6 +153,40 @@ export interface QueryAllClassTemplateRequest {
 
 export interface QueryAllClassTemplateResponse {
   classTemplate: ClassTemplate[]
+  pagination: PageResponse | undefined
+}
+
+export interface QueryGetCollectionOwnerRequest {
+  index: string
+}
+
+export interface QueryGetCollectionOwnerResponse {
+  collectionOwner: CollectionOwner | undefined
+}
+
+export interface QueryAllCollectionOwnerRequest {
+  pagination: PageRequest | undefined
+}
+
+export interface QueryAllCollectionOwnerResponse {
+  collectionOwner: CollectionOwner[]
+  pagination: PageResponse | undefined
+}
+
+export interface QueryGetInstanceOwnerRequest {
+  index: string
+}
+
+export interface QueryGetInstanceOwnerResponse {
+  instanceOwner: InstanceOwner | undefined
+}
+
+export interface QueryAllInstanceOwnerRequest {
+  pagination: PageRequest | undefined
+}
+
+export interface QueryAllInstanceOwnerResponse {
+  instanceOwner: InstanceOwner[]
   pagination: PageResponse | undefined
 }
 
@@ -2258,6 +2294,494 @@ export const QueryAllClassTemplateResponse = {
   }
 }
 
+const baseQueryGetCollectionOwnerRequest: object = { index: '' }
+
+export const QueryGetCollectionOwnerRequest = {
+  encode(message: QueryGetCollectionOwnerRequest, writer: Writer = Writer.create()): Writer {
+    if (message.index !== '') {
+      writer.uint32(10).string(message.index)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetCollectionOwnerRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetCollectionOwnerRequest } as QueryGetCollectionOwnerRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.index = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetCollectionOwnerRequest {
+    const message = { ...baseQueryGetCollectionOwnerRequest } as QueryGetCollectionOwnerRequest
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetCollectionOwnerRequest): unknown {
+    const obj: any = {}
+    message.index !== undefined && (obj.index = message.index)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetCollectionOwnerRequest>): QueryGetCollectionOwnerRequest {
+    const message = { ...baseQueryGetCollectionOwnerRequest } as QueryGetCollectionOwnerRequest
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    return message
+  }
+}
+
+const baseQueryGetCollectionOwnerResponse: object = {}
+
+export const QueryGetCollectionOwnerResponse = {
+  encode(message: QueryGetCollectionOwnerResponse, writer: Writer = Writer.create()): Writer {
+    if (message.collectionOwner !== undefined) {
+      CollectionOwner.encode(message.collectionOwner, writer.uint32(10).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetCollectionOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetCollectionOwnerResponse } as QueryGetCollectionOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.collectionOwner = CollectionOwner.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetCollectionOwnerResponse {
+    const message = { ...baseQueryGetCollectionOwnerResponse } as QueryGetCollectionOwnerResponse
+    if (object.collectionOwner !== undefined && object.collectionOwner !== null) {
+      message.collectionOwner = CollectionOwner.fromJSON(object.collectionOwner)
+    } else {
+      message.collectionOwner = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetCollectionOwnerResponse): unknown {
+    const obj: any = {}
+    message.collectionOwner !== undefined && (obj.collectionOwner = message.collectionOwner ? CollectionOwner.toJSON(message.collectionOwner) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetCollectionOwnerResponse>): QueryGetCollectionOwnerResponse {
+    const message = { ...baseQueryGetCollectionOwnerResponse } as QueryGetCollectionOwnerResponse
+    if (object.collectionOwner !== undefined && object.collectionOwner !== null) {
+      message.collectionOwner = CollectionOwner.fromPartial(object.collectionOwner)
+    } else {
+      message.collectionOwner = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryAllCollectionOwnerRequest: object = {}
+
+export const QueryAllCollectionOwnerRequest = {
+  encode(message: QueryAllCollectionOwnerRequest, writer: Writer = Writer.create()): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllCollectionOwnerRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryAllCollectionOwnerRequest } as QueryAllCollectionOwnerRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryAllCollectionOwnerRequest {
+    const message = { ...baseQueryAllCollectionOwnerRequest } as QueryAllCollectionOwnerRequest
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryAllCollectionOwnerRequest): unknown {
+    const obj: any = {}
+    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryAllCollectionOwnerRequest>): QueryAllCollectionOwnerRequest {
+    const message = { ...baseQueryAllCollectionOwnerRequest } as QueryAllCollectionOwnerRequest
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryAllCollectionOwnerResponse: object = {}
+
+export const QueryAllCollectionOwnerResponse = {
+  encode(message: QueryAllCollectionOwnerResponse, writer: Writer = Writer.create()): Writer {
+    for (const v of message.collectionOwner) {
+      CollectionOwner.encode(v!, writer.uint32(10).fork()).ldelim()
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllCollectionOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryAllCollectionOwnerResponse } as QueryAllCollectionOwnerResponse
+    message.collectionOwner = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.collectionOwner.push(CollectionOwner.decode(reader, reader.uint32()))
+          break
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryAllCollectionOwnerResponse {
+    const message = { ...baseQueryAllCollectionOwnerResponse } as QueryAllCollectionOwnerResponse
+    message.collectionOwner = []
+    if (object.collectionOwner !== undefined && object.collectionOwner !== null) {
+      for (const e of object.collectionOwner) {
+        message.collectionOwner.push(CollectionOwner.fromJSON(e))
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryAllCollectionOwnerResponse): unknown {
+    const obj: any = {}
+    if (message.collectionOwner) {
+      obj.collectionOwner = message.collectionOwner.map((e) => (e ? CollectionOwner.toJSON(e) : undefined))
+    } else {
+      obj.collectionOwner = []
+    }
+    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryAllCollectionOwnerResponse>): QueryAllCollectionOwnerResponse {
+    const message = { ...baseQueryAllCollectionOwnerResponse } as QueryAllCollectionOwnerResponse
+    message.collectionOwner = []
+    if (object.collectionOwner !== undefined && object.collectionOwner !== null) {
+      for (const e of object.collectionOwner) {
+        message.collectionOwner.push(CollectionOwner.fromPartial(e))
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryGetInstanceOwnerRequest: object = { index: '' }
+
+export const QueryGetInstanceOwnerRequest = {
+  encode(message: QueryGetInstanceOwnerRequest, writer: Writer = Writer.create()): Writer {
+    if (message.index !== '') {
+      writer.uint32(10).string(message.index)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceOwnerRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetInstanceOwnerRequest } as QueryGetInstanceOwnerRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.index = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetInstanceOwnerRequest {
+    const message = { ...baseQueryGetInstanceOwnerRequest } as QueryGetInstanceOwnerRequest
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetInstanceOwnerRequest): unknown {
+    const obj: any = {}
+    message.index !== undefined && (obj.index = message.index)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetInstanceOwnerRequest>): QueryGetInstanceOwnerRequest {
+    const message = { ...baseQueryGetInstanceOwnerRequest } as QueryGetInstanceOwnerRequest
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    return message
+  }
+}
+
+const baseQueryGetInstanceOwnerResponse: object = {}
+
+export const QueryGetInstanceOwnerResponse = {
+  encode(message: QueryGetInstanceOwnerResponse, writer: Writer = Writer.create()): Writer {
+    if (message.instanceOwner !== undefined) {
+      InstanceOwner.encode(message.instanceOwner, writer.uint32(10).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryGetInstanceOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryGetInstanceOwnerResponse } as QueryGetInstanceOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.instanceOwner = InstanceOwner.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryGetInstanceOwnerResponse {
+    const message = { ...baseQueryGetInstanceOwnerResponse } as QueryGetInstanceOwnerResponse
+    if (object.instanceOwner !== undefined && object.instanceOwner !== null) {
+      message.instanceOwner = InstanceOwner.fromJSON(object.instanceOwner)
+    } else {
+      message.instanceOwner = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryGetInstanceOwnerResponse): unknown {
+    const obj: any = {}
+    message.instanceOwner !== undefined && (obj.instanceOwner = message.instanceOwner ? InstanceOwner.toJSON(message.instanceOwner) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryGetInstanceOwnerResponse>): QueryGetInstanceOwnerResponse {
+    const message = { ...baseQueryGetInstanceOwnerResponse } as QueryGetInstanceOwnerResponse
+    if (object.instanceOwner !== undefined && object.instanceOwner !== null) {
+      message.instanceOwner = InstanceOwner.fromPartial(object.instanceOwner)
+    } else {
+      message.instanceOwner = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryAllInstanceOwnerRequest: object = {}
+
+export const QueryAllInstanceOwnerRequest = {
+  encode(message: QueryAllInstanceOwnerRequest, writer: Writer = Writer.create()): Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllInstanceOwnerRequest {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryAllInstanceOwnerRequest } as QueryAllInstanceOwnerRequest
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryAllInstanceOwnerRequest {
+    const message = { ...baseQueryAllInstanceOwnerRequest } as QueryAllInstanceOwnerRequest
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromJSON(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryAllInstanceOwnerRequest): unknown {
+    const obj: any = {}
+    message.pagination !== undefined && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryAllInstanceOwnerRequest>): QueryAllInstanceOwnerRequest {
+    const message = { ...baseQueryAllInstanceOwnerRequest } as QueryAllInstanceOwnerRequest
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromPartial(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  }
+}
+
+const baseQueryAllInstanceOwnerResponse: object = {}
+
+export const QueryAllInstanceOwnerResponse = {
+  encode(message: QueryAllInstanceOwnerResponse, writer: Writer = Writer.create()): Writer {
+    for (const v of message.instanceOwner) {
+      InstanceOwner.encode(v!, writer.uint32(10).fork()).ldelim()
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim()
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): QueryAllInstanceOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseQueryAllInstanceOwnerResponse } as QueryAllInstanceOwnerResponse
+    message.instanceOwner = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.instanceOwner.push(InstanceOwner.decode(reader, reader.uint32()))
+          break
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): QueryAllInstanceOwnerResponse {
+    const message = { ...baseQueryAllInstanceOwnerResponse } as QueryAllInstanceOwnerResponse
+    message.instanceOwner = []
+    if (object.instanceOwner !== undefined && object.instanceOwner !== null) {
+      for (const e of object.instanceOwner) {
+        message.instanceOwner.push(InstanceOwner.fromJSON(e))
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromJSON(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  },
+
+  toJSON(message: QueryAllInstanceOwnerResponse): unknown {
+    const obj: any = {}
+    if (message.instanceOwner) {
+      obj.instanceOwner = message.instanceOwner.map((e) => (e ? InstanceOwner.toJSON(e) : undefined))
+    } else {
+      obj.instanceOwner = []
+    }
+    message.pagination !== undefined && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<QueryAllInstanceOwnerResponse>): QueryAllInstanceOwnerResponse {
+    const message = { ...baseQueryAllInstanceOwnerResponse } as QueryAllInstanceOwnerResponse
+    message.instanceOwner = []
+    if (object.instanceOwner !== undefined && object.instanceOwner !== null) {
+      for (const e of object.instanceOwner) {
+        message.instanceOwner.push(InstanceOwner.fromPartial(e))
+      }
+    }
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromPartial(object.pagination)
+    } else {
+      message.pagination = undefined
+    }
+    return message
+  }
+}
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Queries a collection by index. */
@@ -2290,6 +2814,14 @@ export interface Query {
   ClassTemplate(request: QueryGetClassTemplateRequest): Promise<QueryGetClassTemplateResponse>
   /** Queries a list of classTemplate items. */
   ClassTemplateAll(request: QueryAllClassTemplateRequest): Promise<QueryAllClassTemplateResponse>
+  /** Queries a collectionOwner by index. */
+  CollectionOwner(request: QueryGetCollectionOwnerRequest): Promise<QueryGetCollectionOwnerResponse>
+  /** Queries a list of collectionOwner items. */
+  CollectionOwnerAll(request: QueryAllCollectionOwnerRequest): Promise<QueryAllCollectionOwnerResponse>
+  /** Queries a instanceOwner by index. */
+  InstanceOwner(request: QueryGetInstanceOwnerRequest): Promise<QueryGetInstanceOwnerResponse>
+  /** Queries a list of instanceOwner items. */
+  InstanceOwnerAll(request: QueryAllInstanceOwnerRequest): Promise<QueryAllInstanceOwnerResponse>
 }
 
 export class QueryClientImpl implements Query {
@@ -2385,6 +2917,30 @@ export class QueryClientImpl implements Query {
     const data = QueryAllClassTemplateRequest.encode(request).finish()
     const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'ClassTemplateAll', data)
     return promise.then((data) => QueryAllClassTemplateResponse.decode(new Reader(data)))
+  }
+
+  CollectionOwner(request: QueryGetCollectionOwnerRequest): Promise<QueryGetCollectionOwnerResponse> {
+    const data = QueryGetCollectionOwnerRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'CollectionOwner', data)
+    return promise.then((data) => QueryGetCollectionOwnerResponse.decode(new Reader(data)))
+  }
+
+  CollectionOwnerAll(request: QueryAllCollectionOwnerRequest): Promise<QueryAllCollectionOwnerResponse> {
+    const data = QueryAllCollectionOwnerRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'CollectionOwnerAll', data)
+    return promise.then((data) => QueryAllCollectionOwnerResponse.decode(new Reader(data)))
+  }
+
+  InstanceOwner(request: QueryGetInstanceOwnerRequest): Promise<QueryGetInstanceOwnerResponse> {
+    const data = QueryGetInstanceOwnerRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'InstanceOwner', data)
+    return promise.then((data) => QueryGetInstanceOwnerResponse.decode(new Reader(data)))
+  }
+
+  InstanceOwnerAll(request: QueryAllInstanceOwnerRequest): Promise<QueryAllInstanceOwnerResponse> {
+    const data = QueryAllInstanceOwnerRequest.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Query', 'InstanceOwnerAll', data)
+    return promise.then((data) => QueryAllInstanceOwnerResponse.decode(new Reader(data)))
   }
 }
 

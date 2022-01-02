@@ -11,8 +11,13 @@ import (
 func (k msgServer) CreateClassTemplate(goCtx context.Context, msg *types.MsgCreateClassTemplate) (*types.MsgCreateClassTemplateResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	collection, isFound := k.GetCollection(ctx, msg.CollectionIndex)
+	if !isFound {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "collection not found")
+	}
+
 	// Check if the value already exists
-	_, isFound := k.GetClassTemplate(
+	_, isFound = k.GetClassTemplate(
 		ctx,
 		msg.CollectionIndex,
 		msg.ClassTemplateIndex,
@@ -39,6 +44,10 @@ func (k msgServer) CreateClassTemplate(goCtx context.Context, msg *types.MsgCrea
 		ctx,
 		classTemplate,
 	)
+
+	collection.Classes = append(collection.Classes, msg.ClassTemplateIndex)
+	k.SetCollection(ctx, collection)
+
 	return &types.MsgCreateClassTemplateResponse{}, nil
 }
 

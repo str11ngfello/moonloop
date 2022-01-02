@@ -8,6 +8,8 @@ import "moonloop/contribution.proto";
 import "moonloop/powerup_template.proto";
 import "moonloop/powerup.proto";
 import "moonloop/class_template.proto";
+import "moonloop/collection_owner.proto";
+import "moonloop/instance_owner.proto";
 // this line is used by starport scaffolding # proto/tx/import
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
@@ -41,6 +43,12 @@ service Msg {
   rpc CreateClassTemplate(MsgCreateClassTemplate) returns (MsgCreateClassTemplateResponse);
   rpc UpdateClassTemplate(MsgUpdateClassTemplate) returns (MsgUpdateClassTemplateResponse);
   rpc DeleteClassTemplate(MsgDeleteClassTemplate) returns (MsgDeleteClassTemplateResponse);
+  rpc CreateCollectionOwner(MsgCreateCollectionOwner) returns (MsgCreateCollectionOwnerResponse);
+  rpc UpdateCollectionOwner(MsgUpdateCollectionOwner) returns (MsgUpdateCollectionOwnerResponse);
+  rpc DeleteCollectionOwner(MsgDeleteCollectionOwner) returns (MsgDeleteCollectionOwnerResponse);
+  rpc CreateInstanceOwner(MsgCreateInstanceOwner) returns (MsgCreateInstanceOwnerResponse);
+  rpc UpdateInstanceOwner(MsgUpdateInstanceOwner) returns (MsgUpdateInstanceOwnerResponse);
+  rpc DeleteInstanceOwner(MsgDeleteInstanceOwner) returns (MsgDeleteInstanceOwnerResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -334,5 +342,49 @@ message MsgDeleteClassTemplate {
   string classTemplateIndex = 3;
 }
 message MsgDeleteClassTemplateResponse {}
+
+message MsgCreateCollectionOwner {
+  string creator = 1;
+  string index = 2;
+
+  repeated string collections = 3;
+}
+message MsgCreateCollectionOwnerResponse {}
+
+message MsgUpdateCollectionOwner {
+  string creator = 1;
+  string index = 2;
+
+  repeated string collections = 3;
+}
+message MsgUpdateCollectionOwnerResponse {}
+
+message MsgDeleteCollectionOwner {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteCollectionOwnerResponse {}
+
+message MsgCreateInstanceOwner {
+  string creator = 1;
+  string index = 2;
+
+  repeated string instances = 3;
+}
+message MsgCreateInstanceOwnerResponse {}
+
+message MsgUpdateInstanceOwner {
+  string creator = 1;
+  string index = 2;
+
+  repeated string instances = 3;
+}
+message MsgUpdateInstanceOwnerResponse {}
+
+message MsgDeleteInstanceOwner {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteInstanceOwnerResponse {}
 
 // this line is used by starport scaffolding # proto/tx/message

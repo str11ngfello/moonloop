@@ -227,6 +227,35 @@ export class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryCollectionOwnerAll
+         * @summary Queries a list of collectionOwner items.
+         * @request GET:/str11ngfello/moonloop/moonloop/collectionOwner
+         */
+        this.queryCollectionOwnerAll = (query, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/collectionOwner`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryCollectionOwner
+         * @summary Queries a collectionOwner by index.
+         * @request GET:/str11ngfello/moonloop/moonloop/collectionOwner/{index}
+         */
+        this.queryCollectionOwner = (index, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/collectionOwner/${index}`,
+            method: "GET",
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryContributionAll
          * @summary Queries a list of contribution items.
          * @request GET:/str11ngfello/moonloop/moonloop/contribution
@@ -264,6 +293,35 @@ export class Api extends HttpClient {
             path: `/str11ngfello/moonloop/moonloop/getInstance`,
             method: "GET",
             query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryInstanceOwnerAll
+         * @summary Queries a list of instanceOwner items.
+         * @request GET:/str11ngfello/moonloop/moonloop/instanceOwner
+         */
+        this.queryInstanceOwnerAll = (query, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/instanceOwner`,
+            method: "GET",
+            query: query,
+            format: "json",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryInstanceOwner
+         * @summary Queries a instanceOwner by index.
+         * @request GET:/str11ngfello/moonloop/moonloop/instanceOwner/{index}
+         */
+        this.queryInstanceOwner = (index, params = {}) => this.request({
+            path: `/str11ngfello/moonloop/moonloop/instanceOwner/${index}`,
+            method: "GET",
             format: "json",
             ...params,
         });

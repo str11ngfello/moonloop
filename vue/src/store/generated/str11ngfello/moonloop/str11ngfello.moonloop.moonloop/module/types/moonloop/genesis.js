@@ -6,6 +6,8 @@ import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
 import { ClassTemplate } from '../moonloop/class_template';
+import { CollectionOwner } from '../moonloop/collection_owner';
+import { InstanceOwner } from '../moonloop/instance_owner';
 import { Writer, Reader } from 'protobufjs/minimal';
 export const protobufPackage = 'str11ngfello.moonloop.moonloop';
 const baseGenesisState = {};
@@ -32,6 +34,12 @@ export const GenesisState = {
         for (const v of message.classTemplateList) {
             ClassTemplate.encode(v, writer.uint32(58).fork()).ldelim();
         }
+        for (const v of message.collectionOwnerList) {
+            CollectionOwner.encode(v, writer.uint32(66).fork()).ldelim();
+        }
+        for (const v of message.instanceOwnerList) {
+            InstanceOwner.encode(v, writer.uint32(74).fork()).ldelim();
+        }
         return writer;
     },
     decode(input, length) {
@@ -45,6 +53,8 @@ export const GenesisState = {
         message.powerupTemplateList = [];
         message.powerupList = [];
         message.classTemplateList = [];
+        message.collectionOwnerList = [];
+        message.instanceOwnerList = [];
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -69,6 +79,12 @@ export const GenesisState = {
                 case 7:
                     message.classTemplateList.push(ClassTemplate.decode(reader, reader.uint32()));
                     break;
+                case 8:
+                    message.collectionOwnerList.push(CollectionOwner.decode(reader, reader.uint32()));
+                    break;
+                case 9:
+                    message.instanceOwnerList.push(InstanceOwner.decode(reader, reader.uint32()));
+                    break;
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -85,6 +101,8 @@ export const GenesisState = {
         message.powerupTemplateList = [];
         message.powerupList = [];
         message.classTemplateList = [];
+        message.collectionOwnerList = [];
+        message.instanceOwnerList = [];
         if (object.collectionList !== undefined && object.collectionList !== null) {
             for (const e of object.collectionList) {
                 message.collectionList.push(Collection.fromJSON(e));
@@ -118,6 +136,16 @@ export const GenesisState = {
         if (object.classTemplateList !== undefined && object.classTemplateList !== null) {
             for (const e of object.classTemplateList) {
                 message.classTemplateList.push(ClassTemplate.fromJSON(e));
+            }
+        }
+        if (object.collectionOwnerList !== undefined && object.collectionOwnerList !== null) {
+            for (const e of object.collectionOwnerList) {
+                message.collectionOwnerList.push(CollectionOwner.fromJSON(e));
+            }
+        }
+        if (object.instanceOwnerList !== undefined && object.instanceOwnerList !== null) {
+            for (const e of object.instanceOwnerList) {
+                message.instanceOwnerList.push(InstanceOwner.fromJSON(e));
             }
         }
         return message;
@@ -166,6 +194,18 @@ export const GenesisState = {
         else {
             obj.classTemplateList = [];
         }
+        if (message.collectionOwnerList) {
+            obj.collectionOwnerList = message.collectionOwnerList.map((e) => (e ? CollectionOwner.toJSON(e) : undefined));
+        }
+        else {
+            obj.collectionOwnerList = [];
+        }
+        if (message.instanceOwnerList) {
+            obj.instanceOwnerList = message.instanceOwnerList.map((e) => (e ? InstanceOwner.toJSON(e) : undefined));
+        }
+        else {
+            obj.instanceOwnerList = [];
+        }
         return obj;
     },
     fromPartial(object) {
@@ -177,6 +217,8 @@ export const GenesisState = {
         message.powerupTemplateList = [];
         message.powerupList = [];
         message.classTemplateList = [];
+        message.collectionOwnerList = [];
+        message.instanceOwnerList = [];
         if (object.collectionList !== undefined && object.collectionList !== null) {
             for (const e of object.collectionList) {
                 message.collectionList.push(Collection.fromPartial(e));
@@ -210,6 +252,16 @@ export const GenesisState = {
         if (object.classTemplateList !== undefined && object.classTemplateList !== null) {
             for (const e of object.classTemplateList) {
                 message.classTemplateList.push(ClassTemplate.fromPartial(e));
+            }
+        }
+        if (object.collectionOwnerList !== undefined && object.collectionOwnerList !== null) {
+            for (const e of object.collectionOwnerList) {
+                message.collectionOwnerList.push(CollectionOwner.fromPartial(e));
+            }
+        }
+        if (object.instanceOwnerList !== undefined && object.instanceOwnerList !== null) {
+            for (const e of object.instanceOwnerList) {
+                message.instanceOwnerList.push(InstanceOwner.fromPartial(e));
             }
         }
         return message;

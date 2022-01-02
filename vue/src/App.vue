@@ -12,7 +12,7 @@
 	</div>
 </template>
 
-<style>
+<style>F
 body {
 	margin: 0;
 }

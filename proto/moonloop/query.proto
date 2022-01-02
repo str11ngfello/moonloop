@@ -10,6 +10,8 @@ import "moonloop/contribution.proto";
 import "moonloop/powerup_template.proto";
 import "moonloop/powerup.proto";
 import "moonloop/class_template.proto";
+import "moonloop/collection_owner.proto";
+import "moonloop/instance_owner.proto";
 // this line is used by starport scaffolding # 1
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
@@ -91,6 +93,26 @@ service Query {
 	// Queries a list of classTemplate items.
 	rpc ClassTemplateAll(QueryAllClassTemplateRequest) returns (QueryAllClassTemplateResponse) {
 		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/classTemplate";
+	}
+
+// Queries a collectionOwner by index.
+	rpc CollectionOwner(QueryGetCollectionOwnerRequest) returns (QueryGetCollectionOwnerResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/collectionOwner/{index}";
+	}
+
+	// Queries a list of collectionOwner items.
+	rpc CollectionOwnerAll(QueryAllCollectionOwnerRequest) returns (QueryAllCollectionOwnerResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/collectionOwner";
+	}
+
+// Queries a instanceOwner by index.
+	rpc InstanceOwner(QueryGetInstanceOwnerRequest) returns (QueryGetInstanceOwnerResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/instanceOwner/{index}";
+	}
+
+	// Queries a list of instanceOwner items.
+	rpc InstanceOwnerAll(QueryAllInstanceOwnerRequest) returns (QueryAllInstanceOwnerResponse) {
+		option (google.api.http).get = "/str11ngfello/moonloop/moonloop/instanceOwner";
 	}
 
 // this line is used by starport scaffolding # 2
@@ -243,6 +265,42 @@ message QueryAllClassTemplateRequest {
 
 message QueryAllClassTemplateResponse {
 	repeated ClassTemplate classTemplate = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetCollectionOwnerRequest {
+	  string index = 1;
+
+}
+
+message QueryGetCollectionOwnerResponse {
+	CollectionOwner collectionOwner = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllCollectionOwnerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllCollectionOwnerResponse {
+	repeated CollectionOwner collectionOwner = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetInstanceOwnerRequest {
+	  string index = 1;
+
+}
+
+message QueryGetInstanceOwnerResponse {
+	InstanceOwner instanceOwner = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllInstanceOwnerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllInstanceOwnerResponse {
+	repeated InstanceOwner instanceOwner = 1 [(gogoproto.nullable) = false];
 	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

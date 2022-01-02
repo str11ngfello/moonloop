@@ -15,26 +15,26 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 	// Find the class
 	class, found := k.GetClass(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.InstanceIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopClassNotFound
 	}
 
 	// Find the powerup
 	powerup, found := k.GetPowerup(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex, msg.InstanceIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopPowerupNotFound
 	}
 
 	// Find the powerup template
 	powerupTemplate, found := k.GetPowerupTemplate(ctx, msg.CollectionIndex, msg.ClassTemplateIndex, msg.PowerupTemplateIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopPowerupNotFound
 	}
 
 	now := time.Now().Unix()
 
 	// Powerup still activated?
 	if now < int64(powerup.EndTime) {
-		return nil, types.ErrPowerupIsActivated
+		return nil, types.ErrMoonLoopIsActivated
 	}
 
 	// Find contributions
@@ -45,7 +45,7 @@ func (k msgServer) FreePower(goCtx context.Context, msg *types.MsgFreePower) (*t
 
 	// Is refund available?
 	if contribution.Timestamps[0] > int64(powerup.EndTime) && now-contribution.Timestamps[0] < int64(powerupTemplate.RefundDuration) {
-		return nil, types.ErrPowerupRefundDuration
+		return nil, types.ErrMoonLoopRefundDuration
 	}
 
 	//Return contributor balances

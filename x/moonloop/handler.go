@@ -92,6 +92,24 @@ func NewHandler(k keeper.Keeper) sdk.Handler {
 		case *types.MsgDeleteClassTemplate:
 			res, err := msgServer.DeleteClassTemplate(sdk.WrapSDKContext(ctx), msg)
 			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgCreateCollectionOwner:
+			res, err := msgServer.CreateCollectionOwner(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgUpdateCollectionOwner:
+			res, err := msgServer.UpdateCollectionOwner(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgDeleteCollectionOwner:
+			res, err := msgServer.DeleteCollectionOwner(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgCreateInstanceOwner:
+			res, err := msgServer.CreateInstanceOwner(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgUpdateInstanceOwner:
+			res, err := msgServer.UpdateInstanceOwner(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgDeleteInstanceOwner:
+			res, err := msgServer.DeleteInstanceOwner(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
 			// this line is used by starport scaffolding # 1
 		default:
 			errMsg := fmt.Sprintf("unrecognized %s message type: %T", types.ModuleName, msg)

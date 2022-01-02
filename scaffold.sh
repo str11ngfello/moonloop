@@ -1,5 +1,7 @@
 #!/bin/bash
 
+starport-develop scaffold map collectionOwner collections:strings 
+starport-develop scaffold map instanceOwner instances:strings
 starport-develop scaffold map collection name:string description:string mintStrategy:string classes:strings
 starport-develop scaffold map classTemplate name:string description:string mintStrategy:string gltfHash:string metadata:string maxInstances:int count:int powerupTemplates:strings --index collectionIndex,classTemplateIndex
 starport-develop scaffold map class owner:string --index collectionIndex,classTemplateIndex,instanceIndex

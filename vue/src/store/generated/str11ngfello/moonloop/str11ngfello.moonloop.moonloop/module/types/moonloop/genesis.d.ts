@@ -5,6 +5,8 @@ import { Contribution } from '../moonloop/contribution';
 import { PowerupTemplate } from '../moonloop/powerup_template';
 import { Powerup } from '../moonloop/powerup';
 import { ClassTemplate } from '../moonloop/class_template';
+import { CollectionOwner } from '../moonloop/collection_owner';
+import { InstanceOwner } from '../moonloop/instance_owner';
 import { Writer, Reader } from 'protobufjs/minimal';
 export declare const protobufPackage = "str11ngfello.moonloop.moonloop";
 /** GenesisState defines the moonloop module's genesis state. */
@@ -15,8 +17,10 @@ export interface GenesisState {
     contributionList: Contribution[];
     powerupTemplateList: PowerupTemplate[];
     powerupList: Powerup[];
-    /** this line is used by starport scaffolding # genesis/proto/state */
     classTemplateList: ClassTemplate[];
+    collectionOwnerList: CollectionOwner[];
+    /** this line is used by starport scaffolding # genesis/proto/state */
+    instanceOwnerList: InstanceOwner[];
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: Writer): Writer;

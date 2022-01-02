@@ -29,6 +29,7 @@ faucet:
   name: alice
   coins: ["10000000upower"]
 genesis:
+  chain_id: "moonloop"
   app_state:
     staking:
       params:

@@ -33,6 +33,31 @@ func (k msgServer) CreateCollection(goCtx context.Context, msg *types.MsgCreateC
 		ctx,
 		collection,
 	)
+
+	// Update the collectionOwners index
+	collectionOwner, isFound := k.GetCollectionOwner(
+		ctx,
+		msg.Creator,
+	)
+	if !isFound {
+		var newCollectionOwner = types.CollectionOwner{
+			Creator:     msg.Creator,
+			Index:       msg.Creator,
+			Collections: []string{msg.Index},
+		}
+
+		k.SetCollectionOwner(
+			ctx,
+			newCollectionOwner,
+		)
+	} else {
+		collectionOwner.Collections = append(collectionOwner.Collections, msg.Creator)
+		k.SetCollectionOwner(
+			ctx,
+			collectionOwner,
+		)
+	}
+
 	return &types.MsgCreateCollectionResponse{}, nil
 }
 

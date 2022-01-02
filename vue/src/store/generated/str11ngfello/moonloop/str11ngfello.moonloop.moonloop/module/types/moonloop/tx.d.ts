@@ -272,6 +272,46 @@ export interface MsgDeleteClassTemplate {
 }
 export interface MsgDeleteClassTemplateResponse {
 }
+export interface MsgCreateCollectionOwner {
+    creator: string;
+    index: string;
+    collections: string[];
+}
+export interface MsgCreateCollectionOwnerResponse {
+}
+export interface MsgUpdateCollectionOwner {
+    creator: string;
+    index: string;
+    collections: string[];
+}
+export interface MsgUpdateCollectionOwnerResponse {
+}
+export interface MsgDeleteCollectionOwner {
+    creator: string;
+    index: string;
+}
+export interface MsgDeleteCollectionOwnerResponse {
+}
+export interface MsgCreateInstanceOwner {
+    creator: string;
+    index: string;
+    instances: string[];
+}
+export interface MsgCreateInstanceOwnerResponse {
+}
+export interface MsgUpdateInstanceOwner {
+    creator: string;
+    index: string;
+    instances: string[];
+}
+export interface MsgUpdateInstanceOwnerResponse {
+}
+export interface MsgDeleteInstanceOwner {
+    creator: string;
+    index: string;
+}
+export interface MsgDeleteInstanceOwnerResponse {
+}
 export declare const MsgCreateCollection: {
     encode(message: MsgCreateCollection, writer?: Writer): Writer;
     decode(input: Reader | Uint8Array, length?: number): MsgCreateCollection;
@@ -622,6 +662,90 @@ export declare const MsgDeleteClassTemplateResponse: {
     toJSON(_: MsgDeleteClassTemplateResponse): unknown;
     fromPartial(_: DeepPartial<MsgDeleteClassTemplateResponse>): MsgDeleteClassTemplateResponse;
 };
+export declare const MsgCreateCollectionOwner: {
+    encode(message: MsgCreateCollectionOwner, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateCollectionOwner;
+    fromJSON(object: any): MsgCreateCollectionOwner;
+    toJSON(message: MsgCreateCollectionOwner): unknown;
+    fromPartial(object: DeepPartial<MsgCreateCollectionOwner>): MsgCreateCollectionOwner;
+};
+export declare const MsgCreateCollectionOwnerResponse: {
+    encode(_: MsgCreateCollectionOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateCollectionOwnerResponse;
+    fromJSON(_: any): MsgCreateCollectionOwnerResponse;
+    toJSON(_: MsgCreateCollectionOwnerResponse): unknown;
+    fromPartial(_: DeepPartial<MsgCreateCollectionOwnerResponse>): MsgCreateCollectionOwnerResponse;
+};
+export declare const MsgUpdateCollectionOwner: {
+    encode(message: MsgUpdateCollectionOwner, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateCollectionOwner;
+    fromJSON(object: any): MsgUpdateCollectionOwner;
+    toJSON(message: MsgUpdateCollectionOwner): unknown;
+    fromPartial(object: DeepPartial<MsgUpdateCollectionOwner>): MsgUpdateCollectionOwner;
+};
+export declare const MsgUpdateCollectionOwnerResponse: {
+    encode(_: MsgUpdateCollectionOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateCollectionOwnerResponse;
+    fromJSON(_: any): MsgUpdateCollectionOwnerResponse;
+    toJSON(_: MsgUpdateCollectionOwnerResponse): unknown;
+    fromPartial(_: DeepPartial<MsgUpdateCollectionOwnerResponse>): MsgUpdateCollectionOwnerResponse;
+};
+export declare const MsgDeleteCollectionOwner: {
+    encode(message: MsgDeleteCollectionOwner, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteCollectionOwner;
+    fromJSON(object: any): MsgDeleteCollectionOwner;
+    toJSON(message: MsgDeleteCollectionOwner): unknown;
+    fromPartial(object: DeepPartial<MsgDeleteCollectionOwner>): MsgDeleteCollectionOwner;
+};
+export declare const MsgDeleteCollectionOwnerResponse: {
+    encode(_: MsgDeleteCollectionOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteCollectionOwnerResponse;
+    fromJSON(_: any): MsgDeleteCollectionOwnerResponse;
+    toJSON(_: MsgDeleteCollectionOwnerResponse): unknown;
+    fromPartial(_: DeepPartial<MsgDeleteCollectionOwnerResponse>): MsgDeleteCollectionOwnerResponse;
+};
+export declare const MsgCreateInstanceOwner: {
+    encode(message: MsgCreateInstanceOwner, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateInstanceOwner;
+    fromJSON(object: any): MsgCreateInstanceOwner;
+    toJSON(message: MsgCreateInstanceOwner): unknown;
+    fromPartial(object: DeepPartial<MsgCreateInstanceOwner>): MsgCreateInstanceOwner;
+};
+export declare const MsgCreateInstanceOwnerResponse: {
+    encode(_: MsgCreateInstanceOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgCreateInstanceOwnerResponse;
+    fromJSON(_: any): MsgCreateInstanceOwnerResponse;
+    toJSON(_: MsgCreateInstanceOwnerResponse): unknown;
+    fromPartial(_: DeepPartial<MsgCreateInstanceOwnerResponse>): MsgCreateInstanceOwnerResponse;
+};
+export declare const MsgUpdateInstanceOwner: {
+    encode(message: MsgUpdateInstanceOwner, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateInstanceOwner;
+    fromJSON(object: any): MsgUpdateInstanceOwner;
+    toJSON(message: MsgUpdateInstanceOwner): unknown;
+    fromPartial(object: DeepPartial<MsgUpdateInstanceOwner>): MsgUpdateInstanceOwner;
+};
+export declare const MsgUpdateInstanceOwnerResponse: {
+    encode(_: MsgUpdateInstanceOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgUpdateInstanceOwnerResponse;
+    fromJSON(_: any): MsgUpdateInstanceOwnerResponse;
+    toJSON(_: MsgUpdateInstanceOwnerResponse): unknown;
+    fromPartial(_: DeepPartial<MsgUpdateInstanceOwnerResponse>): MsgUpdateInstanceOwnerResponse;
+};
+export declare const MsgDeleteInstanceOwner: {
+    encode(message: MsgDeleteInstanceOwner, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteInstanceOwner;
+    fromJSON(object: any): MsgDeleteInstanceOwner;
+    toJSON(message: MsgDeleteInstanceOwner): unknown;
+    fromPartial(object: DeepPartial<MsgDeleteInstanceOwner>): MsgDeleteInstanceOwner;
+};
+export declare const MsgDeleteInstanceOwnerResponse: {
+    encode(_: MsgDeleteInstanceOwnerResponse, writer?: Writer): Writer;
+    decode(input: Reader | Uint8Array, length?: number): MsgDeleteInstanceOwnerResponse;
+    fromJSON(_: any): MsgDeleteInstanceOwnerResponse;
+    toJSON(_: MsgDeleteInstanceOwnerResponse): unknown;
+    fromPartial(_: DeepPartial<MsgDeleteInstanceOwnerResponse>): MsgDeleteInstanceOwnerResponse;
+};
 /** Msg defines the Msg service. */
 export interface Msg {
     CreateCollection(request: MsgCreateCollection): Promise<MsgCreateCollectionResponse>;
@@ -648,8 +772,14 @@ export interface Msg {
     Mint(request: MsgMint): Promise<MsgMintResponse>;
     CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse>;
     UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse>;
-    /** this line is used by starport scaffolding # proto/tx/rpc */
     DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse>;
+    CreateCollectionOwner(request: MsgCreateCollectionOwner): Promise<MsgCreateCollectionOwnerResponse>;
+    UpdateCollectionOwner(request: MsgUpdateCollectionOwner): Promise<MsgUpdateCollectionOwnerResponse>;
+    DeleteCollectionOwner(request: MsgDeleteCollectionOwner): Promise<MsgDeleteCollectionOwnerResponse>;
+    CreateInstanceOwner(request: MsgCreateInstanceOwner): Promise<MsgCreateInstanceOwnerResponse>;
+    UpdateInstanceOwner(request: MsgUpdateInstanceOwner): Promise<MsgUpdateInstanceOwnerResponse>;
+    /** this line is used by starport scaffolding # proto/tx/rpc */
+    DeleteInstanceOwner(request: MsgDeleteInstanceOwner): Promise<MsgDeleteInstanceOwnerResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
@@ -679,6 +809,12 @@ export declare class MsgClientImpl implements Msg {
     CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse>;
     UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse>;
     DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse>;
+    CreateCollectionOwner(request: MsgCreateCollectionOwner): Promise<MsgCreateCollectionOwnerResponse>;
+    UpdateCollectionOwner(request: MsgUpdateCollectionOwner): Promise<MsgUpdateCollectionOwnerResponse>;
+    DeleteCollectionOwner(request: MsgDeleteCollectionOwner): Promise<MsgDeleteCollectionOwnerResponse>;
+    CreateInstanceOwner(request: MsgCreateInstanceOwner): Promise<MsgCreateInstanceOwnerResponse>;
+    UpdateInstanceOwner(request: MsgUpdateInstanceOwner): Promise<MsgUpdateInstanceOwnerResponse>;
+    DeleteInstanceOwner(request: MsgDeleteInstanceOwner): Promise<MsgDeleteInstanceOwnerResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

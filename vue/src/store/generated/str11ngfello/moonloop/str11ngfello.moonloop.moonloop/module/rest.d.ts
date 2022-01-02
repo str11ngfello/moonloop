@@ -28,6 +28,11 @@ export interface MoonloopCollection {
     classes?: string[];
     creator?: string;
 }
+export interface MoonloopCollectionOwner {
+    index?: string;
+    collections?: string[];
+    creator?: string;
+}
 export interface MoonloopContribution {
     collectionIndex?: string;
     classTemplateIndex?: string;
@@ -36,6 +41,11 @@ export interface MoonloopContribution {
     contributors?: string[];
     amounts?: V1Beta1Coin[];
     timestamps?: string[];
+    creator?: string;
+}
+export interface MoonloopInstanceOwner {
+    index?: string;
+    instances?: string[];
     creator?: string;
 }
 export interface MoonloopMintStrategy {
@@ -48,15 +58,19 @@ export interface MoonloopMintStrategy {
 }
 export declare type MoonloopMsgCreateClassResponse = object;
 export declare type MoonloopMsgCreateClassTemplateResponse = object;
+export declare type MoonloopMsgCreateCollectionOwnerResponse = object;
 export declare type MoonloopMsgCreateCollectionResponse = object;
 export declare type MoonloopMsgCreateContributionResponse = object;
+export declare type MoonloopMsgCreateInstanceOwnerResponse = object;
 export declare type MoonloopMsgCreateMintStrategyResponse = object;
 export declare type MoonloopMsgCreatePowerupResponse = object;
 export declare type MoonloopMsgCreatePowerupTemplateResponse = object;
 export declare type MoonloopMsgDeleteClassResponse = object;
 export declare type MoonloopMsgDeleteClassTemplateResponse = object;
+export declare type MoonloopMsgDeleteCollectionOwnerResponse = object;
 export declare type MoonloopMsgDeleteCollectionResponse = object;
 export declare type MoonloopMsgDeleteContributionResponse = object;
+export declare type MoonloopMsgDeleteInstanceOwnerResponse = object;
 export declare type MoonloopMsgDeleteMintStrategyResponse = object;
 export declare type MoonloopMsgDeletePowerupResponse = object;
 export declare type MoonloopMsgDeletePowerupTemplateResponse = object;
@@ -66,8 +80,10 @@ export declare type MoonloopMsgSendPowerResponse = object;
 export declare type MoonloopMsgSetCollectionMintStrategyResponse = object;
 export declare type MoonloopMsgUpdateClassResponse = object;
 export declare type MoonloopMsgUpdateClassTemplateResponse = object;
+export declare type MoonloopMsgUpdateCollectionOwnerResponse = object;
 export declare type MoonloopMsgUpdateCollectionResponse = object;
 export declare type MoonloopMsgUpdateContributionResponse = object;
+export declare type MoonloopMsgUpdateInstanceOwnerResponse = object;
 export declare type MoonloopMsgUpdateMintStrategyResponse = object;
 export declare type MoonloopMsgUpdatePowerupResponse = object;
 export declare type MoonloopMsgUpdatePowerupTemplateResponse = object;
@@ -170,6 +186,19 @@ export interface MoonloopQueryAllClassTemplateResponse {
      */
     pagination?: V1Beta1PageResponse;
 }
+export interface MoonloopQueryAllCollectionOwnerResponse {
+    collectionOwner?: MoonloopCollectionOwner[];
+    /**
+     * PageResponse is to be embedded in gRPC response messages where the
+     * corresponding request message has used PageRequest.
+     *
+     *  message SomeResponse {
+     *          repeated Bar results = 1;
+     *          PageResponse page = 2;
+     *  }
+     */
+    pagination?: V1Beta1PageResponse;
+}
 export interface MoonloopQueryAllCollectionResponse {
     collection?: MoonloopCollection[];
     /**
@@ -185,6 +214,19 @@ export interface MoonloopQueryAllCollectionResponse {
 }
 export interface MoonloopQueryAllContributionResponse {
     contribution?: MoonloopContribution[];
+    /**
+     * PageResponse is to be embedded in gRPC response messages where the
+     * corresponding request message has used PageRequest.
+     *
+     *  message SomeResponse {
+     *          repeated Bar results = 1;
+     *          PageResponse page = 2;
+     *  }
+     */
+    pagination?: V1Beta1PageResponse;
+}
+export interface MoonloopQueryAllInstanceOwnerResponse {
+    instanceOwner?: MoonloopInstanceOwner[];
     /**
      * PageResponse is to be embedded in gRPC response messages where the
      * corresponding request message has used PageRequest.
@@ -241,11 +283,17 @@ export interface MoonloopQueryGetClassResponse {
 export interface MoonloopQueryGetClassTemplateResponse {
     classTemplate?: MoonloopClassTemplate;
 }
+export interface MoonloopQueryGetCollectionOwnerResponse {
+    collectionOwner?: MoonloopCollectionOwner;
+}
 export interface MoonloopQueryGetCollectionResponse {
     collection?: MoonloopCollection;
 }
 export interface MoonloopQueryGetContributionResponse {
     contribution?: MoonloopContribution;
+}
+export interface MoonloopQueryGetInstanceOwnerResponse {
+    instanceOwner?: MoonloopInstanceOwner;
 }
 export interface MoonloopQueryGetInstanceResponse {
     collection?: MoonloopCollection;
@@ -467,6 +515,30 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      * No description
      *
      * @tags Query
+     * @name QueryCollectionOwnerAll
+     * @summary Queries a list of collectionOwner items.
+     * @request GET:/str11ngfello/moonloop/moonloop/collectionOwner
+     */
+    queryCollectionOwnerAll: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.countTotal"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryAllCollectionOwnerResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryCollectionOwner
+     * @summary Queries a collectionOwner by index.
+     * @request GET:/str11ngfello/moonloop/moonloop/collectionOwner/{index}
+     */
+    queryCollectionOwner: (index: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetCollectionOwnerResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
      * @name QueryContributionAll
      * @summary Queries a list of contribution items.
      * @request GET:/str11ngfello/moonloop/moonloop/contribution
@@ -500,6 +572,30 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
         classTemplateIndex?: string;
         instanceIndex?: string;
     }, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetInstanceResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryInstanceOwnerAll
+     * @summary Queries a list of instanceOwner items.
+     * @request GET:/str11ngfello/moonloop/moonloop/instanceOwner
+     */
+    queryInstanceOwnerAll: (query?: {
+        "pagination.key"?: string;
+        "pagination.offset"?: string;
+        "pagination.limit"?: string;
+        "pagination.countTotal"?: boolean;
+        "pagination.reverse"?: boolean;
+    }, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryAllInstanceOwnerResponse, RpcStatus>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryInstanceOwner
+     * @summary Queries a instanceOwner by index.
+     * @request GET:/str11ngfello/moonloop/moonloop/instanceOwner/{index}
+     */
+    queryInstanceOwner: (index: string, params?: RequestParams) => Promise<HttpResponse<MoonloopQueryGetInstanceOwnerResponse, RpcStatus>>;
     /**
      * No description
      *

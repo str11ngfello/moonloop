@@ -98,6 +98,22 @@ func TestGenesisState_Validate(t *testing.T) {
 						ClassTemplateIndex: "1",
 					},
 				},
+				CollectionOwnerList: []types.CollectionOwner{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
+				InstanceOwnerList: []types.InstanceOwner{
+					{
+						Index: "0",
+					},
+					{
+						Index: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -215,6 +231,34 @@ func TestGenesisState_Validate(t *testing.T) {
 					{
 						CollectionIndex:    "0",
 						ClassTemplateIndex: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated collectionOwner",
+			genState: &types.GenesisState{
+				CollectionOwnerList: []types.CollectionOwner{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated instanceOwner",
+			genState: &types.GenesisState{
+				InstanceOwnerList: []types.InstanceOwner{
+					{
+						Index: "0",
+					},
+					{
+						Index: "0",
 					},
 				},
 			},

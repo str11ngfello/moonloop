@@ -19,13 +19,13 @@ func (k Keeper) GetInstance(goCtx context.Context, req *types.QueryGetInstanceRe
 	// Find the collection
 	collection, found := k.GetCollection(ctx, req.CollectionIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopCollectionNotFound
 	}
 
 	// Find the class template
 	classTemplate, found := k.GetClassTemplate(ctx, req.CollectionIndex, req.ClassTemplateIndex)
 	if !found {
-		return nil, types.ErrPowerupInvalidPowerup
+		return nil, types.ErrMoonLoopClassNotFound
 	}
 
 	var powerupTemplates []types.PowerupTemplate
@@ -34,11 +34,11 @@ func (k Keeper) GetInstance(goCtx context.Context, req *types.QueryGetInstanceRe
 	for _, powerupTemplateIndex := range classTemplate.PowerupTemplates {
 		powerupTemplate, found := k.GetPowerupTemplate(ctx, req.CollectionIndex, req.ClassTemplateIndex, powerupTemplateIndex)
 		if !found {
-			return nil, types.ErrPowerupInvalidPowerup
+			return nil, types.ErrMoonLoopPowerupNotFound
 		}
 		powerup, found := k.GetPowerup(ctx, req.CollectionIndex, req.ClassTemplateIndex, powerupTemplateIndex, req.InstanceIndex)
 		if !found {
-			return nil, types.ErrPowerupInvalidPowerup
+			return nil, types.ErrMoonLoopPowerupNotFound
 		}
 		powerupTemplates = append(powerupTemplates, powerupTemplate)
 		powerups = append(powerups, powerup)

@@ -89,6 +89,22 @@ func TestGenesis(t *testing.T) {
 				ClassTemplateIndex: "1",
 			},
 		},
+		CollectionOwnerList: []types.CollectionOwner{
+			{
+				Index: "0",
+			},
+			{
+				Index: "1",
+			},
+		},
+		InstanceOwnerList: []types.InstanceOwner{
+			{
+				Index: "0",
+			},
+			{
+				Index: "1",
+			},
+		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -107,5 +123,7 @@ func TestGenesis(t *testing.T) {
 	require.ElementsMatch(t, genesisState.PowerupTemplateList, got.PowerupTemplateList)
 	require.ElementsMatch(t, genesisState.PowerupList, got.PowerupList)
 	require.ElementsMatch(t, genesisState.ClassTemplateList, got.ClassTemplateList)
+	require.ElementsMatch(t, genesisState.CollectionOwnerList, got.CollectionOwnerList)
+	require.ElementsMatch(t, genesisState.InstanceOwnerList, got.InstanceOwnerList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

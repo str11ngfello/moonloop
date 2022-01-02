@@ -44,6 +44,12 @@ export interface MoonloopCollection {
   creator?: string;
 }
 
+export interface MoonloopCollectionOwner {
+  index?: string;
+  collections?: string[];
+  creator?: string;
+}
+
 export interface MoonloopContribution {
   collectionIndex?: string;
   classTemplateIndex?: string;
@@ -52,6 +58,12 @@ export interface MoonloopContribution {
   contributors?: string[];
   amounts?: V1Beta1Coin[];
   timestamps?: string[];
+  creator?: string;
+}
+
+export interface MoonloopInstanceOwner {
+  index?: string;
+  instances?: string[];
   creator?: string;
 }
 
@@ -68,9 +80,13 @@ export type MoonloopMsgCreateClassResponse = object;
 
 export type MoonloopMsgCreateClassTemplateResponse = object;
 
+export type MoonloopMsgCreateCollectionOwnerResponse = object;
+
 export type MoonloopMsgCreateCollectionResponse = object;
 
 export type MoonloopMsgCreateContributionResponse = object;
+
+export type MoonloopMsgCreateInstanceOwnerResponse = object;
 
 export type MoonloopMsgCreateMintStrategyResponse = object;
 
@@ -82,9 +98,13 @@ export type MoonloopMsgDeleteClassResponse = object;
 
 export type MoonloopMsgDeleteClassTemplateResponse = object;
 
+export type MoonloopMsgDeleteCollectionOwnerResponse = object;
+
 export type MoonloopMsgDeleteCollectionResponse = object;
 
 export type MoonloopMsgDeleteContributionResponse = object;
+
+export type MoonloopMsgDeleteInstanceOwnerResponse = object;
 
 export type MoonloopMsgDeleteMintStrategyResponse = object;
 
@@ -104,9 +124,13 @@ export type MoonloopMsgUpdateClassResponse = object;
 
 export type MoonloopMsgUpdateClassTemplateResponse = object;
 
+export type MoonloopMsgUpdateCollectionOwnerResponse = object;
+
 export type MoonloopMsgUpdateCollectionResponse = object;
 
 export type MoonloopMsgUpdateContributionResponse = object;
+
+export type MoonloopMsgUpdateInstanceOwnerResponse = object;
 
 export type MoonloopMsgUpdateMintStrategyResponse = object;
 
@@ -234,6 +258,21 @@ export interface MoonloopQueryAllClassTemplateResponse {
   pagination?: V1Beta1PageResponse;
 }
 
+export interface MoonloopQueryAllCollectionOwnerResponse {
+  collectionOwner?: MoonloopCollectionOwner[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
 export interface MoonloopQueryAllCollectionResponse {
   collection?: MoonloopCollection[];
 
@@ -251,6 +290,21 @@ export interface MoonloopQueryAllCollectionResponse {
 
 export interface MoonloopQueryAllContributionResponse {
   contribution?: MoonloopContribution[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
+export interface MoonloopQueryAllInstanceOwnerResponse {
+  instanceOwner?: MoonloopInstanceOwner[];
 
   /**
    * PageResponse is to be embedded in gRPC response messages where the
@@ -317,12 +371,20 @@ export interface MoonloopQueryGetClassTemplateResponse {
   classTemplate?: MoonloopClassTemplate;
 }
 
+export interface MoonloopQueryGetCollectionOwnerResponse {
+  collectionOwner?: MoonloopCollectionOwner;
+}
+
 export interface MoonloopQueryGetCollectionResponse {
   collection?: MoonloopCollection;
 }
 
 export interface MoonloopQueryGetContributionResponse {
   contribution?: MoonloopContribution;
+}
+
+export interface MoonloopQueryGetInstanceOwnerResponse {
+  instanceOwner?: MoonloopInstanceOwner;
 }
 
 export interface MoonloopQueryGetInstanceResponse {
@@ -756,6 +818,48 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    * No description
    *
    * @tags Query
+   * @name QueryCollectionOwnerAll
+   * @summary Queries a list of collectionOwner items.
+   * @request GET:/str11ngfello/moonloop/moonloop/collectionOwner
+   */
+  queryCollectionOwnerAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.countTotal"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<MoonloopQueryAllCollectionOwnerResponse, RpcStatus>({
+      path: `/str11ngfello/moonloop/moonloop/collectionOwner`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryCollectionOwner
+   * @summary Queries a collectionOwner by index.
+   * @request GET:/str11ngfello/moonloop/moonloop/collectionOwner/{index}
+   */
+  queryCollectionOwner = (index: string, params: RequestParams = {}) =>
+    this.request<MoonloopQueryGetCollectionOwnerResponse, RpcStatus>({
+      path: `/str11ngfello/moonloop/moonloop/collectionOwner/${index}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
    * @name QueryContributionAll
    * @summary Queries a list of contribution items.
    * @request GET:/str11ngfello/moonloop/moonloop/contribution
@@ -816,6 +920,48 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       path: `/str11ngfello/moonloop/moonloop/getInstance`,
       method: "GET",
       query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryInstanceOwnerAll
+   * @summary Queries a list of instanceOwner items.
+   * @request GET:/str11ngfello/moonloop/moonloop/instanceOwner
+   */
+  queryInstanceOwnerAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.countTotal"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<MoonloopQueryAllInstanceOwnerResponse, RpcStatus>({
+      path: `/str11ngfello/moonloop/moonloop/instanceOwner`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryInstanceOwner
+   * @summary Queries a instanceOwner by index.
+   * @request GET:/str11ngfello/moonloop/moonloop/instanceOwner/{index}
+   */
+  queryInstanceOwner = (index: string, params: RequestParams = {}) =>
+    this.request<MoonloopQueryGetInstanceOwnerResponse, RpcStatus>({
+      path: `/str11ngfello/moonloop/moonloop/instanceOwner/${index}`,
+      method: "GET",
       format: "json",
       ...params,
     });

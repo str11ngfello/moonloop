@@ -1,0 +1,11 @@
+syntax = "proto3";
+package str11ngfello.moonloop.moonloop;
+
+option go_package = "github.com/str11ngfello/moonloop/x/moonloop/types";
+
+message InstanceOwner {
+  string index = 1; 
+  repeated string instances = 2; 
+  string creator = 3;
+}
+

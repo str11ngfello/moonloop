@@ -300,6 +300,52 @@ export interface MsgDeleteClassTemplate {
 
 export interface MsgDeleteClassTemplateResponse {}
 
+export interface MsgCreateCollectionOwner {
+  creator: string
+  index: string
+  collections: string[]
+}
+
+export interface MsgCreateCollectionOwnerResponse {}
+
+export interface MsgUpdateCollectionOwner {
+  creator: string
+  index: string
+  collections: string[]
+}
+
+export interface MsgUpdateCollectionOwnerResponse {}
+
+export interface MsgDeleteCollectionOwner {
+  creator: string
+  index: string
+}
+
+export interface MsgDeleteCollectionOwnerResponse {}
+
+export interface MsgCreateInstanceOwner {
+  creator: string
+  index: string
+  instances: string[]
+}
+
+export interface MsgCreateInstanceOwnerResponse {}
+
+export interface MsgUpdateInstanceOwner {
+  creator: string
+  index: string
+  instances: string[]
+}
+
+export interface MsgUpdateInstanceOwnerResponse {}
+
+export interface MsgDeleteInstanceOwner {
+  creator: string
+  index: string
+}
+
+export interface MsgDeleteInstanceOwnerResponse {}
+
 const baseMsgCreateCollection: object = { creator: '', index: '', name: '', description: '', mintStrategy: '', classes: '' }
 
 export const MsgCreateCollection = {
@@ -5331,6 +5377,762 @@ export const MsgDeleteClassTemplateResponse = {
   }
 }
 
+const baseMsgCreateCollectionOwner: object = { creator: '', index: '', collections: '' }
+
+export const MsgCreateCollectionOwner = {
+  encode(message: MsgCreateCollectionOwner, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.index !== '') {
+      writer.uint32(18).string(message.index)
+    }
+    for (const v of message.collections) {
+      writer.uint32(26).string(v!)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateCollectionOwner {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgCreateCollectionOwner } as MsgCreateCollectionOwner
+    message.collections = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.index = reader.string()
+          break
+        case 3:
+          message.collections.push(reader.string())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgCreateCollectionOwner {
+    const message = { ...baseMsgCreateCollectionOwner } as MsgCreateCollectionOwner
+    message.collections = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    if (object.collections !== undefined && object.collections !== null) {
+      for (const e of object.collections) {
+        message.collections.push(String(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: MsgCreateCollectionOwner): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.index !== undefined && (obj.index = message.index)
+    if (message.collections) {
+      obj.collections = message.collections.map((e) => e)
+    } else {
+      obj.collections = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgCreateCollectionOwner>): MsgCreateCollectionOwner {
+    const message = { ...baseMsgCreateCollectionOwner } as MsgCreateCollectionOwner
+    message.collections = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    if (object.collections !== undefined && object.collections !== null) {
+      for (const e of object.collections) {
+        message.collections.push(e)
+      }
+    }
+    return message
+  }
+}
+
+const baseMsgCreateCollectionOwnerResponse: object = {}
+
+export const MsgCreateCollectionOwnerResponse = {
+  encode(_: MsgCreateCollectionOwnerResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateCollectionOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgCreateCollectionOwnerResponse } as MsgCreateCollectionOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgCreateCollectionOwnerResponse {
+    const message = { ...baseMsgCreateCollectionOwnerResponse } as MsgCreateCollectionOwnerResponse
+    return message
+  },
+
+  toJSON(_: MsgCreateCollectionOwnerResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgCreateCollectionOwnerResponse>): MsgCreateCollectionOwnerResponse {
+    const message = { ...baseMsgCreateCollectionOwnerResponse } as MsgCreateCollectionOwnerResponse
+    return message
+  }
+}
+
+const baseMsgUpdateCollectionOwner: object = { creator: '', index: '', collections: '' }
+
+export const MsgUpdateCollectionOwner = {
+  encode(message: MsgUpdateCollectionOwner, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.index !== '') {
+      writer.uint32(18).string(message.index)
+    }
+    for (const v of message.collections) {
+      writer.uint32(26).string(v!)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateCollectionOwner {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgUpdateCollectionOwner } as MsgUpdateCollectionOwner
+    message.collections = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.index = reader.string()
+          break
+        case 3:
+          message.collections.push(reader.string())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgUpdateCollectionOwner {
+    const message = { ...baseMsgUpdateCollectionOwner } as MsgUpdateCollectionOwner
+    message.collections = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    if (object.collections !== undefined && object.collections !== null) {
+      for (const e of object.collections) {
+        message.collections.push(String(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: MsgUpdateCollectionOwner): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.index !== undefined && (obj.index = message.index)
+    if (message.collections) {
+      obj.collections = message.collections.map((e) => e)
+    } else {
+      obj.collections = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgUpdateCollectionOwner>): MsgUpdateCollectionOwner {
+    const message = { ...baseMsgUpdateCollectionOwner } as MsgUpdateCollectionOwner
+    message.collections = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    if (object.collections !== undefined && object.collections !== null) {
+      for (const e of object.collections) {
+        message.collections.push(e)
+      }
+    }
+    return message
+  }
+}
+
+const baseMsgUpdateCollectionOwnerResponse: object = {}
+
+export const MsgUpdateCollectionOwnerResponse = {
+  encode(_: MsgUpdateCollectionOwnerResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateCollectionOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgUpdateCollectionOwnerResponse } as MsgUpdateCollectionOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgUpdateCollectionOwnerResponse {
+    const message = { ...baseMsgUpdateCollectionOwnerResponse } as MsgUpdateCollectionOwnerResponse
+    return message
+  },
+
+  toJSON(_: MsgUpdateCollectionOwnerResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgUpdateCollectionOwnerResponse>): MsgUpdateCollectionOwnerResponse {
+    const message = { ...baseMsgUpdateCollectionOwnerResponse } as MsgUpdateCollectionOwnerResponse
+    return message
+  }
+}
+
+const baseMsgDeleteCollectionOwner: object = { creator: '', index: '' }
+
+export const MsgDeleteCollectionOwner = {
+  encode(message: MsgDeleteCollectionOwner, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.index !== '') {
+      writer.uint32(18).string(message.index)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgDeleteCollectionOwner {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgDeleteCollectionOwner } as MsgDeleteCollectionOwner
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.index = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgDeleteCollectionOwner {
+    const message = { ...baseMsgDeleteCollectionOwner } as MsgDeleteCollectionOwner
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    return message
+  },
+
+  toJSON(message: MsgDeleteCollectionOwner): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.index !== undefined && (obj.index = message.index)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgDeleteCollectionOwner>): MsgDeleteCollectionOwner {
+    const message = { ...baseMsgDeleteCollectionOwner } as MsgDeleteCollectionOwner
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    return message
+  }
+}
+
+const baseMsgDeleteCollectionOwnerResponse: object = {}
+
+export const MsgDeleteCollectionOwnerResponse = {
+  encode(_: MsgDeleteCollectionOwnerResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgDeleteCollectionOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgDeleteCollectionOwnerResponse } as MsgDeleteCollectionOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgDeleteCollectionOwnerResponse {
+    const message = { ...baseMsgDeleteCollectionOwnerResponse } as MsgDeleteCollectionOwnerResponse
+    return message
+  },
+
+  toJSON(_: MsgDeleteCollectionOwnerResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgDeleteCollectionOwnerResponse>): MsgDeleteCollectionOwnerResponse {
+    const message = { ...baseMsgDeleteCollectionOwnerResponse } as MsgDeleteCollectionOwnerResponse
+    return message
+  }
+}
+
+const baseMsgCreateInstanceOwner: object = { creator: '', index: '', instances: '' }
+
+export const MsgCreateInstanceOwner = {
+  encode(message: MsgCreateInstanceOwner, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.index !== '') {
+      writer.uint32(18).string(message.index)
+    }
+    for (const v of message.instances) {
+      writer.uint32(26).string(v!)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateInstanceOwner {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgCreateInstanceOwner } as MsgCreateInstanceOwner
+    message.instances = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.index = reader.string()
+          break
+        case 3:
+          message.instances.push(reader.string())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgCreateInstanceOwner {
+    const message = { ...baseMsgCreateInstanceOwner } as MsgCreateInstanceOwner
+    message.instances = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    if (object.instances !== undefined && object.instances !== null) {
+      for (const e of object.instances) {
+        message.instances.push(String(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: MsgCreateInstanceOwner): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.index !== undefined && (obj.index = message.index)
+    if (message.instances) {
+      obj.instances = message.instances.map((e) => e)
+    } else {
+      obj.instances = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgCreateInstanceOwner>): MsgCreateInstanceOwner {
+    const message = { ...baseMsgCreateInstanceOwner } as MsgCreateInstanceOwner
+    message.instances = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    if (object.instances !== undefined && object.instances !== null) {
+      for (const e of object.instances) {
+        message.instances.push(e)
+      }
+    }
+    return message
+  }
+}
+
+const baseMsgCreateInstanceOwnerResponse: object = {}
+
+export const MsgCreateInstanceOwnerResponse = {
+  encode(_: MsgCreateInstanceOwnerResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateInstanceOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgCreateInstanceOwnerResponse } as MsgCreateInstanceOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgCreateInstanceOwnerResponse {
+    const message = { ...baseMsgCreateInstanceOwnerResponse } as MsgCreateInstanceOwnerResponse
+    return message
+  },
+
+  toJSON(_: MsgCreateInstanceOwnerResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgCreateInstanceOwnerResponse>): MsgCreateInstanceOwnerResponse {
+    const message = { ...baseMsgCreateInstanceOwnerResponse } as MsgCreateInstanceOwnerResponse
+    return message
+  }
+}
+
+const baseMsgUpdateInstanceOwner: object = { creator: '', index: '', instances: '' }
+
+export const MsgUpdateInstanceOwner = {
+  encode(message: MsgUpdateInstanceOwner, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.index !== '') {
+      writer.uint32(18).string(message.index)
+    }
+    for (const v of message.instances) {
+      writer.uint32(26).string(v!)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateInstanceOwner {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgUpdateInstanceOwner } as MsgUpdateInstanceOwner
+    message.instances = []
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.index = reader.string()
+          break
+        case 3:
+          message.instances.push(reader.string())
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgUpdateInstanceOwner {
+    const message = { ...baseMsgUpdateInstanceOwner } as MsgUpdateInstanceOwner
+    message.instances = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    if (object.instances !== undefined && object.instances !== null) {
+      for (const e of object.instances) {
+        message.instances.push(String(e))
+      }
+    }
+    return message
+  },
+
+  toJSON(message: MsgUpdateInstanceOwner): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.index !== undefined && (obj.index = message.index)
+    if (message.instances) {
+      obj.instances = message.instances.map((e) => e)
+    } else {
+      obj.instances = []
+    }
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgUpdateInstanceOwner>): MsgUpdateInstanceOwner {
+    const message = { ...baseMsgUpdateInstanceOwner } as MsgUpdateInstanceOwner
+    message.instances = []
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    if (object.instances !== undefined && object.instances !== null) {
+      for (const e of object.instances) {
+        message.instances.push(e)
+      }
+    }
+    return message
+  }
+}
+
+const baseMsgUpdateInstanceOwnerResponse: object = {}
+
+export const MsgUpdateInstanceOwnerResponse = {
+  encode(_: MsgUpdateInstanceOwnerResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgUpdateInstanceOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgUpdateInstanceOwnerResponse } as MsgUpdateInstanceOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgUpdateInstanceOwnerResponse {
+    const message = { ...baseMsgUpdateInstanceOwnerResponse } as MsgUpdateInstanceOwnerResponse
+    return message
+  },
+
+  toJSON(_: MsgUpdateInstanceOwnerResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgUpdateInstanceOwnerResponse>): MsgUpdateInstanceOwnerResponse {
+    const message = { ...baseMsgUpdateInstanceOwnerResponse } as MsgUpdateInstanceOwnerResponse
+    return message
+  }
+}
+
+const baseMsgDeleteInstanceOwner: object = { creator: '', index: '' }
+
+export const MsgDeleteInstanceOwner = {
+  encode(message: MsgDeleteInstanceOwner, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== '') {
+      writer.uint32(10).string(message.creator)
+    }
+    if (message.index !== '') {
+      writer.uint32(18).string(message.index)
+    }
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgDeleteInstanceOwner {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgDeleteInstanceOwner } as MsgDeleteInstanceOwner
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string()
+          break
+        case 2:
+          message.index = reader.string()
+          break
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(object: any): MsgDeleteInstanceOwner {
+    const message = { ...baseMsgDeleteInstanceOwner } as MsgDeleteInstanceOwner
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator)
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = String(object.index)
+    } else {
+      message.index = ''
+    }
+    return message
+  },
+
+  toJSON(message: MsgDeleteInstanceOwner): unknown {
+    const obj: any = {}
+    message.creator !== undefined && (obj.creator = message.creator)
+    message.index !== undefined && (obj.index = message.index)
+    return obj
+  },
+
+  fromPartial(object: DeepPartial<MsgDeleteInstanceOwner>): MsgDeleteInstanceOwner {
+    const message = { ...baseMsgDeleteInstanceOwner } as MsgDeleteInstanceOwner
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator
+    } else {
+      message.creator = ''
+    }
+    if (object.index !== undefined && object.index !== null) {
+      message.index = object.index
+    } else {
+      message.index = ''
+    }
+    return message
+  }
+}
+
+const baseMsgDeleteInstanceOwnerResponse: object = {}
+
+export const MsgDeleteInstanceOwnerResponse = {
+  encode(_: MsgDeleteInstanceOwnerResponse, writer: Writer = Writer.create()): Writer {
+    return writer
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgDeleteInstanceOwnerResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input
+    let end = length === undefined ? reader.len : reader.pos + length
+    const message = { ...baseMsgDeleteInstanceOwnerResponse } as MsgDeleteInstanceOwnerResponse
+    while (reader.pos < end) {
+      const tag = reader.uint32()
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7)
+          break
+      }
+    }
+    return message
+  },
+
+  fromJSON(_: any): MsgDeleteInstanceOwnerResponse {
+    const message = { ...baseMsgDeleteInstanceOwnerResponse } as MsgDeleteInstanceOwnerResponse
+    return message
+  },
+
+  toJSON(_: MsgDeleteInstanceOwnerResponse): unknown {
+    const obj: any = {}
+    return obj
+  },
+
+  fromPartial(_: DeepPartial<MsgDeleteInstanceOwnerResponse>): MsgDeleteInstanceOwnerResponse {
+    const message = { ...baseMsgDeleteInstanceOwnerResponse } as MsgDeleteInstanceOwnerResponse
+    return message
+  }
+}
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateCollection(request: MsgCreateCollection): Promise<MsgCreateCollectionResponse>
@@ -5357,8 +6159,14 @@ export interface Msg {
   Mint(request: MsgMint): Promise<MsgMintResponse>
   CreateClassTemplate(request: MsgCreateClassTemplate): Promise<MsgCreateClassTemplateResponse>
   UpdateClassTemplate(request: MsgUpdateClassTemplate): Promise<MsgUpdateClassTemplateResponse>
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   DeleteClassTemplate(request: MsgDeleteClassTemplate): Promise<MsgDeleteClassTemplateResponse>
+  CreateCollectionOwner(request: MsgCreateCollectionOwner): Promise<MsgCreateCollectionOwnerResponse>
+  UpdateCollectionOwner(request: MsgUpdateCollectionOwner): Promise<MsgUpdateCollectionOwnerResponse>
+  DeleteCollectionOwner(request: MsgDeleteCollectionOwner): Promise<MsgDeleteCollectionOwnerResponse>
+  CreateInstanceOwner(request: MsgCreateInstanceOwner): Promise<MsgCreateInstanceOwnerResponse>
+  UpdateInstanceOwner(request: MsgUpdateInstanceOwner): Promise<MsgUpdateInstanceOwnerResponse>
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  DeleteInstanceOwner(request: MsgDeleteInstanceOwner): Promise<MsgDeleteInstanceOwnerResponse>
 }
 
 export class MsgClientImpl implements Msg {
@@ -5514,6 +6322,42 @@ export class MsgClientImpl implements Msg {
     const data = MsgDeleteClassTemplate.encode(request).finish()
     const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'DeleteClassTemplate', data)
     return promise.then((data) => MsgDeleteClassTemplateResponse.decode(new Reader(data)))
+  }
+
+  CreateCollectionOwner(request: MsgCreateCollectionOwner): Promise<MsgCreateCollectionOwnerResponse> {
+    const data = MsgCreateCollectionOwner.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'CreateCollectionOwner', data)
+    return promise.then((data) => MsgCreateCollectionOwnerResponse.decode(new Reader(data)))
+  }
+
+  UpdateCollectionOwner(request: MsgUpdateCollectionOwner): Promise<MsgUpdateCollectionOwnerResponse> {
+    const data = MsgUpdateCollectionOwner.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'UpdateCollectionOwner', data)
+    return promise.then((data) => MsgUpdateCollectionOwnerResponse.decode(new Reader(data)))
+  }
+
+  DeleteCollectionOwner(request: MsgDeleteCollectionOwner): Promise<MsgDeleteCollectionOwnerResponse> {
+    const data = MsgDeleteCollectionOwner.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'DeleteCollectionOwner', data)
+    return promise.then((data) => MsgDeleteCollectionOwnerResponse.decode(new Reader(data)))
+  }
+
+  CreateInstanceOwner(request: MsgCreateInstanceOwner): Promise<MsgCreateInstanceOwnerResponse> {
+    const data = MsgCreateInstanceOwner.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'CreateInstanceOwner', data)
+    return promise.then((data) => MsgCreateInstanceOwnerResponse.decode(new Reader(data)))
+  }
+
+  UpdateInstanceOwner(request: MsgUpdateInstanceOwner): Promise<MsgUpdateInstanceOwnerResponse> {
+    const data = MsgUpdateInstanceOwner.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'UpdateInstanceOwner', data)
+    return promise.then((data) => MsgUpdateInstanceOwnerResponse.decode(new Reader(data)))
+  }
+
+  DeleteInstanceOwner(request: MsgDeleteInstanceOwner): Promise<MsgDeleteInstanceOwnerResponse> {
+    const data = MsgDeleteInstanceOwner.encode(request).finish()
+    const promise = this.rpc.request('str11ngfello.moonloop.moonloop.Msg', 'DeleteInstanceOwner', data)
+    return promise.then((data) => MsgDeleteInstanceOwnerResponse.decode(new Reader(data)))
   }
 }
 
